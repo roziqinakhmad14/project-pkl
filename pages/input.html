@@ -261,9 +261,9 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Tanggal :</label>
-                                <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                    <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate"/>
-                                    <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                <div class="input-group date" id="tanggal" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#tanggal"/>
+                                    <div class="input-group-append" data-target="#tanggal" data-toggle="datetimepicker">
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                     </div>
                                 </div>
@@ -310,9 +310,9 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label>Tanggal Terbit :</label>
-                                <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                    <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate"/>
-                                    <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                <div class="input-group date" id="tanggal_terbit" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#tanggal_terbit"/>
+                                    <div class="input-group-append" data-target="#tanggal_terbit" data-toggle="datetimepicker">
                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                     </div>
                                 </div>
@@ -388,15 +388,7 @@
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="../dist/js/pages/dashboard.js"></script>
     <script>
-        $(function () {
-          //Initialize Select2 Elements
-          $('.select2').select2()
-      
-          //Initialize Select2 Elements
-          $('.select2bs4').select2({
-            theme: 'bootstrap4'
-          })
-      
+        $(function () {      
           //Datemask dd/mm/yyyy
           $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
           //Datemask2 mm/dd/yyyy
@@ -405,7 +397,10 @@
           $('[data-mask]').inputmask()
       
           //Date picker
-          $('#reservationdate').datetimepicker({
+          $('#tanggal').datetimepicker({
+              format: 'L'
+          });
+          $('#tanggal_terbit').datetimepicker({
               format: 'L'
           });
       
