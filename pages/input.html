@@ -12,8 +12,10 @@
     <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
     <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
     <!-- iCheck -->
     <link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- JQVMap -->
@@ -22,8 +24,6 @@
     <link rel="stylesheet" href="../dist/css/adminlte.min.css">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-    <!-- Daterange picker -->
-    <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="../plugins/summernote/summernote-bs4.min.css">
 </head>
@@ -196,7 +196,7 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="./../index.html" class="nav-link ">
+                            <a href="../index.html" class="nav-link ">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>Dashboard</p>
                             </a>
@@ -237,7 +237,7 @@
                         <!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
                                 <li class="breadcrumb-item active">Input</li>
                             </ol>
                         </div>
@@ -253,13 +253,82 @@
             <section class="content">
                 <div class="container-fluid">
                     <!-- Main row -->
-                    <div class="row">
-
-
-
-
-
-
+                    <div class="card card-body">
+                        <form action="" class="row" id="form">
+                            <div class="form-group col-md-6">
+                                <label for="no_register">No. Register :</label>
+                                <input type="text" class="form-control" id="no_register" placeholder="No. Register" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Tanggal Register :</label>
+                                <div class="input-group date" id="tanggal_register" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#tanggal_register" required>
+                                    <div class="input-group-append" data-target="#tanggal_register" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="name">Nama Lengkap :</label>
+                                <input type="text" class="form-control" id="name" placeholder="Nama Lengkap" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="phone">No. Handphone</label>
+                                <input type="phone" id="phone" class="form-control" placeholder="No. Handphone">
+                            </div>
+                            <div class="form-group col-12">
+                                <label for="address">Alamat</label>
+                                <input type="text" id="address" class="form-control" placeholder="Alamat" required>
+                            </div>
+                            <div class="form-group col-12">
+                                <label for="company">Nama Perusahaan</label>
+                                <input type="text" id="company" class="form-control" placeholder="Nama Perusahaan" required>
+                            </div>
+                            <div class="form-group col-12">
+                                <label for="company_address">Lokasi Usaha</label>
+                                <input type="text" id="company_address" class="form-control" placeholder="Lokasi Usaha" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="kecamatan">Kecamatan</label>
+                                <select class="custom-select rounded-0" id="kecamatan">
+                                    <option>Value 1</option>
+                                    <option>Value 2</option>
+                                    <option>Value 3</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="kelurahan">Kelurahan</label>
+                                <select class="custom-select rounded-0" id="kelurahan">
+                                    <option>Value 1</option>
+                                    <option>Value 2</option>
+                                    <option>Value 3</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="no_izin">No. Izin :</label>
+                                <input type="text" class="form-control" id="no_izin" placeholder="No. Izin" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label>Tanggal Terbit :</label>
+                                <div class="input-group date" id="tanggal_terbit" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" data-target="#tanggal_terbit" required>
+                                    <div class="input-group-append" data-target="#tanggal_terbit" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="jenis_perizinan">Jenis Perizinan</label>
+                                <select class="custom-select rounded-0" id="jenis_perizinan" required>
+                                    <option>Value 1</option>
+                                    <option>Value 2</option>
+                                    <option>Value 3</option>
+                                </select>
+                            </div>
+                            <div class="form-group col">
+                                <input type="submit" class="btn btn-primary" value="Masukkan Data">
+                            </div>
+                        </form>
                     </div>
                     <!-- /.row (main row) -->
                 </div>
@@ -302,9 +371,13 @@
     <script src="../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
     <!-- jQuery Knob Chart -->
     <script src="../plugins/jquery-knob/jquery.knob.min.js"></script>
-    <!-- daterangepicker -->
+    <!-- InputMask -->
     <script src="../plugins/moment/moment.min.js"></script>
+    <script src="../plugins/inputmask/jquery.inputmask.min.js"></script>
+    <!-- date-range-picker -->
     <script src="../plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- bootstrap color picker -->
+    <script src="../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
     <!-- Tempusdominus Bootstrap 4 -->
     <script src="../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
     <!-- Summernote -->
@@ -317,6 +390,24 @@
     <script src="../dist/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="../dist/js/pages/dashboard.js"></script>
+    <script>
+        $(function () {      
+          //Datemask dd/mm/yyyy
+          $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+          //Datemask2 mm/dd/yyyy
+          $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+          //Money Euro
+          $('[data-mask]').inputmask()
+      
+          //Date picker
+          $('#tanggal_register').datetimepicker({
+              format: 'L'
+          });
+          $('#tanggal_terbit').datetimepicker({
+              format: 'L'
+          });    
+        })
+    </script>
 </body>
 
 </html>
