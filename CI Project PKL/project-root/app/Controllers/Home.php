@@ -6,6 +6,14 @@ class Home extends BaseController
 {
     public function index()
     {
-        return view('welcome_message');
+        echo view('dasboard');
+    }
+    public function input()
+    {
+        echo view('input');
+    }
+    public function search()
+    {
+        echo view('search');
     }
 }
