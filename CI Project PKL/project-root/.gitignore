@@ -19,58 +19,58 @@ Desktop.ini
 $RECYCLE.BIN/
 
 # Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
+# *.cab
+# *.msi
+# *.msm
+# *.msp
 
 # Windows shortcuts
-*.lnk
+# *.lnk
 
 # Linux
-*~
+# *~
 
 # KDE directory preferences
-.directory
+# .directory
 
 # Linux trash folder which might appear on any partition or disk
-.Trash-*
+# .Trash-*
 
 #-------------------------
 # Environment Files
 #-------------------------
 # These should never be under version control,
 # as it poses a security risk.
-.env
-.vagrant
-Vagrantfile
+# .env
+# .vagrant
+# Vagrantfile
 
 #-------------------------
 # Temporary Files
 #-------------------------
-writable/cache/*
-!writable/cache/index.html
+# writable/cache/*
+# !writable/cache/index.html
 
-writable/logs/*
-!writable/logs/index.html
+# writable/logs/*
+# !writable/logs/index.html
 
-writable/session/*
-!writable/session/index.html
+# writable/session/*
+# !writable/session/index.html
 
-writable/uploads/*
-!writable/uploads/index.html
+# writable/uploads/*
+# !writable/uploads/index.html
 
-writable/debugbar/*
+# writable/debugbar/*
 
-php_errors.log
+# php_errors.log
 
 #-------------------------
 # User Guide Temp Files
 #-------------------------
-user_guide_src/build/*
-user_guide_src/cilexer/build/*
-user_guide_src/cilexer/dist/*
-user_guide_src/cilexer/pycilexer.egg-info/*
+# user_guide_src/build/*
+# user_guide_src/cilexer/build/*
+# user_guide_src/cilexer/dist/*
+# user_guide_src/cilexer/pycilexer.egg-info/*
 
 #-------------------------
 # Test Files
@@ -83,14 +83,14 @@ phpunit
 #-------------------------
 # Composer
 #-------------------------
-vendor/
+# vendor/
 
 #-------------------------
 # IDE / Development Files
 #-------------------------
 
 # Modules Testing
-_modules/*
+# _modules/*
 
 # phpenv local config
 .php-version
@@ -100,28 +100,28 @@ _modules/*
 *.iml
 
 # Netbeans
-nbproject/
-build/
-nbbuild/
-dist/
-nbdist/
-nbactions.xml
-nb-configuration.xml
-.nb-gradle/
+# nbproject/
+# build/
+# nbbuild/
+# # dist/
+# nbdist/
+# nbactions.xml
+# nb-configuration.xml
+# .nb-gradle/
 
 # Sublime Text
-*.tmlanguage.cache
-*.tmPreferences.cache
-*.stTheme.cache
-*.sublime-workspace
-*.sublime-project
-.phpintel
-/api/
+# *.tmlanguage.cache
+# *.tmPreferences.cache
+# *.stTheme.cache
+# *.sublime-workspace
+# *.sublime-project
+# .phpintel
+# /api/
 
 # Visual Studio Code
-.vscode/
+# .vscode/
 
-/results/
-/phpunit*.xml
-/.phpunit.*.cache
+# /results/
+# /phpunit*.xml
+# /.phpunit.*.cache
 
