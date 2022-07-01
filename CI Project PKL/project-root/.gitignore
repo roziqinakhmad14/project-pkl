@@ -75,10 +75,10 @@ $RECYCLE.BIN/
 #-------------------------
 # Test Files
 #-------------------------
-tests/coverage*
+# tests/coverage*
 
 # Don't save phpunit under version control.
-phpunit
+# phpunit
 
 #-------------------------
 # Composer
@@ -93,11 +93,11 @@ phpunit
 # _modules/*
 
 # phpenv local config
-.php-version
+# .php-version
 
 # Jetbrains editors (PHPStorm, etc)
-.idea/
-*.iml
+# .idea/
+# *.iml
 
 # Netbeans
 # nbproject/
