@@ -8,6 +8,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="https://disnakerpmptsp.malangkota.go.id/wp-content/uploads/2021/04/cropped-logo-blue-site-id-270x270.jpg">
     <title>DISNAKER-PMPTSP | Arsip</title>
 
     <!-- Google Font: Source Sans Pro-->

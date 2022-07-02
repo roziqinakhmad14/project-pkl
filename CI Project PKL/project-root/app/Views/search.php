@@ -70,22 +70,23 @@
                             </div>
                         </div>
                         <div class="col-12">
-                            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                                <table id="example2" class="table table-bordered table-hover dataTable dtr-inline table-responsive" aria-describedby="example2_info">
-                                    <thead>
+                            <div>
+                                <table class="table table-striped table-bordered table-hover table-responsive">
+                                    <thead class="table-dark">
                                         <tr>
-                                            <th class="sorting sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">No. Registrasi</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Tanggal</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Nama Lengkap</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Alamat</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">No. Handphone</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Nama Perusahaan</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Lokasi Usaha</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Kelurahan</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Kecamatan</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">No. Izin</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Tanggal Terbit</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Jenis Perizinan</th>                 
+                                            <th class="text-nowrap text-center" rowspan="1" colspan="1">No. Registrasi</th>
+                                            <th class="text-nowrap text-center" rowspan="1" colspan="1">Tanggal</th>
+                                            <th class="text-nowrap text-center" rowspan="1" colspan="1">Nama Lengkap</th>
+                                            <th class="text-nowrap text-center" rowspan="1" colspan="1">Alamat</th>
+                                            <th class="text-nowrap text-center" rowspan="1" colspan="1">No. Handphone</th>
+                                            <th class="text-nowrap text-center" rowspan="1" colspan="1">Nama Perusahaan</th>
+                                            <th class="text-nowrap text-center" rowspan="1" colspan="1">Lokasi Usaha</th>
+                                            <th class="text-nowrap text-center" rowspan="1" colspan="1">Kelurahan</th>
+                                            <th class="text-nowrap text-center" rowspan="1" colspan="1">Kecamatan</th>
+                                            <th class="text-nowrap text-center" rowspan="1" colspan="1">No. Izin</th>
+                                            <th class="text-nowrap text-center" rowspan="1" colspan="1">Tanggal Terbit</th>
+                                            <th class="text-nowrap text-center" rowspan="1" colspan="1">Jenis Perizinan</th>
+                                            <th class="text-nowrap text-center" rowspan="1" colspan="1">&nbsp;Action&nbsp;</th>                 
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -102,22 +103,72 @@
                                             <td>660.1/0019/35.73.406/2021</td>
                                             <td>04-30-2021</td>
                                             <td>UKL-UPL</td>
+                                            <style>
+                                                i.text-hover:hover {
+                                                    opacity: 80%;
+                                                }
+                                            </style>
+                                            <td class="h5" style="line-height: 20pt;"><a href="">
+                                                <i class="text-hover text-primary fas fa-pen"></i></a> | <a href=""><i class="text-hover text-danger  fas fa-trash"></a></i></td>
+                                        </tr>
+                                        <tr class="even">
+                                            <td>UKL/003/PERIJ/I/2021</td>
+                                            <td>04-01-2021</td>
+                                            <td>MARIO ARDINATA</td>
+                                            <td>JL. TELAGA BODAS Y-I/9 KOTA MALANG</td>
+                                            <td></td>
+                                            <td>PEMBANGUNAN PERUM. RIVERFONT URBAN RESORT " PT. BUMI ARTHA MAKMOER "</td>
+                                            <td>JL. RAYA KI AGENG GRIBIG KOTA MALANG</td>
+                                            <td>MADYOPURO</td>
+                                            <td>KEDUNGKANDANG</td>
+                                            <td>660.1/0019/35.73.406/2021</td>
+                                            <td>04-30-2021</td>
+                                            <td>UKL-UPL</td>
+                                            <style>
+                                                i.text-hover:hover {
+                                                    opacity: 80%;
+                                                }
+                                            </style>
+                                            <td class="h5" style="line-height: 20pt;"><a href="">
+                                                <i class="text-hover text-primary fas fa-pen"></i></a> | <a href=""><i class="text-hover text-danger  fas fa-trash"></a></i></td>
+                                        </tr>
+                                        <tr class="odd">
+                                            <td>UKL/003/PERIJ/I/2021</td>
+                                            <td>04-01-2021</td>
+                                            <td>MARIO ARDINATA</td>
+                                            <td>JL. TELAGA BODAS Y-I/9 KOTA MALANG</td>
+                                            <td></td>
+                                            <td>PEMBANGUNAN PERUM. RIVERFONT URBAN RESORT " PT. BUMI ARTHA MAKMOER "</td>
+                                            <td>JL. RAYA KI AGENG GRIBIG KOTA MALANG</td>
+                                            <td>MADYOPURO</td>
+                                            <td>KEDUNGKANDANG</td>
+                                            <td>660.1/0019/35.73.406/2021</td>
+                                            <td>04-30-2021</td>
+                                            <td>UKL-UPL</td>
+                                            <style>
+                                                i.text-hover:hover {
+                                                    opacity: 80%;
+                                                }
+                                            </style>
+                                            <td class="h5" style="line-height: 20pt;"><a href="">
+                                                <i class="text-hover text-primary fas fa-pen"></i></a> | <a href=""><i class="text-hover text-danger  fas fa-trash"></a></i></td>
                                         </tr>
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th rowspan="1" colspan="1">No. Registrasi</th>
-                                            <th rowspan="1" colspan="1">Tanggal</th>
-                                            <th rowspan="1" colspan="1">Nama Lengkap</th>
-                                            <th rowspan="1" colspan="1">Alamat</th>
-                                            <th rowspan="1" colspan="1">No. HP</th>
-                                            <th rowspan="1" colspan="1">Nama Perusahaan</th>
-                                            <th rowspan="1" colspan="1">Lokasi Usaha</th>
-                                            <th rowspan="1" colspan="1">Kelurahan</th>
-                                            <th rowspan="1" colspan="1">Kecamatan</th>
-                                            <th rowspan="1" colspan="1">No. Izin</th>
-                                            <th rowspan="1" colspan="1">Tanggal Terbit</th>
-                                            <th rowspan="1" colspan="1">Jenis Perizinan</th>
+                                            <th class="text-center" rowspan="1" colspan="1">No. Registrasi</th>
+                                            <th class="text-center" rowspan="1" colspan="1">Tanggal</th>
+                                            <th class="text-center" rowspan="1" colspan="1">Nama Lengkap</th>
+                                            <th class="text-center" rowspan="1" colspan="1">Alamat</th>
+                                            <th class="text-center" rowspan="1" colspan="1">No. HP</th>
+                                            <th class="text-center" rowspan="1" colspan="1">Nama Perusahaan</th>
+                                            <th class="text-center" rowspan="1" colspan="1">Lokasi Usaha</th>
+                                            <th class="text-center" rowspan="1" colspan="1">Kelurahan</th>
+                                            <th class="text-center" rowspan="1" colspan="1">Kecamatan</th>
+                                            <th class="text-center" rowspan="1" colspan="1">No. Izin</th>
+                                            <th class="text-center" rowspan="1" colspan="1">Tanggal Terbit</th>
+                                            <th class="text-center" rowspan="1" colspan="1">Jenis Perizinan</th>
+                                            <th class="text-center" rowspan="1" colspan="1">Action</th>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -135,12 +186,11 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-12 col-md-3">
-                                        <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                                        <div class="dataTables_paginate paging_simple_numbers">
                                             <ul class="pagination">
-                                                <li class="paginate_button page-item previous disabled" id="example2_previous"><a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
-                                                <li class="paginate_button page-item active"><a href="#" aria-controls="example2" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                                                <li class="paginate_button page-item "><a href="#" aria-controls="example2" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
-                                                <li class="paginate_button page-item next" id="example2_next"><a href="#" aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
+                                                <li class="paginate_button page-item previous disabled" id="previous"><a href="#" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+                                                <li class="paginate_button page-item active"><a href="#" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
+                                                <li class="paginate_button page-item next" id="next"><a href="#" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
                                             </ul>
                                         </div>
                                     </div>
