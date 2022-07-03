@@ -62,9 +62,9 @@
                         <div class="form-group col-md-6">
                             <label for="perizinan">Jenis Perizinan</label>
                             <select class="custom-select rounded-0" id="perizinan">
-                                <option>Value 1</option>
-                                <option>Value 2</option>
-                                <option>Value 3</option>
+                            <?php foreach($izin as $keyizin) :?>
+                                <option value="<?= $keyizin['id_jenis_perizinan']?>"><?= $keyizin['nama_perizinan']?></option>
+                            <?php endforeach;?>
                             </select>
                         </div>
                         <!-- Date range -->

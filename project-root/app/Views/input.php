@@ -123,10 +123,11 @@
                             </div>
                         </div>
                         <div class="form-group col-md-4">
-                            <?php foreach($jenis_perizinan as $perizinan); ?>
                             <label for="jenis_perizinan">Jenis Perizinan</label>
                             <select class="custom-select rounded-0" id="jenis_perizinan" required>
-                                <option value="<?=$perizinan['id_jenis_perizinan'];?>"><?=$perizinan['nama_perizinan'];?></option>
+                            <?php foreach($izin as $keyizin) :?>
+                                <option value="<?= $keyizin['id_jenis_perizinan']?>"><?= $keyizin['nama_perizinan']?></option>
+                            <?php endforeach;?>
                             </select>
                         </div>
                         <div class="form-group col">
