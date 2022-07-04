@@ -52,7 +52,7 @@
                         <div class="col">
                             <div class="card card-body">
                                 <table class="table table-striped table-bordered">
-                                    <thead>
+                                    <thead class="table-dark">
                                         <tr class="text-center">
                                             <th colspan="2">Rangkuman Perizinan</th>
                                         </tr>
