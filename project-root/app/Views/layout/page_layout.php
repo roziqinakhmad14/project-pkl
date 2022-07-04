@@ -1,7 +1,3 @@
-<?php
-
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
-?>
 <!DOCTYPE html>
 <html lang="en">
 
