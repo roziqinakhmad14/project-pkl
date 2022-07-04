@@ -48,6 +48,33 @@
                         <!-- /.col -->
                     </div>
                     <!-- /.row -->
+                    <div class="row pt-3">
+                        <div class="col">
+                            <div class="card card-body">
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th colspan="2">Rangkuman Perizinan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><a class="font-weight-bold" href="" >UKL-UPL</a></td>
+                                            <td>33</td>
+                                        </tr>
+                                        <tr>
+                                            <td><a class="font-weight-bold" href="" >UKL-UPL</a></td>
+                                            <td>33</td>
+                                        </tr>
+                                        <tr>
+                                            <td><a class="font-weight-bold" href="" >UKL-UPL</a></td>
+                                            <td>33</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
             </div>
