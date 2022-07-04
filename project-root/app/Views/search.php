@@ -122,18 +122,18 @@
                                     <tbody>
                                     <?php foreach($dataperizinan as $perizinan):?>
                                         <tr class="odd">
-                                            <td><?= $perizinan['NO REGISTER']?></td>
+                                            <td><?= $perizinan['id']?></td>
                                             <td><?= $perizinan['TANGGAL']?></td>
                                             <td><?= $perizinan['NAMA']?></td>
                                             <td><?= $perizinan['ALAMAT']?></td>
-                                            <td><?= $perizinan['NO HP']?></td>
+                                            <td><?= $perizinan['NO_HP']?></td>
                                             <td><?= $perizinan['PERUSAHAAN']?></td>
-                                            <td><?= $perizinan['LOKASI USAHA']?></td>
+                                            <td><?= $perizinan['LOKASI_USAHA']?></td>
                                             <td><?= $perizinan['KELURAHAN']?></td>
                                             <td><?= $perizinan['KECAMATAN']?></td>
-                                            <td><?= $perizinan['TANGGAL TERBIT']?></td>
-                                            <td><?= $perizinan['NO IZIN']?></td>
-                                            <td><?= $perizinan['JENIS PERIZINAN']?></td>
+                                            <td><?= $perizinan['TANGGAL_TERBIT']?></td>
+                                            <td><?= $perizinan['NO_IZIN']?></td>
+                                            <td><?= $perizinan['nama_perizinan']?></td>
                                             <style>
                                                 i.text-hover:hover {
                                                     opacity: 80%;

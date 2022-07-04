@@ -12,7 +12,7 @@ class JenisPerizinan extends BaseController
     
     public function index()
     {
-        $izin = $this->Tabel_perizinanModel->findAll();
+        $izin = $this->Tabel_perizinanModel->getAll();
         dd($izin);
         return view('cobadata/index');
     }
