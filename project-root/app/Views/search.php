@@ -120,19 +120,20 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <?php foreach($dataperizinan as $perizinan):?>
                                         <tr class="odd">
-                                            <td>UKL/003/PERIJ/I/2021</td>
-                                            <td>04-01-2021</td>
-                                            <td>MARIO ARDINATA</td>
-                                            <td>JL. TELAGA BODAS Y-I/9 KOTA MALANG</td>
-                                            <td></td>
-                                            <td>PEMBANGUNAN PERUM. RIVERFONT URBAN RESORT " PT. BUMI ARTHA MAKMOER "</td>
-                                            <td>JL. RAYA KI AGENG GRIBIG KOTA MALANG</td>
-                                            <td>MADYOPURO</td>
-                                            <td>KEDUNGKANDANG</td>
-                                            <td>660.1/0019/35.73.406/2021</td>
-                                            <td>04-30-2021</td>
-                                            <td>UKL-UPL</td>
+                                            <td><?= $perizinan['NO REGISTER']?></td>
+                                            <td><?= $perizinan['TANGGAL']?></td>
+                                            <td><?= $perizinan['NAMA']?></td>
+                                            <td><?= $perizinan['ALAMAT']?></td>
+                                            <td><?= $perizinan['NO HP']?></td>
+                                            <td><?= $perizinan['PERUSAHAAN']?></td>
+                                            <td><?= $perizinan['LOKASI USAHA']?></td>
+                                            <td><?= $perizinan['KELURAHAN']?></td>
+                                            <td><?= $perizinan['KECAMATAN']?></td>
+                                            <td><?= $perizinan['TANGGAL TERBIT']?></td>
+                                            <td><?= $perizinan['NO IZIN']?></td>
+                                            <td><?= $perizinan['JENIS PERIZINAN']?></td>
                                             <style>
                                                 i.text-hover:hover {
                                                     opacity: 80%;
@@ -141,48 +142,7 @@
                                             <td class="h5" style="line-height: 20pt;"><a href="">
                                                 <i class="text-hover text-primary fas fa-pen"></i></a> | <a href=""><i class="text-hover text-danger  fas fa-trash"></a></i></td>
                                         </tr>
-                                        <tr class="even">
-                                            <td>UKL/003/PERIJ/I/2021</td>
-                                            <td>04-01-2021</td>
-                                            <td>MARIO ARDINATA</td>
-                                            <td>JL. TELAGA BODAS Y-I/9 KOTA MALANG</td>
-                                            <td></td>
-                                            <td>PEMBANGUNAN PERUM. RIVERFONT URBAN RESORT " PT. BUMI ARTHA MAKMOER "</td>
-                                            <td>JL. RAYA KI AGENG GRIBIG KOTA MALANG</td>
-                                            <td>MADYOPURO</td>
-                                            <td>KEDUNGKANDANG</td>
-                                            <td>660.1/0019/35.73.406/2021</td>
-                                            <td>04-30-2021</td>
-                                            <td>UKL-UPL</td>
-                                            <style>
-                                                i.text-hover:hover {
-                                                    opacity: 80%;
-                                                }
-                                            </style>
-                                            <td class="h5" style="line-height: 20pt;"><a href="">
-                                                <i class="text-hover text-primary fas fa-pen"></i></a> | <a href=""><i class="text-hover text-danger  fas fa-trash"></a></i></td>
-                                        </tr>
-                                        <tr class="odd">
-                                            <td>UKL/003/PERIJ/I/2021</td>
-                                            <td>04-01-2021</td>
-                                            <td>MARIO ARDINATA</td>
-                                            <td>JL. TELAGA BODAS Y-I/9 KOTA MALANG</td>
-                                            <td></td>
-                                            <td>PEMBANGUNAN PERUM. RIVERFONT URBAN RESORT " PT. BUMI ARTHA MAKMOER "</td>
-                                            <td>JL. RAYA KI AGENG GRIBIG KOTA MALANG</td>
-                                            <td>MADYOPURO</td>
-                                            <td>KEDUNGKANDANG</td>
-                                            <td>660.1/0019/35.73.406/2021</td>
-                                            <td>04-30-2021</td>
-                                            <td>UKL-UPL</td>
-                                            <style>
-                                                i.text-hover:hover {
-                                                    opacity: 80%;
-                                                }
-                                            </style>
-                                            <td class="h5" style="line-height: 20pt;"><a href="">
-                                                <i class="text-hover text-primary fas fa-pen"></i></a> | <a href=""><i class="text-hover text-danger  fas fa-trash"></a></i></td>
-                                        </tr>
+                                        <?php endforeach?>
                                     </tbody>
                                     <tfoot>
                                         <tr>

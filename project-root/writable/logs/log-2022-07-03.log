@@ -408,3 +408,22 @@ in APPPATH\Views\input.php on line 129.
  8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
  9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
 10 SYSTEMPATH\Commands\Server\rewrite.php(43): require_once('FCPATH\\index.php')
+CRITICAL - 2022-07-03 21:27:25 --> Class "App\Controllers\Tabel_perizinanModel" not found
+in APPPATH\Controllers\Home.php on line 13.
+ 1 SYSTEMPATH\CodeIgniter.php(858): App\Controllers\Home->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(457): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(43): require_once('FCPATH\\index.php')
+CRITICAL - 2022-07-03 21:56:21 --> Undefined variable $perizinan
+in APPPATH\Views\search.php on line 125.
+ 1 APPPATH\Views\search.php(125): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $perizinan', 'APPPATH\\Views\\search.php', 125)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\search.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('search', [], true)
+ 5 APPPATH\Controllers\Home.php(42): view('search', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(896): App\Controllers\Home->search()
+ 7 SYSTEMPATH\CodeIgniter.php(466): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 8 SYSTEMPATH\CodeIgniter.php(349): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Commands\Server\rewrite.php(43): require_once('FCPATH\\index.php')
