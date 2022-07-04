@@ -12,6 +12,10 @@
     <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
     <!-- iCheck -->
     <link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- JQVMap -->
@@ -20,8 +24,6 @@
     <link rel="stylesheet" href="../dist/css/adminlte.min.css">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-    <!-- Daterange picker -->
-    <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="../plugins/summernote/summernote-bs4.min.css">
 </head>
@@ -31,7 +33,7 @@
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="../dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+            <img class="animation__shake" src="https://disnakerpmptsp.malangkota.go.id/wp-content/uploads/2020/11/nakerpmptsp-logo-front-page.png" alt="AdminLTELogo" height="60">
         </div>
 
         <!-- Navbar -->
@@ -172,9 +174,8 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="../index.html" class="brand-link">
-                <img src="../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">AdminLTE 3</span>
+            <a href="index.html" class="brand-link" style="overflow: auto;">
+                <img src="https://disnakerpmptsp.malangkota.go.id/wp-content/uploads/2020/11/nakerpmptsp-logo-front-page.png" alt="AdminLTE Logo" class="brand-image">
             </a>
 
             <!-- Sidebar -->
@@ -195,7 +196,7 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="./../index.html" class="nav-link ">
+                            <a href="../index.html" class="nav-link ">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>Dashboard</p>
                             </a>
@@ -231,12 +232,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Pencarian</h1>
+                            <h1 class="m-0">Pencarian Data</h1>
                         </div>
                         <!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
                                 <li class="breadcrumb-item active">Pencarian</li>
                             </ol>
                         </div>
@@ -251,43 +252,131 @@
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
-                    <!-- Main row -->
-                    <div class="row">
-                        <div class="card card-body w-100">
-                            <form>
-                                <div class="form-group">
-                                    <label for="exampleSelectBorder">Jenis Perizinan</label>
-                                    <select class="custom-select form-control-border" id="exampleSelectBorder">
-                                        <option>Value 1</option>
-                                        <option>Value 2</option>
-                                        <option>Value 3</option>
-                                    </select>
+                    <!-- general form elements -->
+                    <div class="card card-body card-primary">
+                        <form class="row">
+                            <div class="form-group col-md-6">
+                                <label for="perizinan">Jenis Perizinan</label>
+                                <select class="custom-select rounded-0" id="perizinan">
+                                    <option>Value 1</option>
+                                    <option>Value 2</option>
+                                    <option>Value 3</option>
+                                </select>
+                            </div>
+                            <!-- Date range -->
+                            <div class="form-group col-md-6">
+                                <label>Rentang Tanggal:</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                        <i class="far fa-calendar-alt"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" class="form-control float-right" id="reservation">
                                 </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Tanggal Awal</label>
-                                    <input type="date" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Tanggal Akhir</label>
-                                    <input type="date" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                                </div>
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Proses</button>
-                                    <button type="submit" class="btn btn-danger">Cetak Excel</button>
-                                </div>
-                            </form>
-                        </div>
-
-
-
-
-
-
-
-
+                                <!-- /.input group -->
+                            </div>
+                            <!-- /.form group -->
+                            <div class="col">
+                                <input type="submit" class="btn btn-primary mr-1" value="Proses">
+                                <input type="submit" class="btn btn-danger" value="Cetak">
+                            </div>
+                        </form>
                     </div>
-                    <!-- /.row (main row) -->
+                    <!-- /.card-body -->
+                    <!-- Tabel -->
+                    <div class="card card-body card-primary">
+                        <div class="row">
+                            <div class="form-group col-12">
+                                <div class="input-group">
+                                    <input class="form-control" type="search" placeholder="Search"></input>
+                                    <div class="input-group-append">
+                                        <div class="input-group-text"><i class="fas fa-search"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                    <table id="example2" class="table table-bordered table-hover dataTable dtr-inline table-responsive" aria-describedby="example2_info">
+                                        <thead>
+                                            <tr>
+                                                <th class="sorting sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">No. Registrasi</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Tanggal</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Nama Lengkap</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Alamat</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">No. Handphone</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Nama Perusahaan</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Lokasi Usaha</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Kelurahan</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Kecamatan</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">No. Izin</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Tanggal Terbit</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Jenis Perizinan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="odd">
+                                                <td>UKL/003/PERIJ/I/2021</td>
+                                                <td>04-01-2021</td>
+                                                <td>MARIO ARDINATA</td>
+                                                <td>JL. TELAGA BODAS Y-I/9 KOTA MALANG</td>
+                                                <td></td>
+                                                <td>PEMBANGUNAN PERUM. RIVERFONT URBAN RESORT " PT. BUMI ARTHA MAKMOER "</td>
+                                                <td>JL. RAYA KI AGENG GRIBIG KOTA MALANG</td>
+                                                <td>MADYOPURO</td>
+                                                <td>KEDUNGKANDANG</td>
+                                                <td>660.1/0019/35.73.406/2021</td>
+                                                <td>04-30-2021</td>
+                                                <td>UKL-UPL</td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th rowspan="1" colspan="1">No. Registrasi</th>
+                                                <th rowspan="1" colspan="1">Tanggal</th>
+                                                <th rowspan="1" colspan="1">Nama Lengkap</th>
+                                                <th rowspan="1" colspan="1">Alamat</th>
+                                                <th rowspan="1" colspan="1">No. HP</th>
+                                                <th rowspan="1" colspan="1">Nama Perusahaan</th>
+                                                <th rowspan="1" colspan="1">Lokasi Usaha</th>
+                                                <th rowspan="1" colspan="1">Kelurahan</th>
+                                                <th rowspan="1" colspan="1">Kecamatan</th>
+                                                <th rowspan="1" colspan="1">No. Izin</th>
+                                                <th rowspan="1" colspan="1">Tanggal Terbit</th>
+                                                <th rowspan="1" colspan="1">Jenis Perizinan</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-9">
+                                            <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to
+                                                <span>
+                                                    <select class="" id="perizinan">
+                                                        <option >5</option>
+                                                        <option selected>10</option>
+                                                        <option>25</option>
+                                                        <option>50</option>
+                                                    </select>
+                                                </span> of 57 entries
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-3">
+                                            <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                                                <ul class="pagination">
+                                                    <li class="paginate_button page-item previous disabled" id="example2_previous"><a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+                                                    <li class="paginate_button page-item active"><a href="#" aria-controls="example2" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
+                                                    <li class="paginate_button page-item "><a href="#" aria-controls="example2" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
+                                                    <li class="paginate_button page-item next" id="example2_next"><a href="#" aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
                 <!-- /.container-fluid -->
             </section>
             <!-- /.content -->
@@ -327,9 +416,13 @@
     <script src="../plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
     <!-- jQuery Knob Chart -->
     <script src="../plugins/jquery-knob/jquery.knob.min.js"></script>
-    <!-- daterangepicker -->
+    <!-- InputMask -->
     <script src="../plugins/moment/moment.min.js"></script>
+    <script src="../plugins/inputmask/jquery.inputmask.min.js"></script>
+    <!-- date-range-picker -->
     <script src="../plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- bootstrap color picker -->
+    <script src="../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
     <!-- Tempusdominus Bootstrap 4 -->
     <script src="../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
     <!-- Summernote -->
@@ -342,6 +435,70 @@
     <script src="../dist/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="../dist/js/pages/dashboard.js"></script>
+    <script>
+        $(function() {
+                //Datemask dd/mm/yyyy
+                $('#datemask').inputmask('dd/mm/yyyy', {
+                        'placeholder': 'dd/mm/yyyy'
+                    })
+                    //Datemask2 mm/dd/yyyy
+                $('#datemask2').inputmask('mm/dd/yyyy', {
+                        'placeholder': 'mm/dd/yyyy'
+                    })
+                    //Money Euro
+                $('[data-mask]').inputmask()
+
+                //Date picker
+                $('#reservationdate').datetimepicker({
+                    format: 'L'
+                });
+
+                //Date and time picker
+                $('#reservationdatetime').datetimepicker({
+                    icons: {
+                        time: 'far fa-clock'
+                    }
+                });
+
+                //Date range picker
+                $('#reservation').daterangepicker()
+                    //Date range picker with time picker
+                $('#reservationtime').daterangepicker({
+                        timePicker: true,
+                        timePickerIncrement: 30,
+                        locale: {
+                            format: 'MM/DD/YYYY hh:mm A'
+                        }
+                    })
+                    //Date range as a button
+                $('#daterange-btn').daterangepicker({
+                        ranges: {
+                            'Today': [moment(), moment()],
+                            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                            'This Month': [moment().startOf('month'), moment().endOf('month')],
+                            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                        },
+                        startDate: moment().subtract(29, 'days'),
+                        endDate: moment()
+                    },
+                    function(start, end) {
+                        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+                    }
+                )
+
+                //Timepicker
+                $('#timepicker').datetimepicker({
+                    format: 'LT'
+                })
+            })
+            // BS-Stepper Init
+        document.addEventListener('DOMContentLoaded', function() {
+            window.stepper = new Stepper(document.querySelector('.bs-stepper'))
+        })
+    </script>
+
 </body>
 
 </html>
