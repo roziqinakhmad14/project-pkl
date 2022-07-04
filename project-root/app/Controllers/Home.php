@@ -15,7 +15,13 @@ class Home extends BaseController
     }
     public function index()
     {
-        echo view('dashboard');
+        $izin = $this->Jenis_perizinanModel->findAll();
+        $dataperizinan = $this->Tabel_perizinanModel->findAll();
+        $data = [
+            'izin'=> $izin,
+            'dataperizinan'=>$dataperizinan
+        ];
+        echo view('dashboard',$data);
     }
     public function input()
     {

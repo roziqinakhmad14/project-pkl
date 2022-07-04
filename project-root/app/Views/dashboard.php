@@ -58,18 +58,25 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <?php foreach ($izin as $keyizin) :?>
                                         <tr>
-                                            <td><a class="font-weight-bold" href="" >UKL-UPL</a></td>
-                                            <td>33</td>
+                                            <td><?= $keyizin['id_jenis_perizinan']; ?></td>
+                                            
+                                            <?php 
+                                            
+                                            $i = $keyizin['id_jenis_perizinan'];
+                                            
+                                            $db = db_connect();
+
+                                            $query = "SELECT * FROM tabel_perizinan";
+
+                                            $total = $db->query($query)->getFieldCount();
+                                            ?>
+
+                                            <td><?= 
+                                            $total; ?></td>
                                         </tr>
-                                        <tr>
-                                            <td><a class="font-weight-bold" href="" >UKL-UPL</a></td>
-                                            <td>33</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a class="font-weight-bold" href="" >UKL-UPL</a></td>
-                                            <td>33</td>
-                                        </tr>
+                                    <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>
