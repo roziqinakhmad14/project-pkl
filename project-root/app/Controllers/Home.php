@@ -11,6 +11,7 @@ class Home extends BaseController
     public function __construct()
     {
         $this->Jenis_perizinanModel = new Jenis_perizinanModel();
+        $this->Tabel_perizinanModel = new Tabel_perizinanModel();
     }
     public function index()
     {
