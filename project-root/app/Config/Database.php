@@ -32,10 +32,10 @@ class Database extends Config
      */
     public $default = [
         'DSN'      => '',
-        'hostname' => 'localhost',
-        'username' => 'root',
-        'password' => '',
-        'database' => 'data_dsnaker_pmptsp',
+        'hostname' => 'sql6.freemysqlhosting.net',
+        'username' => 'sql6503861',
+        'password' => '4Wt3FikkRX',
+        'database' => 'sql6503861',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,
