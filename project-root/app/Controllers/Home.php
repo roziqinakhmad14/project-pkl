@@ -12,7 +12,7 @@ class Home extends BaseController
     }
     public function index()
     {
-        echo view('dasboard');
+        echo view('dashboard');
     }
     public function input()
     {
