@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 03 Jul 2022 pada 10.27
--- Versi server: 10.4.24-MariaDB
--- Versi PHP: 8.1.6
+-- Waktu pembuatan: 04 Jul 2022 pada 04.41
+-- Versi server: 10.4.21-MariaDB
+-- Versi PHP: 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -204,9 +204,17 @@ CREATE TABLE `tabel_perizinan` (
   `LOKASI USAHA` varchar(100) NOT NULL,
   `KELURAHAN` varchar(20) NOT NULL,
   `KECAMATAN` varchar(20) NOT NULL,
-  `TANGGAL IZIN` date NOT NULL,
+  `TANGGAL TERBIT` date NOT NULL,
+  `NO IZIN` varchar(100) NOT NULL,
   `JENIS PERIZINAN` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `tabel_perizinan`
+--
+
+INSERT INTO `tabel_perizinan` (`NO`, `NO REGISTER`, `TANGGAL`, `NAMA`, `ALAMAT`, `NO HP`, `PERUSAHAAN`, `LOKASI USAHA`, `KELURAHAN`, `KECAMATAN`, `TANGGAL TERBIT`, `NO IZIN`, `JENIS PERIZINAN`) VALUES
+(1, 'UKL/003/PERIJ/I/2021', '2021-01-04', 'MARIO ARDINATA', 'JL. TELAGA BODAS Y-I/9 KOTA MALANG', NULL, 'PEMBANGUNAN PERUM. RIVERFONT URBAN RESORT \"PT. BUMI ARTHA MAKMOER\"', 'JL. RAYA KI AGENG GRIBIG KOTA MALANG', 'MADYOPURO', 'KEDUNGKANDANG', '2021-01-04', '660.1/0018/35.73.406/2021', 'UKL-UPL');
 
 --
 -- Indexes for dumped tables
@@ -234,7 +242,7 @@ ALTER TABLE `kelurahan_kota_malang`
 -- Indeks untuk tabel `tabel_perizinan`
 --
 ALTER TABLE `tabel_perizinan`
-  ADD PRIMARY KEY (`NO`),
+  ADD PRIMARY KEY (`NO REGISTER`),
   ADD KEY `JENIS PERIZINAN` (`JENIS PERIZINAN`);
 
 --
