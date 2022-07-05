@@ -2,6 +2,7 @@
 
 use CodeIgniter\Model;
 
+
 class Tabel_perizinanModel extends Model
 {
     protected $table = 'tabel_perizinan';
@@ -11,7 +12,9 @@ class Tabel_perizinanModel extends Model
     ];
     function getAll(){
         $buileder = $this->db->table('tabel_perizinan');
-        $buileder->join('jenis_perizinan','jenis_perizinan.id_jenis_perizinan = tabel_perizinan.JENIS_PERIZINAN');
+        $buileder->join('jenis_perizinan','jenis_perizinan.id_jenis_perizinan = tabel_perizinan.JENIS_PERIZINAN','LEFT');
+        $buileder->join('kecamatan','kecamatan.id = tabel_perizinan.KECAMATAN','LEFT');
+        $buileder->join('kelurahan','kelurahan.id = tabel_perizinan.KELURAHAN ','LEFT');
         $query = $buileder->get();
         $query = $query->getResult();
         return json_decode(json_encode($query),true);

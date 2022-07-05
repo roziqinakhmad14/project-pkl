@@ -129,8 +129,8 @@
                                             <td><?= $perizinan['NO_HP']?></td>
                                             <td><?= $perizinan['PERUSAHAAN']?></td>
                                             <td><?= $perizinan['LOKASI_USAHA']?></td>
-                                            <td><?= $perizinan['KELURAHAN']?></td>
-                                            <td><?= $perizinan['KECAMATAN']?></td>
+                                            <td><?= $perizinan['Kelurahan']?></td>
+                                            <td><?= $perizinan['Kecamatan']?></td>
                                             <td><?= $perizinan['TANGGAL_TERBIT']?></td>
                                             <td><?= $perizinan['NO_IZIN']?></td>
                                             <td><?= $perizinan['nama_perizinan']?></td>

@@ -1,18 +1,18 @@
 <?php namespace App\Controllers;
-use CodeIgniter\Conroller;
 use App\Models\Tabel_perizinanModel;
+use App\Models\ReigonSelectModel;
 
 class JenisPerizinan extends BaseController
 {
-    protected $Tabel_perizinanModel;
+    protected $ReigonSelectModel;
     public function __construct()
     {
-        $this->Tabel_perizinanModel = new Tabel_perizinanModel();
+        $this->ReigonSelectModel = new ReigonSelectModel();
     }
     
     public function index()
     {
-        $izin = $this->Tabel_perizinanModel->getAll();
+        $izin = $this->ReigonSelectModel->getDistric();
         dd($izin);
         return view('cobadata/index');
     }

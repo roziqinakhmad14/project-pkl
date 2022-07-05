@@ -30,6 +30,7 @@
     </nav>
 <?= $this->endSection() ?>
 <?= $this->section('content') ?>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -96,18 +97,15 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="kecamatan">Kecamatan</label>
-                            <select class="custom-select rounded-0" id="kecamatan" name="kecamatan">
-                                <option value="1">Value 1</option>
-                                <option value="2">Value 2</option>
-                                <option value="3">Value 3</option>
+                            <select class="custom-select rounded-0" id="kecamatan" name="kecamatan" id="kecamatan">
+                            <?php foreach($distric as $kecamatan) :?>
+                                <option value="<?= $kecamatan['id']?>"><?= $kecamatan['Kecamatan']?></option>
+                            <?php endforeach;?>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="kelurahan">Kelurahan</label>
-                            <select class="custom-select rounded-0" id="kelurahan" name="kelurahan">
-                                <option value="1">Value 1</option>
-                                <option value="2">Value 2</option>
-                                <option value="3">Value 3</option>
+                            <select class="custom-select rounded-0" id="kelurahan" name="kelurahan" id="kelurahan">
                             </select>
                         </div>
                         <div class="form-group col-md-4">
@@ -203,5 +201,28 @@
         document.addEventListener('DOMContentLoaded', function () {
           window.stepper = new Stepper(document.querySelector('.bs-stepper'))
         })
+    </script>
+    <script type='text/javascript'>
+        $(document).ready(function(){
+            // City change
+            $('#kecamatan').change(function(){
+                var kecamatan = $(this).val();
+                // AJAX request and Kelurahan change
+                $.ajax({
+                url:'<?=base_url()?>index.php/Home/getKelurahan',
+                method: 'post',
+                data: {kecamatan: kecamatan},
+                dataType: 'json',
+                success: function(response){
+                        // remove option
+                        $('#kelurahan').find('option').not(':first').remove();
+                        // Add options
+                        $.each(response,function(index,data){
+                            $('#kelurahan').append('<option value="'+data['id']+'">'+data['ID_Kecamatan']+'</option>');
+                        });
+                    }
+                });
+            });
+        });
     </script>
 <?= $this->endSection() ?>
