@@ -64,13 +64,13 @@
                                             
                                             <?php 
                                             
-                                            $i = $keyizin['id_jenis_perizinan'];
+                                            $jenis_perizinan = $keyizin['id_jenis_perizinan'];
                                             
                                             $db = db_connect();
 
-                                            $query = "SELECT * FROM tabel_perizinan";
+                                            $query = "SELECT * FROM tabel_perizinan WHERE `JENIS PERIZINAN` = '$jenis_perizinan'";
 
-                                            $total = $db->query($query)->getFieldCount();
+                                            $total = $db->query($query)->getNumRows();
                                             ?>
 
                                             <td><?= 
