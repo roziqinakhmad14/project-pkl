@@ -1,7 +1,7 @@
 <?php
  
 namespace App\Controllers;
-use App\Models\ReigonSelectModel;
+use App\Models\RegionSelectModel;
 
 class RegionSelect extends BaseController {
  
@@ -9,22 +9,22 @@ class RegionSelect extends BaseController {
     public function index() {
          
         helper(['form', 'url']);
-        $this->ReigonSelectModel = new ReigonSelectModel();
+        $this->RegionSelectModel = new RegionSelectModel();
         $data = [
-            'distric' =>$this->ReigonSelectModel->geDistric()
+            'distric' =>$this->RegionSelectModel->geDistric()
         ];
         return view('input', $data);
     }
  
     public function getKelurahan() {
  
-        $this->ReigonSelectModel = new ReigonSelectModel();
+        $this->RegionSelectModel = new RegionSelectModel();
  
         $postData = array(
             'city' => $this->request->getVar('city'),
         );
  
-        $data = $this->ReigonSelectModel->getCityDepartment($postData);
+        $data = $this->RegionSelectModel->getCityDepartment($postData);
  
         echo json_encode($data);
     }
