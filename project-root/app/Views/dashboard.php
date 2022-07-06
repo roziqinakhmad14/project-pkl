@@ -60,7 +60,7 @@
                                     <tbody>
                                     <?php foreach ($izin as $keyizin) :?>
                                         <tr>
-                                            <td><?= $keyizin['nama_perizinan']; ?></td>
+                                            <td><?= $keyizin['nama_perizinan']." (".$keyizin['id_jenis_perizinan'].")"; ?></td>
                                             
                                             <?php 
                                             $jenis_perizinan = $keyizin['id_jenis_perizinan'];

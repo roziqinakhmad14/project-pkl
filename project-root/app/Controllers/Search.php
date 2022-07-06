@@ -5,7 +5,6 @@ use App\Models\RegionSelectModel;
 use App\Models\Jenis_perizinanModel;
 use App\Models\Tabel_perizinanModel;
 
-
 class Search extends BaseController
 {
     protected $Jenis_perizinanModel;
