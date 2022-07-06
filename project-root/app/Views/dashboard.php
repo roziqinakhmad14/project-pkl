@@ -60,17 +60,14 @@
                                     <tbody>
                                     <?php foreach ($izin as $keyizin) :?>
                                         <tr>
-                                            <td><?= $keyizin['id_jenis_perizinan']; ?></td>
+                                            <td><?= $keyizin['nama_perizinan']; ?></td>
                                             
                                             <?php 
-                                            
                                             $jenis_perizinan = $keyizin['id_jenis_perizinan'];
-                                            
                                             $db = db_connect();
-
-                                            $query = "SELECT * FROM tabel_perizinan WHERE `JENIS_PERIZINAN` = '$jenis_perizinan'";
-
-                                            $total = $db->query($query)->getNumRows();
+                                            $builder = $db->table('tabel_perizinan');
+                                            $query = $builder->getWhere(['JENIS_PERIZINAN'=> $jenis_perizinan]);
+                                            $total = $query->getNumRows();
                                             ?>
 
                                             <td><?= 

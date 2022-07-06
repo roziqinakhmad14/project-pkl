@@ -122,7 +122,7 @@
                                     <tbody>
                                     <?php foreach($dataperizinan as $perizinan):?>
                                         <tr class="odd">
-                                            <td><?= $perizinan['id']?></td>
+                                            <td><?= $perizinan[' NO_REGISTER']?></td>
                                             <td><?= $perizinan['TANGGAL']?></td>
                                             <td><?= $perizinan['NAMA']?></td>
                                             <td><?= $perizinan['ALAMAT']?></td>
