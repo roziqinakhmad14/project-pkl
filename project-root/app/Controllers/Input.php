@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\ReigonSelectModel;
+use App\Models\RegionSelectModel;
 use App\Models\Jenis_perizinanModel;
 use App\Models\Tabel_perizinanModel;
 
@@ -10,19 +10,19 @@ class Input extends BaseController
 {
     protected $Jenis_perizinanModel;
     protected $Tabel_perizinanModel;
-    protected $ReigonSelectModel;
+    protected $RegionSelectModel;
     public function __construct()
     {
         $this->Jenis_perizinanModel = new Jenis_perizinanModel();
         $this->Tabel_perizinanModel = new Tabel_perizinanModel();
-        $this->ReigonSelectModel = new ReigonSelectModel();
+        $this->RegionSelectModel = new RegionSelectModel();
 
     }
     public function index()
     {
         $izin = $this->Jenis_perizinanModel->findAll();
         $dataperizinan = $this->Tabel_perizinanModel->findAll();
-        $kecamatan = $this->ReigonSelectModel->getDistric();
+        $kecamatan = $this->RegionSelectModel->getDistric();
         $data = [
             'izin'=> $izin,
             'dataperizinan'=>$dataperizinan,
@@ -60,9 +60,9 @@ class Input extends BaseController
     }
     public function getKelurahan()
     {
-        $this->ReigonSelectModel = new ReigonSelectModel();
+        $this->RegionSelectModel = new RegionSelectModel();
         $postData =$this->request->getPost('ID_Kecamatan');
-        $data = $this->ReigonSelectModel->getSubDistric($postData);
+        $data = $this->RegionSelectModel->getSubDistric($postData);
         echo json_encode($data);
     }
 

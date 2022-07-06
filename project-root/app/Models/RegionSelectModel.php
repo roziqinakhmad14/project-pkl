@@ -2,7 +2,7 @@
 
 use CodeIgniter\Model;
 
-class ReigonSelectModel extends Model
+class RegionSelectModel extends Model
 {
     protected $db;
     public function getDistric() {

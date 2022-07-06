@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\ReigonSelectModel;
+use App\Models\RegionSelectModel;
 use App\Models\Jenis_perizinanModel;
 use App\Models\Tabel_perizinanModel;
 
@@ -15,7 +15,7 @@ class Home extends BaseController
     {
         $this->Jenis_perizinanModel = new Jenis_perizinanModel();
         $this->Tabel_perizinanModel = new Tabel_perizinanModel();
-        $this->ReigonSelectModel = new ReigonSelectModel();
+        $this->RegionSelectModel = new RegionSelectModel();
 
     }
     public function index()
