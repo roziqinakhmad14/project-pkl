@@ -122,7 +122,7 @@
                                     <tbody>
                                     <?php foreach($dataperizinan as $perizinan):?>
                                         <tr class="odd">
-                                            <td><?= $perizinan[' NO_REGISTER']?></td>
+                                            <td><?= $perizinan['NO_REGISTER']?></td>
                                             <td><?= $perizinan['TANGGAL']?></td>
                                             <td><?= $perizinan['NAMA']?></td>
                                             <td><?= $perizinan['ALAMAT']?></td>
@@ -140,7 +140,7 @@
                                                 }
                                             </style>
                                             <td class="h5" style="line-height: 20pt;"><a href="">
-                                                <i class="text-hover text-primary fas fa-pen"></i></a> | <a href="" onclick="confirm('Apakah Anda yakin ingin menghapus data perizinan dengan No. Register <?= $perizinan['NO REGISTER']; ?>')"><i class="text-hover text-danger  fas fa-trash"></a></i></td>
+                                                <i class="text-hover text-primary fas fa-pen"></i></a> | <a href="/Search/delete/<?= $perizinan['NO_REGISTER']; ?>" onclick="confirm('Apakah Anda yakin ingin menghapus data perizinan dengan No. Register <?= $perizinan['NO_REGISTER']; ?>')"><i class="text-hover text-danger  fas fa-trash"></a></i></td>
                                         </tr>
                                         <?php endforeach?>
                                     </tbody>
@@ -254,6 +254,11 @@
         // BS-Stepper Init
         document.addEventListener('DOMContentLoaded', function () {
           window.stepper = new Stepper(document.querySelector('.bs-stepper'))
+        })
+
+        // Script untuk menghapus
+        $.ajax({
+        
         })
     </script>
 <?= $this->endSection() ?>

@@ -6,8 +6,9 @@ use CodeIgniter\Model;
 class Tabel_perizinanModel extends Model
 {
     protected $table = 'tabel_perizinan';
+    protected $primaryKey = 'NO_REGISTER';
     protected $allowedFields = [
-        'id','TANGGAL','NAMA','ALAMAT','NO_HP','PERUSAHAAN','LOKASI_USAHA',
+        'NO_REGISTER','TANGGAL','NAMA','ALAMAT','NO_HP','PERUSAHAAN','LOKASI_USAHA',
         'KELURAHAN','KECAMATAN','TANGGAL_TERBIT','NO_IZIN','JENIS_PERIZINAN'
     ];
     function getAll(){
