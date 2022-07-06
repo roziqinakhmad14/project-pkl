@@ -2,7 +2,7 @@
 use App\Models\Tabel_perizinanModel;
 use App\Models\ReigonSelectModel;
 
-class JenisPerizinan extends BaseController
+class UjiCoba extends BaseController
 {
     protected $ReigonSelectModel;
     public function __construct()

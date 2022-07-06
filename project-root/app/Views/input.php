@@ -11,7 +11,7 @@
             </li>
 
             <li class="nav-item">
-                <a href="<?=site_url('Home/input')?>" class="nav-link active">
+                <a href="<?=site_url('Input')?>" class="nav-link active">
                     <i class="nav-icon fas fa-edit"></i>
                     <p>
                         Input
@@ -19,7 +19,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="<?=site_url('Home/search')?>" class="nav-link">
+                <a href="<?=site_url('Search')?>" class="nav-link">
                     <i class="nav-icon fas fa-search"></i>
                     <p>
                         Pencarian
@@ -30,7 +30,6 @@
     </nav>
 <?= $this->endSection() ?>
 <?= $this->section('content') ?>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -60,7 +59,7 @@
             <div class="container-fluid">
                 <!-- Main row -->
                 <div class="card card-body">
-                    <form action="/Home/save" class="row" id="form" method="POST">
+                    <form action="/Input/save" class="row" id="form" method="POST">
                         <?= csrf_field()?>
                         <div class="form-group col-md-6">
                             <label for="no_register">No. Register :</label>
@@ -97,7 +96,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="kecamatan">Kecamatan</label>
-                            <select class="custom-select rounded-0" id="kecamatan" name="kecamatan" id="kecamatan">
+                            <select class="custom-select rounded-0" id="kecamatan" name="kecamatan">
                             <?php foreach($distric as $kecamatan) :?>
                                 <option value="<?= $kecamatan['id']?>"><?= $kecamatan['Kecamatan']?></option>
                             <?php endforeach;?>
@@ -105,7 +104,8 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="kelurahan">Kelurahan</label>
-                            <select class="custom-select rounded-0" id="kelurahan" name="kelurahan" id="kelurahan">
+                            <select class="custom-select rounded-0" id="kelurahan" name="kelurahan">
+                                <option value="" class="disabled"><i>None</i></option>
                             </select>
                         </div>
                         <div class="form-group col-md-4">
@@ -204,22 +204,22 @@
     </script>
     <script type='text/javascript'>
         $(document).ready(function(){
-            // City change
-            $('#kecamatan').change(function(){
-                var kecamatan = $(this).val();
-                // AJAX request and Kelurahan change
+            $("#kecamatan").change(function(){
+                let ID_Kecamatan = $(this).val();
+
+                // Menggunakan ajax untuk mengirim dan dan menerima data dari server
                 $.ajax({
-                url:'<?=base_url()?>index.php/Home/getKelurahan',
-                method: 'post',
-                data: {kecamatan: kecamatan},
-                dataType: 'json',
-                success: function(response){
-                        // remove option
+                    url : "<?= base_url();?>/index.php/Input/getKelurahan",
+                    method : "post",
+                    data : {ID_Kecamatan: ID_Kecamatan},
+                    dataType : 'json',
+                    success: function(response){
+                        // Remove options 
                         $('#kelurahan').find('option').not(':first').remove();
                         // Add options
                         $.each(response,function(index,data){
-                            $('#kelurahan').append('<option value="'+data['id']+'">'+data['ID_Kecamatan']+'</option>');
-                        });
+                        $('#kelurahan').append('<option value="'+data['id']+'">'+data['Kelurahan']+'</option>');
+                        })
                     }
                 });
             });
