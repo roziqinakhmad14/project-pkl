@@ -67,11 +67,10 @@
                                             $db = db_connect();
                                             $builder = $db->table('tabel_perizinan');
                                             $query = $builder->getWhere(['JENIS_PERIZINAN'=> $jenis_perizinan]);
-                                            $total = $query->getNumRows();
+                                            $total = $query->resultID->num_rows;
                                             ?>
 
-                                            <td><?= 
-                                            $total; ?></td>
+                                            <td><?= $total; ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                     </tbody>
