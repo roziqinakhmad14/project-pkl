@@ -4,14 +4,14 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
             <li class="nav-item">
-                <a href="<?=site_url('Home/index')?>" class="nav-link ">
+                <a href="<?=site_url('Home/')?>" class="nav-link ">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>Dashboard</p>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a href="<?=site_url('Home/input')?>" class="nav-link ">
+                <a href="<?=site_url('Input')?>" class="nav-link ">
                     <i class="nav-icon fas fa-edit"></i>
                     <p>
                         Input
@@ -19,7 +19,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="<?=site_url('Home/search')?>" class="nav-link active">
+                <a href="<?=site_url('Search')?>" class="nav-link active">
                     <i class="nav-icon fas fa-search"></i>
                     <p>
                         Pencarian
@@ -122,18 +122,18 @@
                                     <tbody>
                                     <?php foreach($dataperizinan as $perizinan):?>
                                         <tr class="odd">
-                                            <td><?= $perizinan['NO REGISTER']?></td>
+                                            <td><?= $perizinan['id']?></td>
                                             <td><?= $perizinan['TANGGAL']?></td>
                                             <td><?= $perizinan['NAMA']?></td>
                                             <td><?= $perizinan['ALAMAT']?></td>
-                                            <td><?= $perizinan['NO HP']?></td>
+                                            <td><?= $perizinan['NO_HP']?></td>
                                             <td><?= $perizinan['PERUSAHAAN']?></td>
-                                            <td><?= $perizinan['LOKASI USAHA']?></td>
-                                            <td><?= $perizinan['KELURAHAN']?></td>
-                                            <td><?= $perizinan['KECAMATAN']?></td>
-                                            <td><?= $perizinan['TANGGAL TERBIT']?></td>
-                                            <td><?= $perizinan['NO IZIN']?></td>
-                                            <td><?= $perizinan['JENIS PERIZINAN']?></td>
+                                            <td><?= $perizinan['LOKASI_USAHA']?></td>
+                                            <td><?= $perizinan['Kelurahan']?></td>
+                                            <td><?= $perizinan['Kecamatan']?></td>
+                                            <td><?= $perizinan['TANGGAL_TERBIT']?></td>
+                                            <td><?= $perizinan['NO_IZIN']?></td>
+                                            <td><?= $perizinan['nama_perizinan']?></td>
                                             <style>
                                                 i.text-hover:hover {
                                                     opacity: 80%;
