@@ -16,7 +16,6 @@ class Home extends BaseController
         $this->Jenis_perizinanModel = new Jenis_perizinanModel();
         $this->Tabel_perizinanModel = new Tabel_perizinanModel();
         $this->RegionSelectModel = new RegionSelectModel();
-
     }
     public function index()
     {

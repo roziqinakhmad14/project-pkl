@@ -60,15 +60,15 @@
                                     <tbody>
                                     <?php foreach ($izin as $keyizin) :?>
                                         <tr>
-                                            <td><?= $keyizin['id_jenis_perizinan']; ?></td>
+                                            <td><?= $keyizin['jenis_perizinan']; ?></td>
                                             
                                             <?php 
                                             
                                             $jenis_perizinan = $keyizin['id_jenis_perizinan'];
                                             
                                             $db = db_connect();
-
-                                            $query = "SELECT * FROM tabel_perizinan WHERE `JENIS PERIZINAN` = '$jenis_perizinan'";
+                                            
+                                            $query = "SELECT * FROM tabel_perizinan WHERE `JENIS_PERIZINAN` = '$jenis_perizinan'";
 
                                             $total = $db->query($query)->getNumRows();
                                             ?>
