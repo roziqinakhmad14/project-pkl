@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+
 use App\Models\RegionSelectModel;
 use App\Models\Jenis_perizinanModel;
 use App\Models\Tabel_perizinanModel;
@@ -15,16 +16,21 @@ class Search extends BaseController
         $this->Jenis_perizinanModel = new Jenis_perizinanModel();
         $this->Tabel_perizinanModel = new Tabel_perizinanModel();
         $this->RegionSelectModel = new RegionSelectModel();
-
     }
     public function index()
     {
         $izin = $this->Jenis_perizinanModel->findAll();
         $dataperizinan = $this->Tabel_perizinanModel->getAll();
         $data = [
-            'izin'=> $izin,
-            'dataperizinan'=>$dataperizinan
+            'izin' => $izin,
+            'dataperizinan' => $dataperizinan
         ];
-        echo view('search',$data);
+        echo view('search', $data);
+    }
+    public function delete($id)
+    {
+        $this->Tabel_perizinanModel->delete($id);
+        session()->setFlashdata('pesan', 'Data berhasil dihapus.');
+        return redirect()->to('/Search');
     }
 }
