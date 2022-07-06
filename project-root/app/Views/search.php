@@ -101,7 +101,7 @@
                         </div>
                         <div class="col-12">
                             <div>
-                                <table class="table table-striped table-bordered table-hover table-responsive">
+                                <table class="table table-striped table-bordered table-responsive">
                                     <thead class="table-dark">
                                         <tr>
                                             <th class="text-nowrap text-center" rowspan="1" colspan="1">No. Registrasi</th>

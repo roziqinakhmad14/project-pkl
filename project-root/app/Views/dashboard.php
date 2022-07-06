@@ -48,6 +48,40 @@
                         <!-- /.col -->
                     </div>
                     <!-- /.row -->
+                    <div class="row pt-3">
+                        <div class="col">
+                            <div class="card card-body">
+                                <table class="table table-striped table-bordered">
+                                    <thead class="table-dark">
+                                        <tr class="text-center">
+                                            <th colspan="2">Rangkuman Perizinan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php foreach ($izin as $keyizin) :?>
+                                        <tr>
+                                            <td><?= $keyizin['id_jenis_perizinan']; ?></td>
+                                            
+                                            <?php 
+                                            
+                                            $jenis_perizinan = $keyizin['id_jenis_perizinan'];
+                                            
+                                            $db = db_connect();
+
+                                            $query = "SELECT * FROM tabel_perizinan WHERE `JENIS PERIZINAN` = '$jenis_perizinan'";
+
+                                            $total = $db->query($query)->getNumRows();
+                                            ?>
+
+                                            <td><?= 
+                                            $total; ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
             </div>
