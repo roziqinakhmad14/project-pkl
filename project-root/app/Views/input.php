@@ -11,7 +11,7 @@
             </li>
 
             <li class="nav-item">
-                <a href="<?=site_url('Home/input')?>" class="nav-link active">
+                <a href="<?=site_url('Input')?>" class="nav-link active">
                     <i class="nav-icon fas fa-edit"></i>
                     <p>
                         Input
@@ -19,7 +19,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="<?=site_url('Home/search')?>" class="nav-link">
+                <a href="<?=site_url('Search')?>" class="nav-link">
                     <i class="nav-icon fas fa-search"></i>
                     <p>
                         Pencarian
@@ -59,15 +59,16 @@
             <div class="container-fluid">
                 <!-- Main row -->
                 <div class="card card-body">
-                    <form action="" class="row" id="form">
+                    <form action="/Input/save" class="row" id="form" method="POST">
+                        <?= csrf_field()?>
                         <div class="form-group col-md-6">
                             <label for="no_register">No. Register :</label>
-                            <input type="text" class="form-control" id="no_register" placeholder="No. Register" required>
+                            <input type="text" class="form-control" id="no_register" placeholder="No. Register" required name="NoRegis" autofocus>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Tanggal Register :</label>
                             <div class="input-group date" id="tanggal_register" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input" data-target="#tanggal_register" required>
+                                <input type="text" class="form-control datetimepicker-input" data-target="#tanggal_register" required name="dateRegis">
                                 <div class="input-group-append" data-target="#tanggal_register" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
@@ -75,48 +76,46 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="name">Nama Lengkap :</label>
-                            <input type="text" class="form-control" id="name" placeholder="Nama Lengkap" required>
+                            <input type="text" class="form-control" id="name" placeholder="Nama Lengkap" required name="fullname">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="phone">No. Handphone</label>
-                            <input type="phone" id="phone" class="form-control" placeholder="No. Handphone">
+                            <input type="phone" id="phone" class="form-control" placeholder="No. Handphone" name="phonenumber">
                         </div>
                         <div class="form-group col-12">
                             <label for="address">Alamat</label>
-                            <input type="text" id="address" class="form-control" placeholder="Alamat" required>
+                            <input type="text" id="address" class="form-control" placeholder="Alamat" required name="address">
                         </div>
                         <div class="form-group col-12">
                             <label for="company">Nama Perusahaan</label>
-                            <input type="text" id="company" class="form-control" placeholder="Nama Perusahaan" required>
+                            <input type="text" id="company" class="form-control" placeholder="Nama Perusahaan" required name="comname">
                         </div>
                         <div class="form-group col-12">
                             <label for="company_address">Lokasi Usaha</label>
-                            <input type="text" id="company_address" class="form-control" placeholder="Lokasi Usaha" required>
+                            <input type="text" id="company_address" class="form-control" placeholder="Lokasi Usaha" required name="comaddress">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="kecamatan">Kecamatan</label>
-                            <select class="custom-select rounded-0" id="kecamatan">
-                                <option>Value 1</option>
-                                <option>Value 2</option>
-                                <option>Value 3</option>
+                            <select class="custom-select rounded-0" id="kecamatan" name="kecamatan">
+                            <?php foreach($distric as $kecamatan) :?>
+                                <option value="<?= $kecamatan['id']?>"><?= $kecamatan['Kecamatan']?></option>
+                            <?php endforeach;?>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="kelurahan">Kelurahan</label>
-                            <select class="custom-select rounded-0" id="kelurahan">
-                                <option>Value 1</option>
-                                <option>Value 2</option>
-                                <option>Value 3</option>
+                            <select class="custom-select rounded-0" id="kelurahan" name="kelurahan">
+                                <option value="" class="disabled"><i>None</i></option>
                             </select>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="no_izin">No. Izin :</label>
-                            <input type="text" class="form-control" id="no_izin" placeholder="No. Izin" required>
+                            <input type="text" class="form-control" id="no_izin" placeholder="No. Izin" required name="noIzin">
                         </div>
                         <div class="form-group col-md-4">
                             <label>Tanggal Terbit :</label>
                             <div class="input-group date" id="tanggal_terbit" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input" data-target="#tanggal_terbit" required>
+                                <input type="text" class="form-control datetimepicker-input" data-target="#tanggal_terbit" required name="publishdate">
                                 <div class="input-group-append" data-target="#tanggal_terbit" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
@@ -124,7 +123,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="jenis_perizinan">Jenis Perizinan</label>
-                            <select class="custom-select rounded-0" id="jenis_perizinan" required>
+                            <select class="custom-select rounded-0" id="jenis_perizinan" required name="namaIzin">
                             <?php foreach($izin as $keyizin) :?>
                                 <option value="<?= $keyizin['id_jenis_perizinan']?>"><?= $keyizin['nama_perizinan']?></option>
                             <?php endforeach;?>
@@ -202,5 +201,28 @@
         document.addEventListener('DOMContentLoaded', function () {
           window.stepper = new Stepper(document.querySelector('.bs-stepper'))
         })
+    </script>
+    <script type='text/javascript'>
+        $(document).ready(function(){
+            $("#kecamatan").change(function(){
+                let ID_Kecamatan = $(this).val();
+
+                // Menggunakan ajax untuk mengirim dan dan menerima data dari server
+                $.ajax({
+                    url : "<?= base_url();?>/index.php/Input/getKelurahan",
+                    method : "post",
+                    data : {ID_Kecamatan: ID_Kecamatan},
+                    dataType : 'json',
+                    success: function(response){
+                        // Remove options 
+                        $('#kelurahan').find('option').not(':first').remove();
+                        // Add options
+                        $.each(response,function(index,data){
+                        $('#kelurahan').append('<option value="'+data['id']+'">'+data['Kelurahan']+'</option>');
+                        })
+                    }
+                });
+            });
+        });
     </script>
 <?= $this->endSection() ?>
