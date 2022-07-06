@@ -68,7 +68,7 @@
                                             
                                             $db = db_connect();
 
-                                            $query = "SELECT * FROM tabel_perizinan WHERE `JENIS PERIZINAN` = '$jenis_perizinan'";
+                                            $query = "SELECT * FROM tabel_perizinan WHERE `JENIS_PERIZINAN` = '$jenis_perizinan'";
 
                                             $total = $db->query($query)->getNumRows();
                                             ?>

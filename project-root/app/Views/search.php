@@ -140,7 +140,7 @@
                                                 }
                                             </style>
                                             <td class="h5" style="line-height: 20pt;"><a href="">
-                                                <i class="text-hover text-primary fas fa-pen"></i></a> | <a href=""><i class="text-hover text-danger  fas fa-trash"></a></i></td>
+                                                <i class="text-hover text-primary fas fa-pen"></i></a> | <a href="" onclick="confirm('Apakah Anda yakin ingin menghapus data perizinan dengan No. Register <?= $perizinan['NO REGISTER']; ?>')"><i class="text-hover text-danger  fas fa-trash"></a></i></td>
                                         </tr>
                                         <?php endforeach?>
                                     </tbody>
