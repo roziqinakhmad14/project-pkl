@@ -43,7 +43,7 @@ class Input extends BaseController
             return $date[2].'-'.$date[0].'-'.$date[1];
         }
         $this->Tabel_perizinanModel->insert([
-            'id'=> $this->request->getVar('NoRegis'),
+            'NO_REGISTER'=> $this->request->getVar('NoRegis'),
             'TANGGAL'=> convert($this->request->getVar('dateRegis')),
             'NAMA'=> $this->request->getVar('fullname'),
             'ALAMAT'=> $this->request->getVar('address'),

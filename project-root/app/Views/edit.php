@@ -11,7 +11,7 @@
             </li>
 
             <li class="nav-item">
-                <a href="<?=site_url('Input')?>" class="nav-link active">
+                <a href="<?=site_url('Input')?>" class="nav-link ">
                     <i class="nav-icon fas fa-edit"></i>
                     <p>
                         Input
@@ -19,7 +19,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="<?=site_url('Search')?>" class="nav-link">
+                <a href="<?=site_url('Search')?>" class="nav-link active">
                     <i class="nav-icon fas fa-search"></i>
                     <p>
                         Pencarian
@@ -30,6 +30,13 @@
     </nav>
 <?= $this->endSection() ?>
 <?= $this->section('content') ?>
+    <?php
+    function convert2html($str)
+    {
+        $date = explode("-",$str);
+        return $date[1].'/'.$date[2].'/'.$date[0];
+    }
+    ?>
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -55,20 +62,20 @@
         <!-- /.content-header -->
 
         <!-- Main content -->
+        <??>
         <section class="content">
             <div class="container-fluid">
                 <!-- Main row -->
                 <div class="card card-body">
-                    <form action="/Input/save" class="row" id="form" method="POST">
-                        <?= csrf_field()?>
+                    <form action="/Search/update/<?= base64_encode($dataperizinan['NO_REGISTER']); ?>" class="row" id="form" method="POST">
                         <div class="form-group col-md-6">
                             <label for="no_register">No. Register :</label>
-                            <input type="text" class="form-control" id="no_register" placeholder="No. Register" required name="NoRegis" autofocus>
+                            <input type="text" class="form-control" id="no_register" placeholder="No. Register" required name="NoRegis" autofocus value="<?=$dataperizinan['NO_REGISTER'] ?>">
                         </div>
                         <div class="form-group col-md-6">
                             <label>Tanggal Register :</label>
                             <div class="input-group date" id="tanggal_register" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input" data-target="#tanggal_register" required name="dateRegis">
+                                <input value="<?=convert2html($dataperizinan['TANGGAL']) ?> type="text" class="form-control datetimepicker-input" data-target="#tanggal_register" required name="dateRegis">
                                 <div class="input-group-append" data-target="#tanggal_register" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
@@ -76,23 +83,23 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="name">Nama Lengkap :</label>
-                            <input type="text" class="form-control" id="name" placeholder="Nama Lengkap" required name="fullname">
+                            <input value="<?=$dataperizinan['NAMA'] ?>" type="text" class="form-control" id="name" placeholder="Nama Lengkap" required name="fullname">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="phone">No. Handphone</label>
-                            <input type="phone" id="phone" class="form-control" placeholder="No. Handphone" name="phonenumber">
+                            <input type="phone" value="<?=$dataperizinan['NO_HP'] ?>" id="phone" class="form-control" placeholder="No. Handphone" name="phonenumber">
                         </div>
                         <div class="form-group col-12">
                             <label for="address">Alamat</label>
-                            <input type="text" id="address" class="form-control" placeholder="Alamat" required name="address">
+                            <input value="<?=$dataperizinan['ALAMAT'] ?>" type="text" id="address" class="form-control" placeholder="Alamat" required name="address">
                         </div>
                         <div class="form-group col-12">
                             <label for="company">Nama Perusahaan</label>
-                            <input type="text" id="company" class="form-control" placeholder="Nama Perusahaan" required name="comname">
+                            <input value="<?=$dataperizinan['PERUSAHAAN'] ?>" type="text" id="company" class="form-control" placeholder="Nama Perusahaan" required name="comname">
                         </div>
                         <div class="form-group col-12">
                             <label for="company_address">Lokasi Usaha</label>
-                            <input type="text" id="company_address" class="form-control" placeholder="Lokasi Usaha" required name="comaddress">
+                            <input value="<?=$dataperizinan['LOKASI_USAHA'] ?>" type="text" id="company_address" class="form-control" placeholder="Lokasi Usaha" required name="comaddress">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="kecamatan">Kecamatan</label>
@@ -111,12 +118,12 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="no_izin">No. Izin :</label>
-                            <input type="text" class="form-control" id="no_izin" placeholder="No. Izin" required name="noIzin">
+                            <input value="<?=$dataperizinan['NO_IZIN'] ?>" type="text" class="form-control" id="no_izin" placeholder="No. Izin" required name="noIzin">
                         </div>
                         <div class="form-group col-md-4">
                             <label>Tanggal Terbit :</label>
                             <div class="input-group date" id="tanggal_terbit" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input" data-target="#tanggal_terbit" required name="publishdate">
+                                <input value="<?= convert2html($dataperizinan['TANGGAL_TERBIT']) ?>" type="text" class="form-control datetimepicker-input" data-target="#tanggal_terbit" required name="publishdate">
                                 <div class="input-group-append" data-target="#tanggal_terbit" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
