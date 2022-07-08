@@ -27,4 +27,7 @@ class Home extends BaseController
         ];
         echo view('dashboard',$data);
     }
+    public function search() {
+        ;
+    }
 }
