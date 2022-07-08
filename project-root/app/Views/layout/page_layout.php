@@ -253,7 +253,7 @@
     <script src="<?= base_url('assets/dist/js/demo.js')?>"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="<?= base_url('assets/dist/js/pages/dashboard.js')?>"></script>
-    <?= $this->renderSection('date_script') ?>
+    <?= $this->renderSection('script') ?>
 </body>
 
 </html>

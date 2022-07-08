@@ -57,15 +57,14 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="card card-body">
-                    <form action="Home/search" class="form-group">
+                    <div class="form-group">
                         <div class="input-group">
-                            <input class="form-control" type="search" placeholder="Search" name="keyword">
-                            <input type="submit" class="d-none">
+                            <input class="form-control" type="search" placeholder="Search" id="search-input">
                             <div class="input-group-append">
                                 <div class="input-group-text"><i class="fas fa-search"></i></div>
                             </div>
                         </div>
-                    </form>
+                    </div>
                     <table class="table table-striped table-bordered">
                         <thead class="table-dark">
                             <tr class="text-center">
@@ -96,28 +95,34 @@
         </section>
         <!-- /.content -->
     </div>
+<?= $this->endSection() ?>
+<?= $this->section('script'); ?>
     <!-- Script untuk pencarian -->
-    <script>
+    <script type="text/javascript">
         $(document).ready(function(){
-            $("#kecamatan").change(function(){
-                let ID_Kecamatan = $(this).val();
-
-                // Menggunakan ajax untuk mengirim dan dan menerima data dari server
+            $("#search-input").change(function(event){
+                let keyword = $(this).val();
                 $.ajax({
-                    url : "<?= base_url();?>/index.php/Input/getKelurahan",
-                    method : "post",
-                    data : {ID_Kecamatan: ID_Kecamatan},
-                    dataType : 'json',
-                    success: function(response){
-                        // Remove options 
-                        $('#kelurahan').find('option').not(':first').remove();
-                        // Add options
-                        $.each(response,function(index,data){
-                        $('#kelurahan').append('<option value="'+data['id']+'">'+data['Kelurahan']+'</option>');
-                        });
+                    url: "<?= base_url()?>/index.php/Home/search",
+                    method: "post",
+                    data: {keyword: keyword},
+                    dataType: "json",
+                    success: function(response) {
+                        $('tbody').find('tr').remove();
+                        $.each(response, function(index,data) {
+                            $('tbody').append(`
+                            <tr>
+                                <td>${data['nama_perizinan']} (${data['id_jenis_perizinan']})</td>
+                                <td>${data['num_rows']}</td>
+                            </tr>
+                            `)
+                        })
+                    },
+                    error: function() {
+                        $('tbody').find('tr').remove();
                     }
-                });
+                })
             });
         });
     </script>
-<?= $this->endSection() ?>
+<?= $this->endSection(); ?>

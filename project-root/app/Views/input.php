@@ -142,7 +142,7 @@
     </div>
     <!-- /.content-wrapper -->
 <?= $this->endSection() ?>
-<?= $this->section('date_script') ?>
+<?= $this->section('script') ?>
     <script>
         $(function () {      
           //Datemask dd/mm/yyyy
@@ -213,12 +213,12 @@
                     method : "post",
                     data : {ID_Kecamatan: ID_Kecamatan},
                     dataType : 'json',
-                    success: function(response){
+                    success: function(response) {
                         // Remove options 
                         $('#kelurahan').find('option').not(':first').remove();
                         // Add options
                         $.each(response,function(index,data){
-                        $('#kelurahan').append('<option value="'+data['id']+'">'+data['Kelurahan']+'</option>');
+                            $('#kelurahan').append('<option value="'+data['id']+'">'+data['Kelurahan']+'</option>');
                         })
                     }
                 });
