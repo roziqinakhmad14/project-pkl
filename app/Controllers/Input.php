@@ -46,7 +46,7 @@ class Input extends BaseController
             'NoRegis'=>[
                 'rules' => 'required|is_unique[tabel_perizinan.NO_REGISTER]',
                 'errors' =>[
-                    'required'=>'NO Registrasi harus di isi',
+                    'required'=>'No Registrasi harus di isi',
                     'is_unique'=>'No Registrasi sudah ada'
                 ]
             ],
@@ -113,6 +113,7 @@ class Input extends BaseController
             ],
         ])){
             $validation = \Config\Services::validation();
+            // dd($validation);
             return redirect()->to('input')->withInput()->with('validasi',$validation);
         }
         function convert($str)
