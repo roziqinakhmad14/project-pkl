@@ -134,8 +134,8 @@
                                             <td><?= $perizinan['LOKASI_USAHA']?></td>
                                             <td><?= $perizinan['Kelurahan']?></td>
                                             <td><?= $perizinan['Kecamatan']?></td>
-                                            <td><?= $perizinan['TANGGAL_TERBIT']?></td>
                                             <td><?= $perizinan['NO_IZIN']?></td>
+                                            <td><?= $perizinan['TANGGAL_TERBIT']?></td>
                                             <td><?= $perizinan['nama_perizinan']?></td>
                                             <style>
                                                 i.text-hover:hover {
@@ -262,7 +262,22 @@
                     success: function(response) {
                         $('#spinner').addClass('d-none');
                         $.each(response, function(index,data) {
-                            console.log(data);
+                            $('tbody').append(`
+                            <tr class="data">
+                                <td>${data['NO_REGISTER']}</td>
+                                <td>${data['TANGGAL']}</td>
+                                <td>${data['NAMA']}</td>
+                                <td>${data['ALAMAT']}</td>
+                                <td>${data['NO_HP']}</td>
+                                <td>${data['PERUSAHAAN']}</td>
+                                <td>${data['LOKASI_USAHA']}</td>
+                                <td>${data['KELURAHAN']}</td>
+                                <td>${data['KECAMATAN']}</td>
+                                <td>${data['TANGGAL_TERBIT']}</td>
+                                <td>${data['NO_IZIN']}</td>
+                                <td>${data['JENIS_PERIZINAN']}</td>
+                            </tr> 
+                            `)
                         })
                     },
                     error: function() {
