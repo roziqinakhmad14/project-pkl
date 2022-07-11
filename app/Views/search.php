@@ -76,7 +76,7 @@
                                     <i class="far fa-calendar-alt"></i>
                                     </span>
                                 </div>
-                                <input type="text" class="form-control float-right" id="reservation">
+                                <input type="text" class="form-control float-right" id="daterange">
                             </div>
                             <!-- /.input group -->
                         </div>
@@ -180,11 +180,12 @@
                                     </div>
                                     <div class="col-sm-12 col-md-3">
                                         <div class="dataTables_paginate paging_simple_numbers">
-                                            <ul class="pagination">
+                                            <?= $pager->links('dataperizinan','tabel_paging'); ?>
+                                            <!-- <ul class="pagination">
                                                 <li class="paginate_button page-item previous disabled" id="previous"><a href="#" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
                                                 <li class="paginate_button page-item active"><a href="#" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
                                                 <li class="paginate_button page-item next" id="next"><a href="#" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
-                                            </ul>
+                                            </ul> -->
                                         </div>
                                     </div>
                                 </div>
@@ -199,7 +200,7 @@
     <!-- /.content -->
     </div>
 <?= $this->endSection() ?>
-<?= $this->section('date_script') ?>
+<?= $this->section('script') ?>
     <script>
         $(function () {      
           //Datemask dd/mm/yyyy
@@ -209,19 +210,11 @@
           //Money Euro
           $('[data-mask]').inputmask()
       
-          //Date picker
-          $('#tanggal_register').datetimepicker({
-              format: 'L'
-          });
-          $('#tanggal_terbit').datetimepicker({
-              format: 'L'
-          });
-      
           //Date and time picker
           $('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' } });
       
           //Date range picker
-          $('#reservation').daterangepicker()
+          $('#daterange').daterangepicker()
           //Date range picker with time picker
           $('#reservationtime').daterangepicker({
             timePicker: true,
@@ -255,25 +248,28 @@
           })      
         })
 
-        // Script untuk menghapus
-        $('#search-input').change(function() {
-            $('tbody').find('tr.data').remove();
-            $('#spinner').removeClass('d-none');
-            let keyword = $(this).val();
-            $.ajax({
-                url: '<?php base_url() ?>/index.php/Search/search',
-                method: 'post',
-                data: {keyword:keyword},
-                success: function(response) {
-                    $('#spinner').addClass('d-none');
-                    $.each(response, function(index,data) {
-                        console.log(data);
-                    });
-                },
-                error: function() {
-                    $('#spinner').addClass('d-none');
-                }
-            })
+        // Script untuk pencarian
+        $(document).ready(function() {
+            $('#search-input').change(function() {
+                $('tbody').find('tr.data').remove();
+                $('#spinner').removeClass('d-none');
+                let keyword = $(this).val();
+                $.ajax({
+                    url: '<?php base_url(); ?>/index.php/Search/search',
+                    method: 'post',
+                    data: {keyword:keyword},
+                    dataType: 'json',
+                    success: function(response) {
+                        $('#spinner').addClass('d-none');
+                        $.each(response, function(index,data) {
+                            console.log(data);
+                        })
+                    },
+                    error: function() {
+                        $('#spinner').addClass('d-none');
+                    }
+                })
+            })  
         })
     </script>
 <?= $this->endSection() ?>

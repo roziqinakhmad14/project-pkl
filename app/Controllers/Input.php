@@ -4,7 +4,8 @@ namespace App\Controllers;
 use App\Models\RegionSelectModel;
 use App\Models\Jenis_perizinanModel;
 use App\Models\Tabel_perizinanModel;
-
+use CodeIgniter\Validation\StrictRules\Rules;
+use PHPUnit\Util\Xml\Validator;
 
 class Input extends BaseController
 {
@@ -37,6 +38,23 @@ class Input extends BaseController
     }
     public function save()
     {
+        // Validasi!!
+        if(!$this->validate([
+            'dateRegis'=>[
+                'rules' => 'required|is_unique[tabel_perizinan.NO_REGISTER]',
+                'errors' =>[
+                    'required'=>'{field} Harus di isi',
+                    'is_unique'=>'{field} No Registrasi sudah ada'
+                ]
+                ],
+            'dateRegis'=>[
+                'rules' => 'required',
+                'errors' =>[
+                    'required'=>'{field} Tanggal Registrasi Harus Di isi'
+                    
+                ]
+            ]
+        ]));
         function convert($str)
         {
             $date = explode("/",$str);
