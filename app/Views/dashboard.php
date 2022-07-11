@@ -72,21 +72,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($izin as $keyizin) :?>
-                            <tr>
-                                <td><?= $keyizin['nama_perizinan']." (".$keyizin['id_jenis_perizinan'].")"; ?></td>
-                                
-                                <?php 
-                                $jenis_perizinan = $keyizin['id_jenis_perizinan'];
-                                $db = db_connect();
-                                $builder = $db->table('tabel_perizinan');
-                                $query = $builder->getWhere(['JENIS_PERIZINAN'=> $jenis_perizinan]);
-                                $total = $query->resultID->num_rows;
-                                ?>
-
-                                <td><?= $total; ?></td>
+                            <tr class="d-none" id="spinner">
+                                <td class="text-center" colspan="2"><span class="spinner-border text-dark"></span></td>
                             </tr>
-                        <?php endforeach; ?>
+                            <?php foreach ($izin as $keyizin) :?>
+                                <tr class="jenis-perizinan">
+                                    <td><?= $keyizin['nama_perizinan']." (".$keyizin['id_jenis_perizinan'].")"; ?></td>
+                                    
+                                    <?php 
+                                    $jenis_perizinan = $keyizin['id_jenis_perizinan'];
+                                    $db = db_connect();
+                                    $builder = $db->table('tabel_perizinan');
+                                    $query = $builder->getWhere(['JENIS_PERIZINAN'=> $jenis_perizinan]);
+                                    $total = $query->resultID->num_rows;
+                                    ?>
+
+                                    <td><?= $total; ?></td>
+                                </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
@@ -101,6 +104,8 @@
     <script type="text/javascript">
         $(document).ready(function(){
             $("#search-input").change(function(event){
+                $('tbody').find('tr.jenis-perizinan').remove();
+                $("#spinner").removeClass("d-none");
                 let keyword = $(this).val();
                 $.ajax({
                     url: "<?= base_url()?>/index.php/Home/search",
@@ -108,10 +113,10 @@
                     data: {keyword: keyword},
                     dataType: "json",
                     success: function(response) {
-                        $('tbody').find('tr').remove();
+                        $("#spinner").addClass("d-none");
                         $.each(response, function(index,data) {
                             $('tbody').append(`
-                            <tr>
+                            <tr class="jenis-perizinan">
                                 <td>${data['nama_perizinan']} (${data['id_jenis_perizinan']})</td>
                                 <td>${data['num_rows']}</td>
                             </tr>
@@ -119,7 +124,7 @@
                         })
                     },
                     error: function() {
-                        $('tbody').find('tr').remove();
+                        $("#spinner").addClass("d-none");
                     }
                 })
             });
