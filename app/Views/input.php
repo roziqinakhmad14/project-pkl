@@ -63,12 +63,12 @@
                         <?= csrf_field()?>
                         <div class="form-group col-md-6">
                             <label for="no_register">No. Register :</label>
-                            <input type="text" class="form-control" id="no_register" placeholder="No. Register" required name="NoRegis" autofocus>
+                            <input type="text" class="form-control" id="no_register" placeholder="No. Register"  name="NoRegis" autofocus>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Tanggal Register :</label>
                             <div class="input-group date" id="tanggal_register" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input" data-target="#tanggal_register" required name="dateRegis">
+                                <input type="text" class="form-control datetimepicker-input" data-target="#tanggal_register"  name="dateRegis">
                                 <div class="input-group-append" data-target="#tanggal_register" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
@@ -76,7 +76,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="name">Nama Lengkap :</label>
-                            <input type="text" class="form-control" id="name" placeholder="Nama Lengkap" required name="fullname">
+                            <input type="text" class="form-control" id="name" placeholder="Nama Lengkap"  name="fullname">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="phone">No. Handphone</label>
@@ -84,15 +84,15 @@
                         </div>
                         <div class="form-group col-12">
                             <label for="address">Alamat</label>
-                            <input type="text" id="address" class="form-control" placeholder="Alamat" required name="address">
+                            <input type="text" id="address" class="form-control" placeholder="Alamat"  name="address">
                         </div>
                         <div class="form-group col-12">
                             <label for="company">Nama Perusahaan</label>
-                            <input type="text" id="company" class="form-control" placeholder="Nama Perusahaan" required name="comname">
+                            <input type="text" id="company" class="form-control" placeholder="Nama Perusahaan"  name="comname">
                         </div>
                         <div class="form-group col-12">
                             <label for="company_address">Lokasi Usaha</label>
-                            <input type="text" id="company_address" class="form-control" placeholder="Lokasi Usaha" required name="comaddress">
+                            <input type="text" id="company_address" class="form-control" placeholder="Lokasi Usaha"  name="comaddress">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="kecamatan">Kecamatan</label>
@@ -111,12 +111,12 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="no_izin">No. Izin :</label>
-                            <input type="text" class="form-control" id="no_izin" placeholder="No. Izin" required name="noIzin">
+                            <input type="text" class="form-control" id="no_izin" placeholder="No. Izin"  name="noIzin">
                         </div>
                         <div class="form-group col-md-4">
                             <label>Tanggal Terbit :</label>
                             <div class="input-group date" id="tanggal_terbit" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input" data-target="#tanggal_terbit" required name="publishdate">
+                                <input type="text" class="form-control datetimepicker-input" data-target="#tanggal_terbit"  name="publishdate">
                                 <div class="input-group-append" data-target="#tanggal_terbit" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
@@ -124,7 +124,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="jenis_perizinan">Jenis Perizinan</label>
-                            <select class="custom-select rounded-0" id="jenis_perizinan" required name="namaIzin">
+                            <select class="custom-select rounded-0" id="jenis_perizinan"  name="namaIzin">
                             <?php foreach($izin as $keyizin) :?>
                                 <option value="<?= $keyizin['id_jenis_perizinan']?>"><?= $keyizin['nama_perizinan']?></option>
                             <?php endforeach;?>

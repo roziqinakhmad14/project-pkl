@@ -20,10 +20,15 @@ class Search extends BaseController
     public function index()
     {
         $izin = $this->Jenis_perizinanModel->findAll();
-        $dataperizinan = $this->Tabel_perizinanModel->getAll();
+        $dataperizinan = $this->Tabel_perizinanModel
+        ->join('jenis_perizinan','jenis_perizinan.id_jenis_perizinan = tabel_perizinan.JENIS_PERIZINAN','LEFT')
+        ->join('kecamatan','kecamatan.id = tabel_perizinan.KECAMATAN','LEFT')
+        ->join('kelurahan','kelurahan.id = tabel_perizinan.KELURAHAN ','LEFT')
+        ->paginate(2,'dataperizinan');
         $data = [
             'izin' => $izin,
-            'dataperizinan' => $dataperizinan
+            'dataperizinan' => $dataperizinan,
+            'pager'=>$this->Tabel_perizinanModel->pager
         ];
         echo view('search', $data);
     }
