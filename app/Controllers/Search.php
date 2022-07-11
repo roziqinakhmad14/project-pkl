@@ -84,7 +84,7 @@ class Search extends BaseController
     {
         $keyword = $this->request->getPost('keyword');
 
-        $result = $this->Tabel_perizinanModel->like('NO_REGISTER',$keyword)->orLike('ALAMAT',$keyword)->findAll();
+        $result = $this->Tabel_perizinanModel->like('NO_REGISTER',$keyword)->orLike('ALAMAT',$keyword)->orLike('NAMA',$keyword)->orLike('PERUSAHAAN',$keyword)->orLike('LOKASI_USAHA',$keyword)->orLike('KELURAHAN',$keyword)->orLike('KECAMATAN',$keyword)->findAll();
 
         echo json_encode($result);
     }
