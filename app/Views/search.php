@@ -93,7 +93,7 @@
                     <div class="row">
                         <div class="form-group col-12">
                             <div class="input-group">
-                                <input class="form-control" type="search" placeholder="Search"></input>
+                                <input class="form-control" type="search" placeholder="Search" id="search-input"></input>
                                 <div class="input-group-append">
                                     <div class="input-group-text"><i class="fas fa-search"></i></div>
                                 </div>
@@ -120,8 +120,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php foreach($dataperizinan as $perizinan):?>
-                                        <tr class="odd">
+                                        <tr class="d-none" id="spinner">
+                                            <td class="text-center" colspan="13"><span class="spinner-border text-dark"></span></td>
+                                        </tr>
+                                        <?php foreach($dataperizinan as $perizinan):?>
+                                        <tr class="data">
                                             <td><?= $perizinan['NO_REGISTER']?></td>
                                             <td><?= $perizinan['TANGGAL']?></td>
                                             <td><?= $perizinan['NAMA']?></td>
@@ -251,14 +254,26 @@
             format: 'LT'
           })      
         })
-        // BS-Stepper Init
-        document.addEventListener('DOMContentLoaded', function () {
-          window.stepper = new Stepper(document.querySelector('.bs-stepper'))
-        })
 
         // Script untuk menghapus
-        $.ajax({
-        
+        $('#search-input').change(function() {
+            $('tbody').find('tr.data').remove();
+            $('#spinner').removeClass('d-none');
+            let keyword = $(this).val();
+            $.ajax({
+                url: '<?php base_url() ?>/index.php/Search/search',
+                method: 'post',
+                data: {keyword:keyword},
+                success: function(response) {
+                    $('#spinner').addClass('d-none');
+                    $.each(response, function(index,data) {
+                        console.log(data);
+                    });
+                },
+                error: function() {
+                    $('#spinner').addClass('d-none');
+                }
+            })
         })
     </script>
 <?= $this->endSection() ?>

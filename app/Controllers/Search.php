@@ -75,4 +75,12 @@ class Search extends BaseController
         $data = $this->RegionSelectModel->getSubDistric($postData);
         echo json_encode($data);
     }
+    public function search() 
+    {
+        $keyword = $this->request->getPost('keyword');
+
+        $result = $this->Tabel_perizinanModel->like('id_jenis_perizinan',$keyword)->orLike('nama_perizinan',$keyword)->findAll();
+        
+        echo json_encode($result);
+    }
 }
