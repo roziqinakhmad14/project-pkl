@@ -26,7 +26,8 @@ class Home extends BaseController
         ];
         echo view('dashboard',$data);
     }
-    public function search() {
+    public function search() 
+    {
         $keyword = $this->request->getPost('keyword');
 
         $jenis_perizinan = $this->Jenis_perizinanModel->like('id_jenis_perizinan',$keyword)->orLike('nama_perizinan',$keyword)->findAll();
@@ -37,7 +38,6 @@ class Home extends BaseController
             $i = array_merge($i,$num_rows);
             array_push($result,$i);
         }
-
         echo json_encode($result);
     }
 }
