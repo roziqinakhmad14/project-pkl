@@ -1,5 +1,10 @@
 <?= $this->extend('layout/page_layout') ?>
 <?= $this->section('sidebar_menu')?>
+    <style>
+        i.text-hover:hover {
+            opacity: 80%;
+        }
+    </style>
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
@@ -137,13 +142,9 @@
                                             <td><?= $perizinan['NO_IZIN']?></td>
                                             <td><?= $perizinan['TANGGAL_TERBIT']?></td>
                                             <td><?= $perizinan['nama_perizinan']?></td>
-                                            <style>
-                                                i.text-hover:hover {
-                                                    opacity: 80%;
-                                                }
-                                            </style>
-                                            <td class="h5" style="line-height: 20pt;"><a href="/Search/edit/<?= base64_encode($perizinan['NO_REGISTER']); ?>")">
-                                                <i class="text-hover text-primary fas fa-pen"></i></a> | <a href="/Search/delete/<?= base64_encode($perizinan['NO_REGISTER']); ?>" onclick="confirm('Apakah Anda yakin ingin menghapus data perizinan dengan No. Register <?= $perizinan['NO_REGISTER']; ?>')"><i class="text-hover text-danger  fas fa-trash"></a></i></td>
+                                            <td class="h5" style="line-height: 20pt;"><a href="/Search/edit/<?= base64_encode($perizinan['NO_REGISTER']); ?>")>
+                                                <i class="text-hover text-primary fas fa-pen"></i></a> | <a href="/Search/delete/<?= base64_encode($perizinan['NO_REGISTER']); ?>" onclick="confirm('Apakah Anda yakin ingin menghapus data perizinan dengan No. Register <?= $perizinan['NO_REGISTER']; ?>')"><i class="text-hover text-danger  fas fa-trash"></a></i>
+                                            </td>
                                         </tr>
                                         <?php endforeach?>
                                     </tbody>
@@ -276,12 +277,12 @@
                                 <td>${data['TANGGAL_TERBIT']}</td>
                                 <td>${data['NO_IZIN']}</td>
                                 <td>${data['JENIS_PERIZINAN']}</td>
+                                <td class="h5" style="line-height: 20pt;"><a href="/Search/edit/${btoa(data['NO_REGISTER'])}")>
+                                    <i class="text-hover text-primary fas fa-pen"></i></a> | <a href="/Search/delete/${btoa(data['NO_REGISTER'])}" onclick="confirm('Apakah Anda yakin ingin menghapus data perizinan dengan No. Register ${data['NO_REGISTER']}')"><i class="text-hover text-danger  fas fa-trash"></a></i>
+                                </td>
                             </tr> 
                             `)
                         })
-                    },
-                    error: function() {
-                        $('#spinner').addClass('d-none');
                     }
                 })
             })  
