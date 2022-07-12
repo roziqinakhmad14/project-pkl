@@ -1,5 +1,10 @@
 <?= $this->extend('layout/page_layout') ?>
 <?= $this->section('sidebar_menu')?>
+    <style>
+        i.text-hover:hover {
+            opacity: 80%;
+        }
+    </style>
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
@@ -134,16 +139,12 @@
                                             <td><?= $perizinan['LOKASI_USAHA']?></td>
                                             <td><?= $perizinan['Kelurahan']?></td>
                                             <td><?= $perizinan['Kecamatan']?></td>
-                                            <td><?= $perizinan['TANGGAL_TERBIT']?></td>
                                             <td><?= $perizinan['NO_IZIN']?></td>
+                                            <td><?= $perizinan['TANGGAL_TERBIT']?></td>
                                             <td><?= $perizinan['nama_perizinan']?></td>
-                                            <style>
-                                                i.text-hover:hover {
-                                                    opacity: 80%;
-                                                }
-                                            </style>
-                                            <td class="h5" style="line-height: 20pt;"><a href="/Search/edit/<?= base64_encode($perizinan['NO_REGISTER']); ?>")">
-                                                <i class="text-hover text-primary fas fa-pen"></i></a> | <a href="/Search/delete/<?= base64_encode($perizinan['NO_REGISTER']); ?>" onclick="confirm('Apakah Anda yakin ingin menghapus data perizinan dengan No. Register <?= $perizinan['NO_REGISTER']; ?>')"><i class="text-hover text-danger  fas fa-trash"></a></i></td>
+                                            <td class="h5" style="line-height: 20pt;"><a href="/Search/edit/<?= base64_encode($perizinan['NO_REGISTER']); ?>")>
+                                                <i class="text-hover text-primary fas fa-pen"></i></a> | <a href="/Search/delete/<?= base64_encode($perizinan['NO_REGISTER']); ?>" onclick="confirm('Apakah Anda yakin ingin menghapus data perizinan dengan No. Register <?= $perizinan['NO_REGISTER']; ?>')"><i class="text-hover text-danger  fas fa-trash"></a></i>
+                                            </td>
                                         </tr>
                                         <?php endforeach?>
                                     </tbody>
@@ -256,25 +257,43 @@
           })      
         })
 
-        // Script untuk menghapus
-        $('#search-input').change(function() {
-            $('tbody').find('tr.data').remove();
-            $('#spinner').removeClass('d-none');
-            let keyword = $(this).val();
-            $.ajax({
-                url: '<?php base_url() ?>/index.php/Search/search',
-                method: 'post',
-                data: {keyword:keyword},
-                success: function(response) {
-                    $('#spinner').addClass('d-none');
-                    $.each(response, function(index,data) {
-                        console.log(data);
-                    });
-                },
-                error: function() {
-                    $('#spinner').addClass('d-none');
-                }
-            })
+        // Script untuk pencarian
+        $(document).ready(function() {
+            $('#search-input').change(function() {
+                $('tbody').find('tr.data').remove();
+                $('#spinner').removeClass('d-none');
+                let keyword = $(this).val();
+                $.ajax({
+                    url: '<?php base_url(); ?>/index.php/Search/search',
+                    method: 'post',
+                    data: {keyword:keyword},
+                    dataType: 'json',
+                    success: function(response) {
+                        $('#spinner').addClass('d-none');
+                        $.each(response, function(index,data) {
+                            $('tbody').append(`
+                            <tr class="data">
+                                <td>${data['NO_REGISTER']}</td>
+                                <td>${data['TANGGAL']}</td>
+                                <td>${data['NAMA']}</td>
+                                <td>${data['ALAMAT']}</td>
+                                <td>${data['NO_HP']}</td>
+                                <td>${data['PERUSAHAAN']}</td>
+                                <td>${data['LOKASI_USAHA']}</td>
+                                <td>${data['KELURAHAN']}</td>
+                                <td>${data['KECAMATAN']}</td>
+                                <td>${data['TANGGAL_TERBIT']}</td>
+                                <td>${data['NO_IZIN']}</td>
+                                <td>${data['JENIS_PERIZINAN']}</td>
+                                <td class="h5" style="line-height: 20pt;"><a href="/Search/edit/${btoa(data['NO_REGISTER'])}")>
+                                    <i class="text-hover text-primary fas fa-pen"></i></a> | <a href="/Search/delete/${btoa(data['NO_REGISTER'])}" onclick="confirm('Apakah Anda yakin ingin menghapus data perizinan dengan No. Register ${data['NO_REGISTER']}')"><i class="text-hover text-danger  fas fa-trash"></a></i>
+                                </td>
+                            </tr> 
+                            `)
+                        })
+                    }
+                })
+            })  
         })
     </script>
 <?= $this->endSection() ?>

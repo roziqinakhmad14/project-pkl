@@ -24,7 +24,7 @@ class Search extends BaseController
         ->join('jenis_perizinan','jenis_perizinan.id_jenis_perizinan = tabel_perizinan.JENIS_PERIZINAN','LEFT')
         ->join('kecamatan','kecamatan.id = tabel_perizinan.KECAMATAN','LEFT')
         ->join('kelurahan','kelurahan.id = tabel_perizinan.KELURAHAN ','LEFT')
-        ->paginate(2,'dataperizinan');
+        ->paginate(5,'dataperizinan');
         $data = [
             'izin' => $izin,
             'dataperizinan' => $dataperizinan,
@@ -158,8 +158,8 @@ class Search extends BaseController
     {
         $keyword = $this->request->getPost('keyword');
 
-        $result = $this->Tabel_perizinanModel->like('id_jenis_perizinan',$keyword)->orLike('nama_perizinan',$keyword)->findAll();
-        
+        $result = $this->Tabel_perizinanModel->like('NO_REGISTER',$keyword)->orLike('ALAMAT',$keyword)->orLike('NAMA',$keyword)->orLike('PERUSAHAAN',$keyword)->orLike('LOKASI_USAHA',$keyword)->orLike('KELURAHAN',$keyword)->orLike('KECAMATAN',$keyword)->findAll();
+
         echo json_encode($result);
     }
 }
