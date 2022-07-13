@@ -179,14 +179,9 @@
                                             </span> of 57 entries
                                         </div>
                                     </div>
-                                    <div class="col-sm-12 col-md-5 d-flex">
+                                    <div class="col-sm-12 col-md-5 d-flex" id="paginate">
                                         <div class="dataTables_paginate paging_simple_numbers ml-auto">
                                             <?= $pager->links('dataperizinan','tabel_paging'); ?>
-                                            <!-- <ul class="pagination">
-                                                <li class="paginate_button page-item previous disabled" id="previous"><a href="#" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
-                                                <li class="paginate_button page-item active"><a href="#" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                                                <li class="paginate_button page-item next" id="next"><a href="#" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
-                                            </ul> -->
                                         </div>
                                     </div>
                                 </div>
@@ -268,29 +263,41 @@
                     method: 'post',
                     data: {keyword:keyword},
                     dataType: 'json',
-                    success: function(response) {
+                    success: function(response) { 
                         $('#spinner').addClass('d-none');
-                        $.each(response, function(index,data) {
-                            $('tbody').append(`
-                            <tr class="data">
-                                <td>${data['NO_REGISTER']}</td>
-                                <td>${data['TANGGAL']}</td>
-                                <td>${data['NAMA']}</td>
-                                <td>${data['ALAMAT']}</td>
-                                <td>${data['NO_HP']}</td>
-                                <td>${data['PERUSAHAAN']}</td>
-                                <td>${data['LOKASI_USAHA']}</td>
-                                <td>${data['KELURAHAN']}</td>
-                                <td>${data['KECAMATAN']}</td>
-                                <td>${data['TANGGAL_TERBIT']}</td>
-                                <td>${data['NO_IZIN']}</td>
-                                <td>${data['JENIS_PERIZINAN']}</td>
-                                <td class="h5" style="line-height: 20pt;"><a href="/Search/edit/${btoa(data['NO_REGISTER'])}")>
-                                    <i class="text-hover text-primary fas fa-pen"></i></a> | <a href="/Search/delete/${btoa(data['NO_REGISTER'])}" onclick="confirm('Apakah Anda yakin ingin menghapus data perizinan dengan No. Register ${data['NO_REGISTER']}')"><i class="text-hover text-danger  fas fa-trash"></a></i>
-                                </td>
-                            </tr> 
+                        $('#paginate div').remove();
+                        if(response==false) {
+                            $('tbody').prepend(`
+                                <tr class="data"><td colspan="13" class="h5"><i>Data tidak ditemukan</i></td></tr>
                             `)
-                        })
+                        } else {
+                            $.each(response, function(index,data) {
+                                $('tbody').append(`
+                                <tr class="data">
+                                    <td>${data['NO_REGISTER']}</td>
+                                    <td>${data['TANGGAL']}</td>
+                                    <td>${data['NAMA']}</td>
+                                    <td>${data['ALAMAT']}</td>
+                                    <td>${data['NO_HP']}</td>
+                                    <td>${data['PERUSAHAAN']}</td>
+                                    <td>${data['LOKASI_USAHA']}</td>
+                                    <td>${data['Kelurahan']}</td>
+                                    <td>${data['Kecamatan']}</td>
+                                    <td>${data['TANGGAL_TERBIT']}</td>
+                                    <td>${data['NO_IZIN']}</td>
+                                    <td>${data['JENIS_PERIZINAN']}</td>
+                                    <td class="h5" style="line-height: 20pt;"><a href="/Search/edit/${btoa(data['NO_REGISTER'])}")>
+                                        <i class="text-hover text-primary fas fa-pen"></i></a> | <a href="/Search/delete/${btoa(data['NO_REGISTER'])}" onclick="confirm('Apakah Anda yakin ingin menghapus data perizinan dengan No. Register ${data['NO_REGISTER']}')"><i class="text-hover text-danger  fas fa-trash"></a></i>
+                                    </td>
+                                </tr> 
+                                `)
+                            })
+                            $('#paginate').append(`
+                                <div class="dataTables_paginate paging_simple_numbers ml-auto">
+                                    <?= $pager->links('data','tabel_paging'); ?>
+                                </div>
+                            `)
+                        }
                     }
                 })
             })  

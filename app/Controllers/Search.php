@@ -31,6 +31,7 @@ class Search extends BaseController
             'pager'=>$this->Tabel_perizinanModel->pager
         ];
         echo view('search', $data);
+        // dd($data);
     }
     public function delete($id)
     {
@@ -156,10 +157,22 @@ class Search extends BaseController
     }
     public function search() 
     {
-        $keyword = $this->request->getPost('keyword');
+        // $keyword = $this->request->getPost('keyword');
+        $keyword = 'dinoyo';
 
-        $result = $this->Tabel_perizinanModel->like('NO_REGISTER',$keyword)->orLike('ALAMAT',$keyword)->orLike('NAMA',$keyword)->orLike('PERUSAHAAN',$keyword)->orLike('LOKASI_USAHA',$keyword)->orLike('KELURAHAN',$keyword)->orLike('KECAMATAN',$keyword)->findAll();
+        $result = $this->Tabel_perizinanModel
+        ->join('jenis_perizinan','jenis_perizinan.id_jenis_perizinan = tabel_perizinan.JENIS_PERIZINAN','LEFT')
+        ->join('kecamatan','kecamatan.id = tabel_perizinan.KECAMATAN','LEFT')
+        ->join('kelurahan','kelurahan.id = tabel_perizinan.KELURAHAN','LEFT')
+        ->like('NO_REGISTER',$keyword)->orLike('ALAMAT',$keyword)->orLike('NAMA',$keyword)->orLike('PERUSAHAAN',$keyword)->orLike('LOKASI_USAHA',$keyword)->orLike('kelurahan.Kelurahan',$keyword)->orLike('kecamatan.Kecamatan',$keyword)->paginate(3,'result');
 
+        $izin = $this->Jenis_perizinanModel->findAll();
+        $data = [
+            'izin' => $izin,
+            'dataperizinan' => $result,
+            'pager'=>$this->Tabel_perizinanModel->pager
+        ];
         echo json_encode($result);
+        // echo view('search',$data);
     }
 }
