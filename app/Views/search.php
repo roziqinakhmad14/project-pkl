@@ -167,7 +167,7 @@
                                     </tfoot>
                                 </table>
                                 <div class="row">
-                                    <div class="col-sm-12 col-md-9">
+                                    <div class="col-sm-12 col-md-7">
                                         <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to 
                                             <span>
                                                 <select class="" id="perizinan">
@@ -179,8 +179,8 @@
                                             </span> of 57 entries
                                         </div>
                                     </div>
-                                    <div class="col-sm-12 col-md-3">
-                                        <div class="dataTables_paginate paging_simple_numbers">
+                                    <div class="col-sm-12 col-md-5 d-flex">
+                                        <div class="dataTables_paginate paging_simple_numbers ml-auto">
                                             <?= $pager->links('dataperizinan','tabel_paging'); ?>
                                             <!-- <ul class="pagination">
                                                 <li class="paginate_button page-item previous disabled" id="previous"><a href="#" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
@@ -201,7 +201,7 @@
     <!-- /.content -->
     </div>
 <?= $this->endSection() ?>
-<?= $this->section('date_script') ?>
+<?= $this->section('script') ?>
     <script>
         $(function () {      
           //Datemask dd/mm/yyyy
