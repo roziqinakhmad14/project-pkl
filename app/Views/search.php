@@ -265,7 +265,6 @@
                     dataType: 'json',
                     success: function(response) { 
                         $('#spinner').addClass('d-none');
-                        $('#paginate div').remove();
                         if(response==false) {
                             $('tbody').prepend(`
                                 <tr class="data"><td colspan="13" class="h5"><i>Data tidak ditemukan</i></td></tr>
@@ -292,12 +291,23 @@
                                 </tr> 
                                 `)
                             })
-                            $('#paginate').append(`
-                                <div class="dataTables_paginate paging_simple_numbers ml-auto">
-                                    <?= $pager->links('data','tabel_paging'); ?>
-                                </div>
-                            `)
                         }
+                    }
+                });
+                $.ajax({
+                    url: '<?= base_url(); ?>/index.php/Search/paginate',
+                    method: 'post',
+                    data: {keyword: keyword},
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log(response);
+                        $('#paginate div').remove();
+
+                        $('#paginate').append(`
+                            <div class="dataTables_paginate paging_simple_numbers ml-auto">
+                                ${response}
+                            </div>
+                        `)
                     }
                 })
             })  
