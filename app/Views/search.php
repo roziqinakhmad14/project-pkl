@@ -81,7 +81,7 @@
                                     <i class="far fa-calendar-alt"></i>
                                     </span>
                                 </div>
-                                <input type="text" class="form-control float-right" id="daterange">
+                                <input type="text" class="form-control float-right" id="reservation">
                             </div>
                             <!-- /.input group -->
                         </div>
@@ -201,7 +201,7 @@
     <!-- /.content -->
     </div>
 <?= $this->endSection() ?>
-<?= $this->section('script') ?>
+<?= $this->section('date_script') ?>
     <script>
         $(function () {      
           //Datemask dd/mm/yyyy
@@ -211,11 +211,19 @@
           //Money Euro
           $('[data-mask]').inputmask()
       
+          //Date picker
+          $('#tanggal_register').datetimepicker({
+              format: 'L'
+          });
+          $('#tanggal_terbit').datetimepicker({
+              format: 'L'
+          });
+      
           //Date and time picker
           $('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' } });
       
           //Date range picker
-          $('#daterange').daterangepicker()
+          $('#reservation').daterangepicker()
           //Date range picker with time picker
           $('#reservationtime').daterangepicker({
             timePicker: true,

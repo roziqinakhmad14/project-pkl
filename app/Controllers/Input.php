@@ -5,6 +5,7 @@ use App\Models\RegionSelectModel;
 use App\Models\Jenis_perizinanModel;
 use App\Models\Tabel_perizinanModel;
 use CodeIgniter\Validation\StrictRules\Rules;
+use Config\Validation;
 use PHPUnit\Util\Xml\Validator;
 
 class Input extends BaseController
@@ -21,13 +22,15 @@ class Input extends BaseController
     }
     public function index()
     {
+        // session();
         $izin = $this->Jenis_perizinanModel->findAll();
         $dataperizinan = $this->Tabel_perizinanModel->findAll();
         $kecamatan = $this->RegionSelectModel->getDistric();
         $data = [
             'izin'=> $izin,
             'dataperizinan'=>$dataperizinan,
-            'distric' => $kecamatan
+            'distric' => $kecamatan,
+            'validasi'=> \Config\Services::validation()
         ];
         echo view('input',$data);
     }
@@ -40,21 +43,79 @@ class Input extends BaseController
     {
         // Validasi!!
         if(!$this->validate([
-            'dateRegis'=>[
+            'NoRegis'=>[
                 'rules' => 'required|is_unique[tabel_perizinan.NO_REGISTER]',
                 'errors' =>[
-                    'required'=>'{field} Harus di isi',
-                    'is_unique'=>'{field} No Registrasi sudah ada'
+                    'required'=>'No Registrasi harus di isi',
+                    'is_unique'=>'No Registrasi sudah ada'
                 ]
-                ],
+            ],
             'dateRegis'=>[
                 'rules' => 'required',
                 'errors' =>[
-                    'required'=>'{field} Tanggal Registrasi Harus Di isi'
-                    
+                    'required'=>'Tanggal Registrasi harus Di isi'
                 ]
-            ]
-        ]));
+            ],
+            'fullname'=>[
+                'rules' => 'required',
+                'errors' =>[
+                    'required'=>'Nama Lengkap harus Disi'
+                ]
+            ],
+            'address'=>[
+                'rules' => 'required',
+                'errors' =>[
+                    'required'=>'Alamat harus di isi'
+                ]
+            ],
+            'comname'=>[
+                'rules' => 'required',
+                'errors' =>[
+                    'required'=>'Nama Perusahaan harus di isi'
+                ]
+            ],
+            'comaddress'=>[
+                'rules' => 'required',
+                'errors' =>[
+                    'required'=>'Alamat Perusahaan harus di isi'
+                ]
+            ],
+            'kecamatan'=>[
+                'rules' => 'required',
+                'errors' =>[
+                    'required'=>'Kecamatan harus di isi'
+                ]
+            ],
+            'kelurahan'=>[
+                'rules' => 'required',
+                'errors' =>[
+                    'required'=>'Alamat Perusahaan harus di isi'
+                ]
+            ],
+            'noIzin'=>[
+                'rules' => 'required|is_unique[tabel_perizinan.NO_IZIN]',
+                'errors' =>[
+                    'required'=>'Nomer Izin harus di isi',
+                    'is_unique'=>'Nomer Izin sudah ada'
+                ]
+            ],
+            'publishdate'=>[
+                'rules' => 'required',
+                'errors' =>[
+                    'required'=>'Tanggal terbit harus di isi'
+                ]
+            ],
+            'namaIzin'=>[
+                'rules' => 'required',
+                'errors' =>[
+                    'required'=>'Jenis izin harus di isi'
+                ]
+            ],
+        ])){
+            $validation = \Config\Services::validation();
+            // dd($validation);
+            return redirect()->to('input')->withInput()->with('validasi',$validation);
+        }
         function convert($str)
         {
             $date = explode("/",$str);
