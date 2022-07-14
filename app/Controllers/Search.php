@@ -52,10 +52,10 @@ class Search extends BaseController
     {
         // Validasi!!
         if(!$this->validate([
-            'dateRegis'=>[
+            'NoRegis'=>[
                 'rules' => 'required|is_unique[tabel_perizinan.NO_REGISTER]',
                 'errors' =>[
-                    'required'=>'NO Registrasi harus di isi',
+                    'required'=>'No Registrasi harus di isi',
                     'is_unique'=>'No Registrasi sudah ada'
                 ]
             ],
@@ -122,12 +122,13 @@ class Search extends BaseController
             ],
         ])){
             $validation = \Config\Services::validation();
+            // dd($validation);
             return redirect()->to('edit')->withInput()->with('validasi',$validation);
         }
         function convert($str)
         {
             $date = explode("/",$str);
-            return $date[2].'-'.$date[0].'-'.$date[1];
+            return $date[0].'-'.$date[1].'-'.$date[2];
         }
         $this->Tabel_perizinanModel->update(base64_decode($id), [
             'NO_REGISTER'=> $this->request->getVar('NoRegis'),
@@ -157,7 +158,7 @@ class Search extends BaseController
         function convert2($str)
         {
             $date = explode("/",$str);
-            return $date[2].'-'.$date[0].'-'.$date[1];
+            return $date[0].'-'.$date[1].'-'.$date[2];
         }
         
         function conver2date($str){
@@ -166,7 +167,7 @@ class Search extends BaseController
             $ldate= convert2($date[1]);
             return [$fdate,$ldate];
         }
-        $reservation = '01/01/2021 - 01/31/2021';
+        $reservation = $this->request->getVar('reservation');
         $date = conver2date( $reservation);
         $where = ['TANGGAL =>' => $date[0], 'TANGGAL =<' => $date[1]];
         $dataperizinan = $this->Tabel_perizinanModel
