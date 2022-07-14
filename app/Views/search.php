@@ -187,17 +187,20 @@
             $('#daterange').daterangepicker({
                 autoUpdateInput: false,
                 locale: {
+                    CancelLabel: 'Clear',
                     format: 'YYYY/MM/DD'
                 }
             })
-            //Date range picker with time picker
-            $('#reservationtime').daterangepicker({
-                timePicker: true,
-                timePickerIncrement: 30,
-                locale: {
-                format: 'MM/DD/YYYY hh:mm A'
-            }
+
+            $('#daterange').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('YYYY/MM/DD') + ' - ' + picker.endDate.format('YYYY/MM/DD'));
+            });
+
+            $('#daterange').on('cancel.daterangepicker', function(ev, picker) {
+                $(this).val('');
+            });
         })
+        
         //Date range as a button
         $('#daterange-btn').daterangepicker({
                 ranges: {
@@ -216,11 +219,6 @@
             }
         )
 
-        //Timepicker
-        $('#timepicker').datetimepicker({
-            format: 'LT'
-        })
-
         // Initialize DataTable
         $('#tabel_data_perizinan').DataTable({
             "responsive": true,
@@ -228,6 +226,5 @@
             "autoWidth": false,
             "buttons": ["excel"]
         }).buttons().container().appendTo('#tabel_data_perizinan_wrapper .col-md-6:eq(0)');
-    })
 </script>
 <?= $this->endSection() ?>
