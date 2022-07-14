@@ -23,12 +23,10 @@ class Search extends BaseController
         $dataperizinan = $this->Tabel_perizinanModel
         ->join('jenis_perizinan','jenis_perizinan.id_jenis_perizinan = tabel_perizinan.JENIS_PERIZINAN','LEFT')
         ->join('kecamatan','kecamatan.id = tabel_perizinan.KECAMATAN','LEFT')
-        ->join('kelurahan','kelurahan.id = tabel_perizinan.KELURAHAN ','LEFT')
-        ->paginate(2,'dataperizinan');
+        ->join('kelurahan','kelurahan.id = tabel_perizinan.KELURAHAN ','LEFT')->findAll();
         $data = [
             'izin' => $izin,
             'dataperizinan' => $dataperizinan,
-            'pager'=>$this->Tabel_perizinanModel->pager
         ];
         echo view('search', $data);
     }
@@ -153,5 +151,30 @@ class Search extends BaseController
         $postData =$this->request->getPost('ID_Kecamatan');
         $data = $this->RegionSelectModel->getSubDistric($postData);
         echo json_encode($data);
+    }
+    
+    public function GetByDate(){
+        function convert2($str)
+        {
+            $date = explode("/",$str);
+            return $date[2].'-'.$date[0].'-'.$date[1];
+        }
+        
+        function conver2date($str){
+            $date = explode(" - ",$str);
+            $fdate= convert2($date[0]);
+            $ldate= convert2($date[1]);
+            return [$fdate,$ldate];
+        }
+        $reservation = '01/01/2021 - 01/31/2021';
+        $date = conver2date( $reservation);
+        $where = ['TANGGAL =>' => $date[0], 'TANGGAL =<' => $date[1]];
+        $dataperizinan = $this->Tabel_perizinanModel
+        ->join('jenis_perizinan','jenis_perizinan.id_jenis_perizinan = tabel_perizinan.JENIS_PERIZINAN','LEFT')
+        ->join('kecamatan','kecamatan.id = tabel_perizinan.KECAMATAN','LEFT')
+        ->join('kelurahan','kelurahan.id = tabel_perizinan.KELURAHAN ','LEFT')
+        ->where($where)->get()->getResult();
+        $dataperizinan= json_decode( json_encode($dataperizinan), true);
+        dd(($dataperizinan));
     }
 }
