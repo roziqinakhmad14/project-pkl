@@ -44,13 +44,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Input</h1>
+                        <h1 class="m-0">Edit</h1>
                     </div>
                     <!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
-                            <li class="breadcrumb-item active">Input</li>
+                            <li class="breadcrumb-item active">Edit</li>
                         </ol>
                     </div>
                     <!-- /.col -->
@@ -67,7 +67,7 @@
             <div class="container-fluid">
                 <!-- Main row -->
                 <div class="card card-body has-validation">
-                    <form action="/Input/save" class="row needs-validation" id="form" method="POST">
+                    <form action="Search/update/<?=base64_encode($dataperizinan['NO_REGISTER']);?>" class="row needs-validation" id="form" method="POST">
                         <?= csrf_field()?>
                         <div class="form-group col-md-6">
                             <label for="no_register">No. Register :</label>

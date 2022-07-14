@@ -182,6 +182,8 @@ class Search extends BaseController
                 'JENIS_PERIZINAN' => $jenisperizinan
                 ])
             ->findAll();
+        } else {
+            $dataperizinan = $this->getDatabase()->findAll();
         }
 
         $izin = $this->Jenis_perizinanModel->findAll();
@@ -189,7 +191,6 @@ class Search extends BaseController
             'izin' => $izin,
             'dataperizinan' => $dataperizinan
         ];
-        // echo view('search', $data);
-        dd($dataperizinan);
+        echo view('search', $data);
     }
 }
