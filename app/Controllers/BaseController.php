@@ -50,4 +50,13 @@ abstract class BaseController extends Controller
         // E.g.: $this->session = \Config\Services::session();
         session();
     }
+    public function getDatabase()
+    {
+        $database = $this->Tabel_perizinanModel
+            ->join('jenis_perizinan', 'jenis_perizinan.id_jenis_perizinan = tabel_perizinan.JENIS_PERIZINAN', 'LEFT')
+            ->join('kecamatan', 'kecamatan.id = tabel_perizinan.KECAMATAN', 'LEFT')
+            ->join('kelurahan', 'kelurahan.id = tabel_perizinan.KELURAHAN ', 'LEFT');
+
+        return $database;
+    }
 }

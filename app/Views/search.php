@@ -82,7 +82,7 @@
                                     <i class="far fa-calendar-alt"></i>
                                     </span>
                                 </div>
-                                <input type="text" class="form-control float-right" id="reservation" name="reservation">
+                                <input type="text" class="form-control float-right" id="daterange" name="daterange">
                             </div>
                         </div>
                         <!-- /.input group -->
@@ -179,20 +179,12 @@
             $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
             //Money Euro
             $('[data-mask]').inputmask()
-        
-            //Date picker
-            $('#tanggal_register').datetimepicker({
-                format: 'L'
-            });
-            $('#tanggal_terbit').datetimepicker({
-                format: 'L'
-            });
       
             //Date and time picker
             $('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' } });
         
             //Date range picker
-            $('#reservation').daterangepicker({
+            $('#daterange').daterangepicker({
                 autoUpdateInput: false,
                 locale: {
                     format: 'YYYY/MM/DD'
