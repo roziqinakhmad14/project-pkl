@@ -176,8 +176,11 @@ class Search extends BaseController
         if ($jenisperizinan!='' && $daterange!='') {
             $date = $this->explodeDate($daterange);
             $dataperizinan = $this->getDatabase()
-            ->where('JENIS_PERIZINAN', $jenisperizinan)
-            ->where([])
+            ->where([
+                'TANGGAL >=' => $date[0],
+                'TANGGAL <=' => $date[1],
+                'JENIS_PERIZINAN' => $jenisperizinan
+                ])
             ->findAll();
         }
 
