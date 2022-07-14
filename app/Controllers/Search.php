@@ -154,19 +154,4 @@ class Search extends BaseController
         $data = $this->RegionSelectModel->getSubDistric($postData);
         echo json_encode($data);
     }
-    public function tabel() 
-    {
-        $izin = $this->Jenis_perizinanModel->findAll();
-        $dataperizinan = $this->Tabel_perizinanModel
-        ->join('jenis_perizinan','jenis_perizinan.id_jenis_perizinan = tabel_perizinan.JENIS_PERIZINAN','LEFT')
-        ->join('kecamatan','kecamatan.id = tabel_perizinan.KECAMATAN','LEFT')
-        ->join('kelurahan','kelurahan.id = tabel_perizinan.KELURAHAN ','LEFT')
-        ->findAll();
-        $data = [
-            'izin' => $izin,
-            'dataperizinan' => $dataperizinan,
-            'pager'=>$this->Tabel_perizinanModel->pager
-        ];
-        echo view('tabel', $data);
-    }
 }
