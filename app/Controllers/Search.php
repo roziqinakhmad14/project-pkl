@@ -160,7 +160,7 @@ class Search extends BaseController
             ->join('jenis_perizinan', 'jenis_perizinan.id_jenis_perizinan = tabel_perizinan.JENIS_PERIZINAN', 'LEFT')
             ->join('kecamatan', 'kecamatan.id = tabel_perizinan.KECAMATAN', 'LEFT')
             ->join('kelurahan', 'kelurahan.id = tabel_perizinan.KELURAHAN ', 'LEFT')
-            ->like('JENIS_PERIZINAN', $keyword)
+            ->where('JENIS_PERIZINAN', $keyword)
             ->findAll();
 
         return $result;
