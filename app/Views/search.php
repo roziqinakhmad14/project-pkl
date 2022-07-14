@@ -97,22 +97,22 @@
             <div class="card">
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <table id="tabel_data_perizinan" class="table table-bordered table-striped table-responsive">
-                        <thead class="table-dark">
+                    <table id="tabel_data_perizinan" class="table table-bordered table-striped table-hover">
+                        <thead class="thead-dark">
                             <tr>
-                                <th class="text-center" rowspan="1" colspan="1">No. Register</th>
-                                <th class="text-center" rowspan="1" colspan="1">Tanggal</th>
-                                <th class="text-center" rowspan="1" colspan="1">Nama Lengkap</th>
-                                <th class="text-center" rowspan="1" colspan="1">Alamat</th>
-                                <th class="text-center" rowspan="1" colspan="1">No. HP</th>
-                                <th class="text-center" rowspan="1" colspan="1">Nama Perusahaan</th>
-                                <th class="text-center" rowspan="1" colspan="1">Lokasi Usaha</th>
-                                <th class="text-center" rowspan="1" colspan="1">Kelurahan</th>
-                                <th class="text-center" rowspan="1" colspan="1">Kecamatan</th>
-                                <th class="text-center" rowspan="1" colspan="1">No. Izin</th>
-                                <th class="text-center" rowspan="1" colspan="1">Tanggal Terbit</th>
-                                <th class="text-center" rowspan="1" colspan="1">Jenis Perizinan</th>
-                                <th class="text-center" rowspan="1" colspan="1">Action</th>
+                                <th class="text-center">No. Register</th>
+                                <th class="text-center">Tanggal</th>
+                                <th class="text-center">Nama Lengkap</th>
+                                <th class="text-center">Alamat</th>
+                                <th class="text-center">No. HP</th>
+                                <th class="text-center">Nama Perusahaan</th>
+                                <th class="text-center">Lokasi Usaha</th>
+                                <th class="text-center">Kelurahan</th>
+                                <th class="text-center">Kecamatan</th>
+                                <th class="text-center">No. Izin</th>
+                                <th class="text-center">Tanggal Terbit</th>
+                                <th class="text-center">Jenis Perizinan</th>
+                                <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -143,7 +143,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th class="text-center" rowspan="1" colspan="1">No. Registrasi</th>
+                                <th class="text-center" rowspan="1" colspan="1">No. Register</th>
                                 <th class="text-center" rowspan="1" colspan="1">Tanggal</th>
                                 <th class="text-center" rowspan="1" colspan="1">Nama Lengkap</th>
                                 <th class="text-center" rowspan="1" colspan="1">Alamat</th>
@@ -223,17 +223,13 @@
             format: 'LT'
         })
 
-        // Function untuk inisialisasi DataTable
-        let initializeDataTable = function(id) {
-            $(`#${id}`).DataTable({
-                "responsive": true,
-                "lengthChange": false,
-                "autoWidth": false,
-                "buttons": ["excel"]
-            }).buttons().container().appendTo(`#${id}_wrapper .col-md-6:eq(0)`);
-        }
-
-        initializeDataTable('tabel_data_perizinan');
+        // Initialize DataTable
+        $('#tabel_data_perizinan').DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["excel"]
+        }).buttons().container().appendTo('#tabel_data_perizinan_wrapper .col-md-6:eq(0)');
     })
 </script>
 <?= $this->endSection() ?>
