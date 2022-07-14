@@ -52,6 +52,80 @@ class Search extends BaseController
     }
     public function update($id)
     {
+        // Validasi!!
+        if(!$this->validate([
+            'dateRegis'=>[
+                'rules' => 'required|is_unique[tabel_perizinan.NO_REGISTER]',
+                'errors' =>[
+                    'required'=>'NO Registrasi harus di isi',
+                    'is_unique'=>'No Registrasi sudah ada'
+                ]
+            ],
+            'dateRegis'=>[
+                'rules' => 'required',
+                'errors' =>[
+                    'required'=>'Tanggal Registrasi harus Di isi'
+                ]
+            ],
+            'fullname'=>[
+                'rules' => 'required',
+                'errors' =>[
+                    'required'=>'Nama Lengkap harus Disi'
+                ]
+            ],
+            'address'=>[
+                'rules' => 'required',
+                'errors' =>[
+                    'required'=>'Alamat harus di isi'
+                ]
+            ],
+            'comname'=>[
+                'rules' => 'required',
+                'errors' =>[
+                    'required'=>'Nama Perusahaan harus di isi'
+                ]
+            ],
+            'comaddress'=>[
+                'rules' => 'required',
+                'errors' =>[
+                    'required'=>'Alamat Perusahaan harus di isi'
+                ]
+            ],
+            'kecamatan'=>[
+                'rules' => 'required',
+                'errors' =>[
+                    'required'=>'Kecamatan harus di isi'
+                ]
+            ],
+            'kelurahan'=>[
+                'rules' => 'required',
+                'errors' =>[
+                    'required'=>'Alamat Perusahaan harus di isi'
+                ]
+            ],
+            'noIzin'=>[
+                'rules' => 'required|is_unique[tabel_perizinan.NO_IZIN]',
+                'errors' =>[
+                    'required'=>'Nomer Izin harus di isi',
+                    'is_unique'=>'Nomer Izin sudah ada'
+                ]
+            ],
+            'publishdate'=>[
+                'rules' => 'required',
+                'errors' =>[
+                    'required'=>'Tanggal terbit harus di isi'
+                ]
+            ],
+            'namaIzin'=>[
+                'rules' => 'required',
+                'errors' =>[
+                    'required'=>'Jenis izin harus di isi'
+                ]
+            ],
+        ])){
+            $validation = \Config\Services::validation();
+            return redirect()->to('edit')->withInput()->with('validasi',$validation);
+        }
         function convert($str)
         {
             $date = explode("/",$str);
@@ -79,13 +153,5 @@ class Search extends BaseController
         $postData =$this->request->getPost('ID_Kecamatan');
         $data = $this->RegionSelectModel->getSubDistric($postData);
         echo json_encode($data);
-    }
-    public function search() 
-    {
-        $keyword = $this->request->getPost('keyword');
-
-        $result = $this->Tabel_perizinanModel->like('NO_REGISTER',$keyword)->orLike('ALAMAT',$keyword)->orLike('NAMA',$keyword)->orLike('PERUSAHAAN',$keyword)->orLike('LOKASI_USAHA',$keyword)->orLike('KELURAHAN',$keyword)->orLike('KECAMATAN',$keyword)->findAll();
-
-        echo json_encode($result);
     }
 }
