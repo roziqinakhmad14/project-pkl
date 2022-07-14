@@ -130,7 +130,7 @@
                                     <td><?= $perizinan['NO_IZIN']?></td>
                                     <td><?= $perizinan['TANGGAL_TERBIT']?></td>
                                     <td><?= $perizinan['nama_perizinan']?></td>
-                                    <td class="h5" style="line-height: 20pt;"><a href="/Search/edit/<?= base64_encode($perizinan['NO_REGISTER']); ?>")>
+                                    <td class="h5" style="line-height: 20pt;"><a href="/Search/<?= base64_encode($perizinan['NO_REGISTER']); ?>")>
                                         <i class="text-hover text-primary fas fa-pen"></i></a> | <a href="/Search/delete/<?= base64_encode($perizinan['NO_REGISTER']); ?>" onclick="confirm('Apakah Anda yakin ingin menghapus data perizinan dengan No. Register <?= $perizinan['NO_REGISTER']; ?>')"><i class="text-hover text-danger  fas fa-trash"></a></i>
                                     </td>
                                 </tr>
