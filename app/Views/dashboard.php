@@ -56,42 +56,37 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <div class="card card-body">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <input class="form-control" type="search" placeholder="Search" id="search-input">
-                            <div class="input-group-append">
-                                <div class="input-group-text"><i class="fas fa-search"></i></div>
-                            </div>
-                        </div>
+                <div class="card">
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table class="table table-bordered table-striped" id="example2">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Jenis Perizinan</th>
+                                    <th>Jumlah</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($izin as $keyizin) :?>
+                                <tr>
+                                    <td><?= $keyizin['nama_perizinan']." (".$keyizin['id_jenis_perizinan'].")"; ?></td>
+                                    <?php 
+                                    $db = db_connect();
+                                    $total = $db->table('tabel_perizinan')->like('JENIS_PERIZINAN',$keyizin['id_jenis_perizinan'])->countAllResults();
+                                    ?>
+                                    <td><?= $total; ?></td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                            <tfoot class="table-dark">
+                                <tr>
+                                    <th>Jenis Perizinan</th>
+                                    <th>Jumlah</th>
+                                </tr>
+                            </tfoot>
+                        </table>
                     </div>
-                    <table class="table table-striped table-bordered">
-                        <thead class="table-dark">
-                            <tr class="text-center">
-                                <th colspan="2">Rangkuman Perizinan</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="d-none" id="spinner">
-                                <td class="text-center" colspan="2"><span class="spinner-border text-dark"></span></td>
-                            </tr>
-                            <?php foreach ($izin as $keyizin) :?>
-                            <tr class="jenis-perizinan">
-                                <td><?= $keyizin['nama_perizinan']." (".$keyizin['id_jenis_perizinan'].")"; ?></td>
-                                
-                                <?php 
-                                $jenis_perizinan = $keyizin['id_jenis_perizinan'];
-                                $db = db_connect();
-                                $builder = $db->table('tabel_perizinan');
-                                $query = $builder->getWhere(['JENIS_PERIZINAN'=> $jenis_perizinan]);
-                                $total = $query->resultID->num_rows;
-                                ?>
-
-                                <td><?= $total; ?></td>
-                            </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
+                    <!-- /.card-body -->
                 </div>
             </div>
             <!-- /.container-fluid -->
@@ -101,33 +96,21 @@
 <?= $this->endSection() ?>
 <?= $this->section('script'); ?>
     <!-- Script untuk pencarian -->
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $("#search-input").change(function(){
-                $('tbody').find('tr.jenis-perizinan').remove();
-                $("#spinner").removeClass("d-none");
-                let keyword = $(this).val();
-                $.ajax({
-                    url: "<?= base_url()?>/index.php/Home/search",
-                    method: "post",
-                    data: {keyword: keyword},
-                    dataType: "json",
-                    success: function(response) {
-                        $("#spinner").addClass("d-none");
-                        $.each(response, function(index,data) {
-                            $('tbody').append(`
-                            <tr class="jenis-perizinan">
-                                <td>${data['nama_perizinan']} (${data['id_jenis_perizinan']})</td>
-                                <td>${data['num_rows']}</td>
-                            </tr>
-                            `)
-                        })
-                    },
-                    error: function() {
-                        $("#spinner").addClass("d-none");
-                    }
-                })
-            });
-        });
+    <script>
+        $(function () {
+            $("#example1").DataTable({
+                    "responsive": true, "lengthChange": false, "autoWidth": false,
+                    "buttons": ["excel"]
+                }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+        }).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');
+    })
     </script>
 <?= $this->endSection(); ?>

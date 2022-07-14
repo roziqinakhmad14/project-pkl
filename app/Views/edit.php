@@ -34,7 +34,7 @@
     function convert2html($str)
     {
         $date = explode("-",$str);
-        return $date[1].'/'.$date[2].'/'.$date[0];
+        return $date[0].'/'.$date[1].'/'.$date[2];
     }
     ?>
     <!-- Content Wrapper. Contains page content -->
@@ -66,16 +66,23 @@
         <section class="content">
             <div class="container-fluid">
                 <!-- Main row -->
-                <div class="card card-body">
-                    <form action="/Search/update/<?= base64_encode($dataperizinan['NO_REGISTER']); ?>" class="row" id="form" method="POST">
+                <div class="card card-body has-validation">
+                    <form action="/Input/save" class="row needs-validation" id="form" method="POST">
+                        <?= csrf_field()?>
                         <div class="form-group col-md-6">
                             <label for="no_register">No. Register :</label>
-                            <input type="text" class="form-control" id="no_register" placeholder="No. Register" required name="NoRegis" autofocus value="<?=$dataperizinan['NO_REGISTER'] ?>">
+                            <input type="text" class="form-control<?= ($validasi->hasError('NoRegis')) ?' is-invalid':'';?>" id="no_register" placeholder="No. Register"  name="NoRegis" autofocus value="<?=(!session())? old('NoRegis'):$dataperizinan['NO_REGISTER'];?>">
+                            <div class="invalid-feedback">
+                                <?= $validasi->getError('NoRegis');?>
+                            </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label>Tanggal Register :</label>
                             <div class="input-group date" id="tanggal_register" data-target-input="nearest">
-                                <input value="<?=convert2html($dataperizinan['TANGGAL']) ?> type="text" class="form-control datetimepicker-input" data-target="#tanggal_register" required name="dateRegis">
+                                <input type="text" class="form-control datetimepicker-input<?= ($validasi->hasError('dateRegis')) ?' is-invalid':'';?>" data-target="#tanggal_register"  name="dateRegis" value="<?=(!session())? old('dateRegis'):$dataperizinan['TANGGAL'];?>">
+                                <div class="invalid-feedback">
+                                    <?= $validasi->getError('dateRegis')?>
+                                </div>
                                 <div class="input-group-append" data-target="#tanggal_register" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
@@ -83,47 +90,71 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="name">Nama Lengkap :</label>
-                            <input value="<?=$dataperizinan['NAMA'] ?>" type="text" class="form-control" id="name" placeholder="Nama Lengkap" required name="fullname">
+                            <input type="text" class="form-control<?= ($validasi->hasError('fullname')) ?' is-invalid':'';?>" id="name" placeholder="Nama Lengkap"  name="fullname" value="<?=(!session())? old('fullname'):$dataperizinan['NAMA'];?>">
+                            <div class="invalid-feedback">
+                                <?= $validasi->getError('fullname')?>
+                            </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="phone">No. Handphone</label>
-                            <input type="phone" value="<?=$dataperizinan['NO_HP'] ?>" id="phone" class="form-control" placeholder="No. Handphone" name="phonenumber">
+                            <input type="phone" id="phone" class="form-control" placeholder="No. Handphone" name="phonenumber" value="<?=(!session())? old('phonenumber'):$dataperizinan['NO_HP'];?>">
                         </div>
                         <div class="form-group col-12">
                             <label for="address">Alamat</label>
-                            <input value="<?=$dataperizinan['ALAMAT'] ?>" type="text" id="address" class="form-control" placeholder="Alamat" required name="address">
+                            <input type="text" id="address" class="form-control<?= ($validasi->hasError('address')) ?' is-invalid':'';?>" placeholder="Alamat"  name="address" value="<?=(!session())? old('address'):$dataperizinan['ALAMAT'];?>">
+                            <div class="invalid-feedback">
+                                <?= $validasi->getError('address')?>
+                            </div>
                         </div>
                         <div class="form-group col-12">
                             <label for="company">Nama Perusahaan</label>
-                            <input value="<?=$dataperizinan['PERUSAHAAN'] ?>" type="text" id="company" class="form-control" placeholder="Nama Perusahaan" required name="comname">
+                            <input type="text" id="company" class="form-control<?= ($validasi->hasError('comname')) ?' is-invalid':''?>" placeholder="Nama Perusahaan"  name="comname" value="<?=(!session())? old('comname'):$dataperizinan['PERUSAHAAN'];?>">
+                            <div class="invalid-feedback">
+                                <?= $validasi->getError('comname')?>
+                            </div>
                         </div>
                         <div class="form-group col-12">
                             <label for="company_address">Lokasi Usaha</label>
-                            <input value="<?=$dataperizinan['LOKASI_USAHA'] ?>" type="text" id="company_address" class="form-control" placeholder="Lokasi Usaha" required name="comaddress">
+                            <input type="text" id="company_address" class="form-control<?= ($validasi->hasError('comaddress')) ?' is-invalid':'';?>" placeholder="Lokasi Usaha"  name="comaddress" value="<?=(!session())? old('comaddress'):$dataperizinan['LOKASI_USAHA'];?>">
+                            <div class="invalid-feedback">
+                                <?= $validasi->getError('comaddress')?>
+                            </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="kecamatan">Kecamatan</label>
-                            <select class="custom-select rounded-0" id="kecamatan" name="kecamatan">
+                            <select class="custom-select rounded-0<?= ($validasi->hasError('kecamatan')) ?' is-invalid':'';?>" id="kecamatan" name="kecamatan">
                                 <option value="" class="disabled"><i>None</i></option>
                             <?php foreach($distric as $kecamatan) :?>
                                 <option value="<?= $kecamatan['id']?>"><?= $kecamatan['Kecamatan']?></option>
                             <?php endforeach;?>
                             </select>
+                            <div class="invalid-feedback">
+                                <?= $validasi->getError('kecamatan')?>
+                            </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="kelurahan">Kelurahan</label>
-                            <select class="custom-select rounded-0" id="kelurahan" name="kelurahan">
+                            <select class="custom-select rounded-0<?= ($validasi->hasError('kelurahan')) ?' is-invalid':'';?>" id="kelurahan" name="kelurahan">
                                 <option value="" class="disabled"><i>None</i></option>
                             </select>
+                            <div class="invalid-feedback">
+                                <?= $validasi->getError('kelurahan')?>
+                            </div>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="no_izin">No. Izin :</label>
-                            <input value="<?=$dataperizinan['NO_IZIN'] ?>" type="text" class="form-control" id="no_izin" placeholder="No. Izin" required name="noIzin">
+                            <input type="text" class="form-control<?= ($validasi->hasError('noIzin')) ?' is-invalid':'';?>" id="no_izin" placeholder="No. Izin"  name="noIzin" value="<?=(!session())? old('noIzin'):$dataperizinan['NO_IZIN'];?>">
+                            <div class="invalid-feedback">
+                                <?= $validasi->getError('noIzin')?>
+                            </div>
                         </div>
                         <div class="form-group col-md-4">
                             <label>Tanggal Terbit :</label>
                             <div class="input-group date" id="tanggal_terbit" data-target-input="nearest">
-                                <input value="<?= convert2html($dataperizinan['TANGGAL_TERBIT']) ?>" type="text" class="form-control datetimepicker-input" data-target="#tanggal_terbit" required name="publishdate">
+                                <input type="text" class="form-control datetimepicker-input<?= ($validasi->hasError('publishdate')) ?' is-invalid':'';?>" data-target="#tanggal_terbit"  name="publishdate" value="<?=(!session())? old('publishdate'):$dataperizinan['TANGGAL_TERBIT'];?>">
+                                <div class="invalid-feedback">
+                                    <?= $validasi->getError('publishdate')?>
+                                </div>
                                 <div class="input-group-append" data-target="#tanggal_terbit" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
@@ -131,11 +162,15 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="jenis_perizinan">Jenis Perizinan</label>
-                            <select class="custom-select rounded-0" id="jenis_perizinan" required name="namaIzin">
+                            <select class="custom-select rounded-0<?= ($validasi->hasError('namaIzin')) ?' is-invalid':'';?>" id="jenis_perizinan"  name="namaIzin">
+                            <option value="" class="disabled"><i>None</i></option>
                             <?php foreach($izin as $keyizin) :?>
                                 <option value="<?= $keyizin['id_jenis_perizinan']?>"><?= $keyizin['nama_perizinan']?></option>
                             <?php endforeach;?>
                             </select>
+                            <div class="invalid-feedback">
+                                <?= $validasi->getError('namaIzin')?>
+                            </div>
                         </div>
                         <div class="form-group col">
                             <input type="submit" class="btn btn-primary" value="Masukkan Data">

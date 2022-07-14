@@ -37,7 +37,7 @@ class Input extends BaseController
     function convert($str)
     {
     	$date = explode("/",$str);
-		return $date[2].'-'.$date[0].'-'.$date[1];
+		return $date[0].'-'.$date[1].'-'.$date[2];
     }
     public function save()
     {

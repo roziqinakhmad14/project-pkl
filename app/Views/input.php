@@ -190,10 +190,10 @@
       
           //Date picker
           $('#tanggal_register').datetimepicker({
-              format: 'L'
+              format: 'YYYY/MM/DD'
           });
           $('#tanggal_terbit').datetimepicker({
-              format: 'L'
+              format: 'YYYY/MM/DD'
           });
       
           //Date and time picker

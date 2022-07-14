@@ -80,9 +80,10 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">
                                     <i class="far fa-calendar-alt"></i>
-                                </span>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control float-right" id="reservation" name="reservation">
                             </div>
-                            <input type="text" class="form-control float-right" id="reservation">
                         </div>
                         <!-- /.input group -->
                     </div>
@@ -117,28 +118,28 @@
                         </thead>
                         <tbody>
                             <?php foreach ($dataperizinan as $perizinan) : ?>
-                                <tr>
-                                    <td><?= $perizinan['NO_REGISTER'] ?></td>
-                                    <td><?= $perizinan['TANGGAL'] ?></td>
-                                    <td><?= $perizinan['NAMA'] ?></td>
-                                    <td><?= $perizinan['ALAMAT'] ?></td>
-                                    <td><?= $perizinan['NO_HP'] ?></td>
-                                    <td><?= $perizinan['PERUSAHAAN'] ?></td>
-                                    <td><?= $perizinan['LOKASI_USAHA'] ?></td>
-                                    <td><?= $perizinan['Kelurahan'] ?></td>
-                                    <td><?= $perizinan['Kecamatan'] ?></td>
-                                    <td><?= $perizinan['NO_IZIN'] ?></td>
-                                    <td><?= $perizinan['TANGGAL_TERBIT'] ?></td>
-                                    <td><?= $perizinan['nama_perizinan'] ?></td>
-                                    <td class="h5" style="line-height: 20pt;">
-                                        <a href="/Search/edit/<?= base64_encode($perizinan['NO_REGISTER']); ?>" )>
-                                            <i class="text-hover text-primary fas fa-pen"></i>
-                                        </a> |
-                                        <a href="/Search/delete/<?= base64_encode($perizinan['NO_REGISTER']); ?>" onclick="confirm('Apakah Anda yakin ingin menghapus data perizinan dengan No. Register <?= $perizinan['NO_REGISTER']; ?>')">
-                                            <i class="text-hover text-danger  fas fa-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td><?= $perizinan['NO_REGISTER'] ?></td>
+                                <td><?= $perizinan['TANGGAL'] ?></td>
+                                <td><?= $perizinan['NAMA'] ?></td>
+                                <td><?= $perizinan['ALAMAT'] ?></td>
+                                <td><?= $perizinan['NO_HP'] ?></td>
+                                <td><?= $perizinan['PERUSAHAAN'] ?></td>
+                                <td><?= $perizinan['LOKASI_USAHA'] ?></td>
+                                <td><?= $perizinan['Kelurahan'] ?></td>
+                                <td><?= $perizinan['Kecamatan'] ?></td>
+                                <td><?= $perizinan['NO_IZIN'] ?></td>
+                                <td><?= $perizinan['TANGGAL_TERBIT'] ?></td>
+                                <td><?= $perizinan['nama_perizinan'] ?></td>
+                                <td class="h5" style="line-height: 20pt;">
+                                    <a href="/Search/edit/<?= base64_encode($perizinan['NO_REGISTER']); ?>" )>
+                                        <i class="text-hover text-primary fas fa-pen"></i>
+                                    </a> |
+                                    <a href="/Search/delete/<?= base64_encode($perizinan['NO_REGISTER']); ?>" onclick="confirm('Apakah Anda yakin ingin menghapus data perizinan dengan No. Register <?= $perizinan['NO_REGISTER']; ?>')">
+                                        <i class="text-hover text-danger  fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
                             <?php endforeach ?>
                         </tbody>
                         <tfoot>
@@ -170,33 +171,38 @@
 </div>
 <?= $this->endSection() ?>
 <?= $this->section('script') ?>
-<script>
-    $(function() {
-        //Datemask dd/mm/yyyy
-        $('#datemask').inputmask('dd/mm/yyyy', {
-            'placeholder': 'dd/mm/yyyy'
-        })
-        //Datemask2 mm/dd/yyyy
-        $('#datemask2').inputmask('mm/dd/yyyy', {
-            'placeholder': 'mm/dd/yyyy'
-        })
-        //Money Euro
-        $('[data-mask]').inputmask()
-
-        //Date and time picker
-        $('#reservationdatetime').datetimepicker({
-            icons: {
-                time: 'far fa-clock'
-            }
-        });
-
-        //Date range picker
-        $('#reservation').daterangepicker()
-        //Date range picker with time picker
-        $('#reservationtime').daterangepicker({
-            timePicker: true,
-            timePickerIncrement: 30,
-            locale: {
+    <script>
+        $(function () {      
+            //Datemask dd/mm/yyyy
+            $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+            //Datemask2 mm/dd/yyyy
+            $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+            //Money Euro
+            $('[data-mask]').inputmask()
+        
+            //Date picker
+            $('#tanggal_register').datetimepicker({
+                format: 'L'
+            });
+            $('#tanggal_terbit').datetimepicker({
+                format: 'L'
+            });
+      
+            //Date and time picker
+            $('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' } });
+        
+            //Date range picker
+            $('#reservation').daterangepicker({
+                autoUpdateInput: false,
+                locale: {
+                    format: 'YYYY/MM/DD'
+                }
+            })
+            //Date range picker with time picker
+            $('#reservationtime').daterangepicker({
+                timePicker: true,
+                timePickerIncrement: 30,
+                locale: {
                 format: 'MM/DD/YYYY hh:mm A'
             }
         })

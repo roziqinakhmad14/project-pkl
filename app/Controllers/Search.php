@@ -43,22 +43,24 @@ class Search extends BaseController
         $izin = $this->Jenis_perizinanModel->findAll();
         $dataperizinan = $this->Tabel_perizinanModel->find(base64_decode($id));
         $kecamatan = $this->RegionSelectModel->getDistric();
+        // dd($dataperizinan);
         $data = [
             'izin' => $izin,
             'dataperizinan' => $dataperizinan,
-            'distric' => $kecamatan
+            'distric' => $kecamatan,
+            'validasi'=> \Config\Services::validation()
         ];
         echo view('/edit', $data);
     }
     public function update($id)
     {
         // Validasi!!
-        if (!$this->validate([
-            'dateRegis' => [
+        if(!$this->validate([
+            'NoRegis'=>[
                 'rules' => 'required|is_unique[tabel_perizinan.NO_REGISTER]',
-                'errors' => [
-                    'required' => 'NO Registrasi harus di isi',
-                    'is_unique' => 'No Registrasi sudah ada'
+                'errors' =>[
+                    'required'=>'No Registrasi harus di isi',
+                    'is_unique'=>'No Registrasi sudah ada'
                 ]
             ],
             'dateRegis' => [
@@ -124,12 +126,13 @@ class Search extends BaseController
             ],
         ])) {
             $validation = \Config\Services::validation();
-            return redirect()->to('edit')->withInput()->with('validasi', $validation);
+            // dd($validation);
+            return redirect()->to('edit')->withInput()->with('validasi',$validation);
         }
         function convert($str)
         {
-            $date = explode("/", $str);
-            return $date[2] . '-' . $date[0] . '-' . $date[1];
+            $date = explode("/",$str);
+            return $date[0].'-'.$date[1].'-'.$date[2];
         }
         $this->Tabel_perizinanModel->update(base64_decode($id), [
             'NO_REGISTER' => $this->request->getVar('NoRegis'),
@@ -165,9 +168,35 @@ class Search extends BaseController
 
         return $result;
     }
+    public function searchByDate($reservation) {
+
+        function convert2date($str)
+        {
+            $date = explode("/",$str);
+            return $date[0].'-'.$date[1].'-'.$date[2];
+        }
+        function explodeDate($str){
+            $date = explode(" - ",$str);
+            $fdate= convert2date($date[0]);
+            $ldate= convert2date($date[1]);
+            return [$fdate,$ldate];
+        }
+        $date = explodeDate( $reservation);
+        $where = ['TANGGAL =>' => $date[0], 'TANGGAL =<' => $date[1]];
+
+        $dataperizinan = $this->Tabel_perizinanModel
+        ->join('jenis_perizinan','jenis_perizinan.id_jenis_perizinan = tabel_perizinan.JENIS_PERIZINAN','LEFT')
+        ->join('kecamatan','kecamatan.id = tabel_perizinan.KECAMATAN','LEFT')
+        ->join('kelurahan','kelurahan.id = tabel_perizinan.KELURAHAN ','LEFT')
+        ->where($where)->get()->getResult();
+        
+        $dataperizinan= json_decode( json_encode($dataperizinan), true);
+        dd(($dataperizinan));
+    }
     public function search()
     {
         $jenisperizinan = $this->request->getVar('jenisperizinan');
+        $reservation = $this->request->getVar('reservation');
         // $jenisperizinan = 'AMDAL';
         $dataperizinan = $this->searchByJenisPerizinan($jenisperizinan);
         $izin = $this->Jenis_perizinanModel->findAll();
