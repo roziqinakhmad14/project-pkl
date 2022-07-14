@@ -71,7 +71,7 @@
                         <?= csrf_field()?>
                         <div class="form-group col-md-6">
                             <label for="no_register">No. Register :</label>
-                            <input type="text" class="form-control<?= ($validasi->hasError('NoRegis')) ?' is-invalid':'';?>" id="no_register" placeholder="No. Register"  name="NoRegis" autofocus value="<?=old('NoRegis');?>">
+                            <input type="text" class="form-control<?= ($validasi->hasError('NoRegis')) ?' is-invalid':'';?>" id="no_register" placeholder="No. Register"  name="NoRegis" autofocus value="<?=(!session())? old('NoRegis'):$dataperizinan['NO_REGISTER'];?>">
                             <div class="invalid-feedback">
                                 <?= $validasi->getError('NoRegis');?>
                             </div>
@@ -79,7 +79,7 @@
                         <div class="form-group col-md-6">
                             <label>Tanggal Register :</label>
                             <div class="input-group date" id="tanggal_register" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input<?= ($validasi->hasError('dateRegis')) ?' is-invalid':'';?>" data-target="#tanggal_register"  name="dateRegis" value="<?=old('dateRegis');?>">
+                                <input type="text" class="form-control datetimepicker-input<?= ($validasi->hasError('dateRegis')) ?' is-invalid':'';?>" data-target="#tanggal_register"  name="dateRegis" value="<?=(!session())? old('dateRegis'):$dataperizinan['TANGGAL'];?>">
                                 <div class="invalid-feedback">
                                     <?= $validasi->getError('dateRegis')?>
                                 </div>
@@ -90,32 +90,32 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="name">Nama Lengkap :</label>
-                            <input type="text" class="form-control<?= ($validasi->hasError('fullname')) ?' is-invalid':'';?>" id="name" placeholder="Nama Lengkap"  name="fullname" value="<?=old('fullname');?>">
+                            <input type="text" class="form-control<?= ($validasi->hasError('fullname')) ?' is-invalid':'';?>" id="name" placeholder="Nama Lengkap"  name="fullname" value="<?=(!session())? old('fullname'):$dataperizinan['NAMA'];?>">
                             <div class="invalid-feedback">
                                 <?= $validasi->getError('fullname')?>
                             </div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="phone">No. Handphone</label>
-                            <input type="phone" id="phone" class="form-control" placeholder="No. Handphone" name="phonenumber" value="<?=old('phonenumber');?>">
+                            <input type="phone" id="phone" class="form-control" placeholder="No. Handphone" name="phonenumber" value="<?=(!session())? old('phonenumber'):$dataperizinan['NO_HP'];?>">
                         </div>
                         <div class="form-group col-12">
                             <label for="address">Alamat</label>
-                            <input type="text" id="address" class="form-control<?= ($validasi->hasError('address')) ?' is-invalid':'';?>" placeholder="Alamat"  name="address" value="<?=old('address');?>">
+                            <input type="text" id="address" class="form-control<?= ($validasi->hasError('address')) ?' is-invalid':'';?>" placeholder="Alamat"  name="address" value="<?=(!session())? old('address'):$dataperizinan['ALAMAT'];?>">
                             <div class="invalid-feedback">
                                 <?= $validasi->getError('address')?>
                             </div>
                         </div>
                         <div class="form-group col-12">
                             <label for="company">Nama Perusahaan</label>
-                            <input type="text" id="company" class="form-control<?= ($validasi->hasError('comname')) ?' is-invalid':''?>" placeholder="Nama Perusahaan"  name="comname" value="<?=old('comname');?>">
+                            <input type="text" id="company" class="form-control<?= ($validasi->hasError('comname')) ?' is-invalid':''?>" placeholder="Nama Perusahaan"  name="comname" value="<?=(!session())? old('comname'):$dataperizinan['PERUSAHAAN'];?>">
                             <div class="invalid-feedback">
                                 <?= $validasi->getError('comname')?>
                             </div>
                         </div>
                         <div class="form-group col-12">
                             <label for="company_address">Lokasi Usaha</label>
-                            <input type="text" id="company_address" class="form-control<?= ($validasi->hasError('comaddress')) ?' is-invalid':'';?>" placeholder="Lokasi Usaha"  name="comaddress" value="<?=old('comaddress');?>">
+                            <input type="text" id="company_address" class="form-control<?= ($validasi->hasError('comaddress')) ?' is-invalid':'';?>" placeholder="Lokasi Usaha"  name="comaddress" value="<?=(!session())? old('comaddress'):$dataperizinan['LOKASI_USAHA'];?>">
                             <div class="invalid-feedback">
                                 <?= $validasi->getError('comaddress')?>
                             </div>
@@ -143,7 +143,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="no_izin">No. Izin :</label>
-                            <input type="text" class="form-control<?= ($validasi->hasError('noIzin')) ?' is-invalid':'';?>" id="no_izin" placeholder="No. Izin"  name="noIzin" value="<?=old('noIzin');?>">
+                            <input type="text" class="form-control<?= ($validasi->hasError('noIzin')) ?' is-invalid':'';?>" id="no_izin" placeholder="No. Izin"  name="noIzin" value="<?=(!session())? old('noIzin'):$dataperizinan['NO_IZIN'];?>">
                             <div class="invalid-feedback">
                                 <?= $validasi->getError('noIzin')?>
                             </div>
@@ -151,7 +151,7 @@
                         <div class="form-group col-md-4">
                             <label>Tanggal Terbit :</label>
                             <div class="input-group date" id="tanggal_terbit" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input<?= ($validasi->hasError('publishdate')) ?' is-invalid':'';?>" data-target="#tanggal_terbit"  name="publishdate" value="<?=old('publishdate');?>">
+                                <input type="text" class="form-control datetimepicker-input<?= ($validasi->hasError('publishdate')) ?' is-invalid':'';?>" data-target="#tanggal_terbit"  name="publishdate" value="<?=(!session())? old('publishdate'):$dataperizinan['TANGGAL_TERBIT'];?>">
                                 <div class="invalid-feedback">
                                     <?= $validasi->getError('publishdate')?>
                                 </div>

@@ -41,10 +41,12 @@ class Search extends BaseController
         $izin = $this->Jenis_perizinanModel->findAll();
         $dataperizinan = $this->Tabel_perizinanModel->find(base64_decode($id));
         $kecamatan = $this->RegionSelectModel->getDistric();
+        // dd($dataperizinan);
         $data = [
             'izin' => $izin,
             'dataperizinan' => $dataperizinan,
-            'distric' => $kecamatan
+            'distric' => $kecamatan,
+            'validasi'=> \Config\Services::validation()
         ];
         echo view('/edit',$data);
     }

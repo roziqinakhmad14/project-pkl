@@ -187,6 +187,7 @@
         
             //Date range picker
             $('#reservation').daterangepicker({
+                autoUpdateInput: false,
                 locale: {
                     format: 'YYYY/MM/DD'
                 }
