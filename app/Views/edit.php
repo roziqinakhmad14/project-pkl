@@ -62,12 +62,11 @@
         <!-- /.content-header -->
 
         <!-- Main content -->
-        <??>
         <section class="content">
             <div class="container-fluid">
                 <!-- Main row -->
                 <div class="card card-body has-validation">
-                    <form action="Search/update/<?=base64_encode($dataperizinan['NO_REGISTER']);?>" class="row needs-validation" id="form" method="POST">
+                    <form action="<?=site_url('Search')?>/update/<?=base64_encode($dataperizinan['NO_REGISTER']);?>" class="row needs-validation" id="form" method="POST">
                         <?= csrf_field()?>
                         <div class="form-group col-md-6">
                             <label for="no_register">No. Register :</label>
@@ -185,7 +184,7 @@
     </div>
     <!-- /.content-wrapper -->
 <?= $this->endSection() ?>
-<?= $this->section('date_script') ?>
+<?= $this->section('script') ?>
     <script>
         $(function () {      
           //Datemask dd/mm/yyyy
@@ -197,10 +196,10 @@
       
           //Date picker
           $('#tanggal_register').datetimepicker({
-              format: 'L'
+              format: 'YYYY/MM/DD'
           });
           $('#tanggal_terbit').datetimepicker({
-              format: 'L'
+              format: 'YYYY/MM/DD'
           });
       
           //Date and time picker
@@ -244,28 +243,10 @@
         document.addEventListener('DOMContentLoaded', function () {
           window.stepper = new Stepper(document.querySelector('.bs-stepper'))
         })
-    </script>
-    <script type='text/javascript'>
-        $(document).ready(function(){
-            $("#kecamatan").change(function(){
-                let ID_Kecamatan = $(this).val();
-
-                // Menggunakan ajax untuk mengirim dan dan menerima data dari server
-                $.ajax({
-                    url : "<?= base_url();?>/index.php/Input/getKelurahan",
-                    method : "post",
-                    data : {ID_Kecamatan: ID_Kecamatan},
-                    dataType : 'json',
-                    success: function(response){
-                        // Remove options 
-                        $('#kelurahan').find('option').not(':first').remove();
-                        // Add options
-                        $.each(response,function(index,data){
-                        $('#kelurahan').append('<option value="'+data['id']+'">'+data['Kelurahan']+'</option>');
-                        })
-                    }
-                });
-            });
-        });
+        $("#kecamatan").change(function (){
+            var url = "<?= site_url('RegionSelect/getKelurahan');?>/"+$(this).val();
+            $('#kelurahan').load(url);
+            return false;
+        })
     </script>
 <?= $this->endSection() ?>

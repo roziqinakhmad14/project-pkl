@@ -36,8 +36,9 @@ class Search extends BaseController
     }
     public function edit($id)
     {
+        $ids = base64_decode($id);
         $izin = $this->Jenis_perizinanModel->findAll();
-        $dataperizinan = $this->Tabel_perizinanModel->find(base64_decode($id));
+        $dataperizinan = $this->Tabel_perizinanModel->find($ids);
         $kecamatan = $this->RegionSelectModel->getDistric();
         // dd($dataperizinan);
         $data = [
