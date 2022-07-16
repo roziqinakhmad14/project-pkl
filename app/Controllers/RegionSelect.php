@@ -17,17 +17,6 @@ class RegionSelect extends BaseController {
     	}
     	echo $data;
     }
-    public function getKelurahan2($id)
-    {
-        $this->RegionSelectModel = new RegionSelectModel();
-        // $postData =$this->request->getPost('ID_Kecamatan');
-        $query  = $this->RegionSelectModel->getSubDistric($id);
-        $data = "<option value=''>- Select Kelurahan -</option>";
-        foreach ($query as $value) {
-        	$data .= "<option value='".$value->id."'>".$value->Kelurahan."</option>";
-    	}
-    	echo $data;
-    }
 }
 ?>
  
