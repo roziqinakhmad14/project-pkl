@@ -27,13 +27,13 @@
                     <td><?= $perizinan['NAMA'] ?></td>
                     <td><?= $perizinan['ALAMAT'] ?></td>
                     <td><?= $perizinan['NO_HP'] ?></td>
-                    <td><?= $perizinan['PERUSAHAAN'] ?></td>
+                    <td><?= $perizinan['PERUSAHAAN']; ?></td>
                     <td><?= $perizinan['LOKASI_USAHA'] ?></td>
                     <td><?= $perizinan['Kelurahan'] ?></td>
                     <td><?= $perizinan['Kecamatan'] ?></td>
                     <td><?= $perizinan['NO_IZIN'] ?></td>
                     <td><?= $perizinan['TANGGAL_TERBIT'] ?></td>
-                    <td><?= $perizinan['nama_perizinan'] ?></td>
+                    <td><?= $perizinan['nama_perizinan'].' ('.$perizinan['id_jenis_perizinan'].')' ?></td>
                     <td class="h5" style="line-height: 20pt;">
                         <a href="/Search/edit/<?= base64_encode($perizinan['NO_REGISTER']); ?>" )>
                             <i class="text-hover text-primary fas fa-pen"></i>
@@ -65,6 +65,7 @@
         </table>
     </div>
 </div>
+
 
 <script>
     $(function () { 

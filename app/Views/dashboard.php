@@ -71,16 +71,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($izin as $keyizin) :?>
+                                <?php for ($i=0; $i<count($izin); $i++):?>
                                 <tr>
-                                    <td><?= $keyizin['nama_perizinan']." (".$keyizin['id_jenis_perizinan'].")"; ?></td>
-                                    <?php 
-                                    $db = db_connect();
-                                    $total = $db->table('tabel_perizinan')->like('JENIS_PERIZINAN',$keyizin['id_jenis_perizinan'])->countAllResults();
-                                    ?>
-                                    <td><?= $total; ?></td>
+                                    <td><?= $izin[$i]['nama_perizinan']." (".$izin[$i]['id_jenis_perizinan'].")"; ?></td>
+                                    <td><?= $total[$i]; ?></td>
                                 </tr>
-                                <?php endforeach; ?>
+                                <?php endfor; ?>
                             </tbody>
                             <tfoot class="table-dark">
                                 <tr>

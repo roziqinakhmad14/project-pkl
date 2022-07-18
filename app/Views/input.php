@@ -45,7 +45,7 @@
                     <!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                            <li class="breadcrumb-item">Home</li>
                             <li class="breadcrumb-item active">Input</li>
                         </ol>
                     </div>
@@ -74,12 +74,12 @@
                         <div class="form-group col-md-6">
                             <label>Tanggal Register :</label>
                             <div class="input-group date" id="tanggal_register" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input<?= ($validasi->hasError('dateRegis')) ?' is-invalid':'';?>" data-target="#tanggal_register"  name="dateRegis" value="<?=old('dateRegis');?>">
-                                <div class="invalid-feedback">
-                                    <?= $validasi->getError('dateRegis')?>
-                                </div>
+                                <input type="text" class="form-control datetimepicker-input<?= ($validasi->hasError('dateRegis')) ?' is-invalid':'';?>" data-target="#tanggal_register" name="dateRegis" value="<?=old('dateRegis');?>" placeholder="yyyy/mm/dd">
                                 <div class="input-group-append" data-target="#tanggal_register" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                                <div class="invalid-feedback">
+                                    <?= $validasi->getError('dateRegis')?>
                                 </div>
                             </div>
                         </div>
@@ -146,12 +146,12 @@
                         <div class="form-group col-md-4">
                             <label>Tanggal Terbit :</label>
                             <div class="input-group date" id="tanggal_terbit" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input<?= ($validasi->hasError('publishdate')) ?' is-invalid':'';?>" data-target="#tanggal_terbit"  name="publishdate" value="<?=old('publishdate');?>">
-                                <div class="invalid-feedback">
-                                    <?= $validasi->getError('publishdate')?>
-                                </div>
+                                <input type="text" class="form-control datetimepicker-input<?= ($validasi->hasError('publishdate')) ?' is-invalid':'';?>" data-target="#tanggal_terbit"  name="publishdate" value="<?=old('publishdate');?>" placeholder="yyyy/mm/dd">
                                 <div class="input-group-append" data-target="#tanggal_terbit" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                                <div class="invalid-feedback">
+                                    <?= $validasi->getError('publishdate')?>
                                 </div>
                             </div>
                         </div>

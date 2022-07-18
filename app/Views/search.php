@@ -56,7 +56,7 @@
                     <!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                            <li class="breadcrumb-item">Home</li>
                             <li class="breadcrumb-item active">Pencarian</li>
                         </ol>
                     </div>
@@ -92,7 +92,7 @@
                                     <i class="far fa-calendar-alt"></i>
                                     </span>
                                 </div>
-                                <input type="text" class="form-control float-right" id="daterange" name="daterange">
+                                <input type="text" class="form-control float-right" id="daterange" name="daterange" pattern="[0-9]{4}/[0-9]{2}/[0-9]{2} - [0-9]{4}/[0-9]{2}/[0-9]{2}" placeholder="yyyy/mm/dd - yyyy/mm/dd">
                             </div>
                         </div>
                         <!-- /.input group -->
@@ -135,6 +135,9 @@
     <script src="<?= base_url('assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')?>"></script>
 
     <script>
+        // load DataTable
+        let tabel = "<?= site_url('Search/getData/none');?>";
+        $('#tabelout').load(tabel);
         $(function () {
             //Date range picker
             $('#daterange').daterangepicker({
@@ -160,7 +163,7 @@
                 $('#tabelout').load(tabel);
                 setTimeout(() => {
                     $('#spinner').addClass('d-none');
-                }, 5000);
+                }, 3200);
             });
         })
     </script>
