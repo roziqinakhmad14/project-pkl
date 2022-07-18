@@ -156,8 +156,8 @@
                 $('#spinner').removeClass('d-none');
                 jenis = $('#jenis_perizinan').val();
                 tanggal = $('#daterange').val();
-                var url = "<?= site_url('Search/getData');?>/"+jenis+'/'+btoa(tanggal);
-                $('#tabelout').load(url);
+                let tabel = "<?= site_url('Search/getData');?>/"+jenis+'/'+btoa(tanggal);
+                $('#tabelout').load(tabel);
                 setTimeout(() => {
                     $('#spinner').addClass('d-none');
                 }, 5000);
