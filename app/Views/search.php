@@ -72,12 +72,12 @@
         <section class="content">
             <div class="container-fluid">
                 <!-- general form elements -->
-                <form action="/Search/search" class="card card-body card-primary">
+                <div class="card card-body card-primary">
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="jenis_perizinan">Jenis Perizinan</label>
                             <select name="jenisperizinan" class="custom-select rounded-0" id="jenis_perizinan">
-                                <option value="">None</option>
+                                <option value="none">None</option>
                                 <?php foreach ($izin as $keyizin) : ?>
                                     <option value="<?= $keyizin['id_jenis_perizinan'] ?>"><?= $keyizin['nama_perizinan'] ?></option>
                                 <?php endforeach; ?>
@@ -89,30 +89,23 @@
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
-                                        <i class="far fa-calendar-alt"></i>
-                                        </span>
-                                    </div>
-                                    <input type="text" class="form-control float-right" id="daterange" name="daterange">
+                                    <i class="far fa-calendar-alt"></i>
+                                    </span>
                                 </div>
+                                <input type="text" class="form-control float-right" id="daterange" name="daterange">
                             </div>
-                            <!-- /.input group -->
                         </div>
-                        <!-- /.form group -->
+                        <!-- /.input group -->
                         <div class="col">
-                            <input id="search" type="submit" class="btn btn-primary" value="Proses">
+                            <button id="cari" class="btn btn-primary">Proses <span class="spinner-border spinner-border-sm text-light ml-1 d-none" id="spinner"></span></button>
                         </div>
                     </div>
                     <!-- /.form group -->
-                    <div class="col">
-                        <!-- <input id="search" type="submit" class="btn btn-primary" value="Proses"> -->
-                        <button id="cari" class="btn btn-primary">Proses</button>
-                    </div>
                 </div>
-            </form>
-            <!-- /.card-body -->
-            <!-- Tabel -->
-            <div id="tabelout"></div>
-
+                <!-- /.card-body -->
+                <!-- Tabel -->
+                <div id="tabelout"></div>
+            </div>
             <!-- /.container-fluid -->
         </section>
         <!-- /.content -->
@@ -160,11 +153,14 @@
             });
             // load DataTable
             $("#cari").click(function (){
-                $jenis = $('#jenis_perizinan').val();
-                $tanggal = $('#daterange').val();
-                var url = "<?= site_url('Search/getData');?>/"+$jenis+'/'+btoa($tanggal);
+                $('#spinner').removeClass('d-none');
+                jenis = $('#jenis_perizinan').val();
+                tanggal = $('#daterange').val();
+                var url = "<?= site_url('Search/getData');?>/"+jenis+'/'+btoa(tanggal);
                 $('#tabelout').load(url);
-                return false;
+                setTimeout(() => {
+                    $('#spinner').addClass('d-none');
+                }, 5000);
             });
         })
         

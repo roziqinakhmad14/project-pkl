@@ -5,7 +5,6 @@
 <link rel="stylesheet" href="<?=base_url('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')?>">
 <link rel="stylesheet" href="<?=base_url('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')?>">
 
-
 <div class="card">
     <!-- /.card-header -->
     <div class="card-body">
@@ -101,9 +100,9 @@
 <script src="<?= base_url('assets/dist/js/pages/dashboard.js')?>"></script>
 <script>
     $('#tabel_data_perizinan').DataTable({
-            "responsive": true,
-            "lengthChange": false,
-            "autoWidth": false,
-            "buttons": ["excel"]
-        }).buttons().container().appendTo('#tabel_data_perizinan_wrapper .col-md-6:eq(0)');
+        "responsive": true,
+        "lengthChange": false,
+        "autoWidth": false,
+        "buttons": ["excel"]
+    }).buttons().container().appendTo('#tabel_data_perizinan_wrapper .col-md-6:eq(0)');
 </script>
