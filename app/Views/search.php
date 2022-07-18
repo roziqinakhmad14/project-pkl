@@ -163,6 +163,5 @@
                 }, 5000);
             });
         })
-        
-</script>
+    </script>
 <?= $this->endSection() ?>
