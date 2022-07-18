@@ -161,13 +161,13 @@ class Search extends BaseController
         $date = result($daterange);
         return $date;
     }
-    public function search()
+    public function getData($id1 ='',$id2 = '')
     {
-        $jenisperizinan = $this->request->getVar('jenisperizinan');
-        $daterange = $this->request->getVar('daterange');
+        $jenisperizinan = $id1;
+        $daterange = base64_decode($id2);
         // $jenisperizinan = 'IL';
 
-        if ($jenisperizinan!='' && $daterange!='') {
+        if($jenisperizinan!='none' && $daterange!='') {
             $date = $this->explodeDate($daterange);
             $dataperizinan = $this->getDatabase()
             ->where([
@@ -176,7 +176,7 @@ class Search extends BaseController
                 'JENIS_PERIZINAN' => $jenisperizinan
                 ])
             ->findAll();
-        } elseif ($jenisperizinan='' && $daterange!=''){
+        } elseif($jenisperizinan=='none' && $daterange!=''){
             $date = $this->explodeDate($daterange);
             $dataperizinan = $this->getDatabase()
             ->where([
@@ -184,8 +184,7 @@ class Search extends BaseController
                 'TANGGAL <=' => $date[1]
                 ])
             ->findAll();
-       } elseif ($jenisperizinan!='' && $daterange=''){
-            $date = $this->explodeDate($daterange);
+       } elseif($jenisperizinan!='none' && $daterange==''){
             $dataperizinan = $this->getDatabase()
             ->where([
                 'JENIS_PERIZINAN' => $jenisperizinan
@@ -197,9 +196,8 @@ class Search extends BaseController
         }
         $izin = $this->Jenis_perizinanModel->findAll();
         $data = [
-            'izin' => $izin,
             'dataperizinan' => $dataperizinan
         ];
-        echo view('search', $data);
+        echo view('tabel', $data);
     }
 }
