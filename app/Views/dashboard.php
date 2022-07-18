@@ -1,4 +1,12 @@
 <?= $this->extend('layout/page_layout') ?>
+
+<?= $this->section('css'); ?>
+    <!-- DataTables -->
+    <link rel="stylesheet" href="<?=base_url('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')?>">
+    <link rel="stylesheet" href="<?=base_url('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')?>">
+    <link rel="stylesheet" href="<?=base_url('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')?>">
+<?= $this->endSection(); ?>
+
 <?= $this->section('sidebar_menu')?>
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -13,22 +21,19 @@
             <li class="nav-item">
                 <a href="<?=site_url('Input')?>" class="nav-link">
                     <i class="nav-icon fas fa-edit"></i>
-                    <p>
-                        Input
-                    </p>
+                    <p>Input</p>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="<?=site_url('Search')?>" class="nav-link">
                     <i class="nav-icon fas fa-search"></i>
-                    <p>
-                        Pencarian
-                    </p>
+                    <p>Pencarian</p>
                 </a>
             </li>
         </ul>
     </nav>
 <?= $this->endSection() ?>
+
 <?= $this->section('content') ?>
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -57,9 +62,8 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="card">
-                    <!-- /.card-header -->
                     <div class="card-body">
-                        <table class="table table-bordered table-striped" id="example2">
+                        <table class="table table-bordered table-striped" id="tabel_data_perizinan">
                             <thead class="table-dark">
                                 <tr>
                                     <th>Jenis Perizinan</th>
@@ -94,23 +98,27 @@
         <!-- /.content -->
     </div>
 <?= $this->endSection() ?>
+
 <?= $this->section('script'); ?>
-    <!-- Script untuk pencarian -->
+    <!-- DataTables  & Plugins -->
+    <script src="<?= base_url('assets/plugins/datatables/jquery.dataTables.min.js')?>"></script>
+    <script src="<?= base_url('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')?>"></script>
+    <script src="<?= base_url('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js')?>"></script>
+    <script src="<?= base_url('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')?>"></script>
+    <script src="<?= base_url('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js')?>"></script>
+    <script src="<?= base_url('assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')?>"></script>
+    <script src="<?= base_url('assets/plugins/jszip/jszip.min.js')?>"></script>
+    <script src="<?= base_url('assets/plugins/pdfmake/pdfmake.min.js')?>"></script>
+    <script src="<?= base_url('assets/plugins/pdfmake/vfs_fonts.js')?>"></script>
+    <script src="<?= base_url('assets/plugins/datatables-buttons/js/buttons.html5.min.js')?>"></script>
+    <script src="<?= base_url('assets/plugins/datatables-buttons/js/buttons.print.min.js')?>"></script>
+    <script src="<?= base_url('assets/plugins/datatables-buttons/js/buttons.colVis.min.js')?>"></script>
     <script>
         $(function () {
-            $("#example1").DataTable({
-                    "responsive": true, "lengthChange": false, "autoWidth": false,
-                    "buttons": ["excel"]
-                }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": true,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-        }).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');
-    })
+            $("#tabel_data_perizinan").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+                "buttons": ["excel"]
+            }).buttons().container().appendTo('#tabel_data_perizinan_wrapper .col-md-6:eq(0)');
+        })
     </script>
 <?= $this->endSection(); ?>

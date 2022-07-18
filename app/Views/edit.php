@@ -1,4 +1,10 @@
 <?= $this->extend('layout/page_layout') ?>
+
+<?= $this->section('css'); ?>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="<?=base_url('assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')?>">
+<?= $this->endSection(); ?>
+
 <?= $this->section('sidebar_menu')?>
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -13,22 +19,19 @@
             <li class="nav-item">
                 <a href="<?=site_url('Input')?>" class="nav-link ">
                     <i class="nav-icon fas fa-edit"></i>
-                    <p>
-                        Input
-                    </p>
+                    <p>Input</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="<?=site_url('Search')?>" class="nav-link active">
+                <a href="<?=site_url('Search')?>" class="nav-link">
                     <i class="nav-icon fas fa-search"></i>
-                    <p>
-                        Pencarian
-                    </p>
+                    <p>Pencarian</p>
                 </a>
             </li>
         </ul>
     </nav>
 <?= $this->endSection() ?>
+
 <?= $this->section('content') ?>
     <?php
     function convert2html($str)
@@ -70,7 +73,7 @@
                         <?= csrf_field()?>
                         <div class="form-group col-md-6">
                             <label for="no_register">No. Register :</label>
-                            <input type="text" class="form-control<?= ($validasi->hasError('NoRegis')) ?' is-invalid':'';?>" id="no_register" placeholder="No. Register"  name="NoRegis" autofocus value="<?=(!session())? old('NoRegis'):$dataperizinan['NO_REGISTER'];?>">
+                            <input type="text" class="form-control<?= ($validasi->hasError('NoRegis')) ?' is-invalid':'';?>" id="no_register" placeholder="No. Register"  name="NoRegis" autofocus value="<?=(!session())? old('NoRegis'):$dataperizinan['NO_REGISTER'];?>" disabled>
                             <div class="invalid-feedback">
                                 <?= $validasi->getError('NoRegis');?>
                             </div>
@@ -142,7 +145,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="no_izin">No. Izin :</label>
-                            <input type="text" class="form-control<?= ($validasi->hasError('noIzin')) ?' is-invalid':'';?>" id="no_izin" placeholder="No. Izin"  name="noIzin" value="<?=(!session())? old('noIzin'):$dataperizinan['NO_IZIN'];?>">
+                            <input type="text" class="form-control<?= ($validasi->hasError('noIzin')) ?' is-invalid':'';?>" id="no_izin" placeholder="No. Izin"  name="noIzin" value="<?=(!session())? old('noIzin'):$dataperizinan['NO_IZIN'];?>" disabled>
                             <div class="invalid-feedback">
                                 <?= $validasi->getError('noIzin')?>
                             </div>
@@ -184,69 +187,28 @@
     </div>
     <!-- /.content-wrapper -->
 <?= $this->endSection() ?>
+
 <?= $this->section('script') ?>
+    <!-- MomentJS -->
+    <script src="<?= base_url('assets/plugins/moment/moment.min.js')?>"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="<?= base_url('assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')?>"></script>
+
     <script>
         $(function () {      
-          //Datemask dd/mm/yyyy
-          $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
-          //Datemask2 mm/dd/yyyy
-          $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
-          //Money Euro
-          $('[data-mask]').inputmask()
-      
-          //Date picker
-          $('#tanggal_register').datetimepicker({
-              format: 'YYYY/MM/DD'
-          });
-          $('#tanggal_terbit').datetimepicker({
-              format: 'YYYY/MM/DD'
-          });
-      
-          //Date and time picker
-          $('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' } });
-      
-          //Date range picker
-          $('#reservation').daterangepicker()
-          //Date range picker with time picker
-          $('#reservationtime').daterangepicker({
-            timePicker: true,
-            timePickerIncrement: 30,
-            locale: {
-              format: 'MM/DD/YYYY hh:mm A'
-            }
-          })
-          //Date range as a button
-          $('#daterange-btn').daterangepicker(
-            {
-              ranges   : {
-                'Today'       : [moment(), moment()],
-                'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
-                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                'This Month'  : [moment().startOf('month'), moment().endOf('month')],
-                'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-              },
-              startDate: moment().subtract(29, 'days'),
-              endDate  : moment()
-            },
-            function (start, end) {
-              $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-            }
-          )
-      
-          //Timepicker
-          $('#timepicker').datetimepicker({
-            format: 'LT'
-          })      
-        })
-        // BS-Stepper Init
-        document.addEventListener('DOMContentLoaded', function () {
-          window.stepper = new Stepper(document.querySelector('.bs-stepper'))
-        })
-        $("#kecamatan").change(function (){
-            var url = "<?= site_url('RegionSelect/getKelurahan');?>/"+$(this).val();
-            $('#kelurahan').load(url);
-            return false;
+            // Date picker
+            $('#tanggal_register').datetimepicker({
+                format: 'YYYY/MM/DD'
+            });
+            $('#tanggal_terbit').datetimepicker({
+                format: 'YYYY/MM/DD'
+            });     
+            // Load kelurahan berdasarkan kecamatan
+            $("#kecamatan").change(function (){
+                var url = "<?= site_url('RegionSelect/getKelurahan');?>/"+$(this).val();
+                $('#kelurahan').load(url);
+                return false;
+            })
         })
     </script>
 <?= $this->endSection() ?>

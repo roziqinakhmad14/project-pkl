@@ -4,9 +4,6 @@ namespace App\Controllers;
 use App\Models\RegionSelectModel;
 use App\Models\Jenis_perizinanModel;
 use App\Models\Tabel_perizinanModel;
-use CodeIgniter\Validation\StrictRules\Rules;
-use Config\Validation;
-use PHPUnit\Util\Xml\Validator;
 
 class Input extends BaseController
 {
@@ -22,7 +19,6 @@ class Input extends BaseController
     }
     public function index()
     {
-        // session();
         $izin = $this->Jenis_perizinanModel->findAll();
         $dataperizinan = $this->Tabel_perizinanModel->findAll();
         $kecamatan = $this->RegionSelectModel->getDistric();
@@ -41,7 +37,6 @@ class Input extends BaseController
     }
     public function save()
     {
-        // Validasi!!
         if(!$this->validate([
             'NoRegis'=>[
                 'rules' => 'required|is_unique[tabel_perizinan.NO_REGISTER]',
@@ -113,7 +108,6 @@ class Input extends BaseController
             ],
         ])){
             $validation = \Config\Services::validation();
-            // dd($validation);
             return redirect()->to('input')->withInput()->with('validasi',$validation);
         }
         function convert($str)

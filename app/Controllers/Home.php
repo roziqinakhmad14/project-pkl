@@ -4,7 +4,6 @@ namespace App\Controllers;
 use App\Models\RegionSelectModel;
 use App\Models\Jenis_perizinanModel;
 use App\Models\Tabel_perizinanModel;
-use PhpParser\Node\Expr\AssignOp\Concat;
 
 class Home extends BaseController
 {

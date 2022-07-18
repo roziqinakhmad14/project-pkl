@@ -5,7 +5,6 @@ namespace App\Controllers;
 use App\Models\RegionSelectModel;
 use App\Models\Jenis_perizinanModel;
 use App\Models\Tabel_perizinanModel;
-use LDAP\Result;
 
 class Search extends BaseController
 {
@@ -40,7 +39,6 @@ class Search extends BaseController
         $izin = $this->Jenis_perizinanModel->findAll();
         $dataperizinan = $this->Tabel_perizinanModel->find($ids);
         $kecamatan = $this->RegionSelectModel->getDistric();
-        // dd($dataperizinan);
         $data = [
             'izin' => $izin,
             'dataperizinan' => $dataperizinan,
@@ -52,13 +50,6 @@ class Search extends BaseController
     public function update($id)
     {
         if(!$this->validate([
-            'NoRegis'=>[
-                'rules' => 'required|is_unique[tabel_perizinan.NO_REGISTER]',
-                'errors' =>[
-                    'required'=>'No Registrasi harus di isi',
-                    'is_unique'=>'No Registrasi sudah ada'
-                ]
-            ],
             'dateRegis' => [
                 'rules' => 'required',
                 'errors' => [
@@ -101,13 +92,6 @@ class Search extends BaseController
                     'required' => 'Alamat Perusahaan harus di isi'
                 ]
             ],
-            'noIzin' => [
-                'rules' => 'required|is_unique[tabel_perizinan.NO_IZIN]',
-                'errors' => [
-                    'required' => 'Nomer Izin harus di isi',
-                    'is_unique' => 'Nomer Izin sudah ada'
-                ]
-            ],
             'publishdate' => [
                 'rules' => 'required',
                 'errors' => [
@@ -122,7 +106,6 @@ class Search extends BaseController
             ],
         ])) {
             $validation = \Config\Services::validation();
-            // dd($validation);
             return redirect()->to('edit')->withInput()->with('validasi',$validation);
         }
         function convert($str)
@@ -165,7 +148,6 @@ class Search extends BaseController
     {
         $jenisperizinan = $this->request->getVar('jenisperizinan');
         $daterange = $this->request->getVar('daterange');
-        // $jenisperizinan = 'IL';
 
         if ($jenisperizinan!='' && $daterange!='') {
             $date = $this->explodeDate($daterange);
@@ -176,15 +158,15 @@ class Search extends BaseController
                 'JENIS_PERIZINAN' => $jenisperizinan
                 ])
             ->findAll();
-        } elseif ($jenisperizinan='' && $daterange!=''){
+        } else if ($jenisperizinan='' && $daterange!=''){
             $date = $this->explodeDate($daterange);
             $dataperizinan = $this->getDatabase()
             ->where([
                 'TANGGAL >=' => $date[0],
                 'TANGGAL <=' => $date[1]
                 ])
-            ->findAll();
-       } elseif ($jenisperizinan!='' && $daterange=''){
+            ->findAll(); 
+       } else if ($jenisperizinan!='' && $daterange=''){
             $date = $this->explodeDate($daterange);
             $dataperizinan = $this->getDatabase()
             ->where([
