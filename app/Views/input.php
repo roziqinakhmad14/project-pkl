@@ -31,7 +31,6 @@
 <?= $this->endSection() ?>
 <?= $this->section('content') ?>
     <!-- Content Wrapper. Contains page content -->
-    <?//= $validasi->listErrors();?>
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
@@ -237,28 +236,10 @@
         document.addEventListener('DOMContentLoaded', function () {
           window.stepper = new Stepper(document.querySelector('.bs-stepper'))
         })
-    </script>
-    <script type='text/javascript'>
-        $(document).ready(function(){
-            $("#kecamatan").change(function(){
-                let ID_Kecamatan = $(this).val();
-
-                // Menggunakan ajax untuk mengirim dan dan menerima data dari server
-                $.ajax({
-                    url : "<?= base_url();?>/index.php/Input/getKelurahan",
-                    method : "post",
-                    data : {ID_Kecamatan: ID_Kecamatan},
-                    dataType : 'json',
-                    success: function(response) {
-                        // Remove options 
-                        $('#kelurahan').find('option').not(':first').remove();
-                        // Add options
-                        $.each(response,function(index,data){
-                            $('#kelurahan').append('<option value="'+data['id']+'">'+data['Kelurahan']+'</option>');
-                        })
-                    }
-                });
-            });
-        });
+        $("#kecamatan").change(function (){
+            var url = "<?= site_url('RegionSelect/getKelurahan');?>/"+$(this).val();
+            $('#kelurahan').load(url);
+            return false;
+        })
     </script>
 <?= $this->endSection() ?>

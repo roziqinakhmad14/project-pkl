@@ -36,8 +36,9 @@ class Search extends BaseController
     }
     public function edit($id)
     {
+        $ids = base64_decode($id);
         $izin = $this->Jenis_perizinanModel->findAll();
-        $dataperizinan = $this->Tabel_perizinanModel->find(base64_decode($id));
+        $dataperizinan = $this->Tabel_perizinanModel->find($ids);
         $kecamatan = $this->RegionSelectModel->getDistric();
         // dd($dataperizinan);
         $data = [
@@ -145,13 +146,6 @@ class Search extends BaseController
         ]);
         return redirect()->to('/Search/index');
     }
-    public function getKelurahan()
-    {
-        $this->RegionSelectModel = new RegionSelectModel();
-        $postData = $this->request->getPost('ID_Kecamatan');
-        $data = $this->RegionSelectModel->getSubDistric($postData);
-        echo json_encode($data);
-    }
     public function explodeDate($daterange) {
         function convertDate($daterange) {
             $date = explode("/",$daterange);
@@ -182,10 +176,25 @@ class Search extends BaseController
                 'JENIS_PERIZINAN' => $jenisperizinan
                 ])
             ->findAll();
-        } else {
+        } elseif ($jenisperizinan='' && $daterange!=''){
+            $date = $this->explodeDate($daterange);
+            $dataperizinan = $this->getDatabase()
+            ->where([
+                'TANGGAL >=' => $date[0],
+                'TANGGAL <=' => $date[1]
+                ])
+            ->findAll();
+       } elseif ($jenisperizinan!='' && $daterange=''){
+            $date = $this->explodeDate($daterange);
+            $dataperizinan = $this->getDatabase()
+            ->where([
+                'JENIS_PERIZINAN' => $jenisperizinan
+                ])
+            ->findAll();
+       }
+        else {
             $dataperizinan = $this->getDatabase()->findAll();
         }
-
         $izin = $this->Jenis_perizinanModel->findAll();
         $data = [
             'izin' => $izin,

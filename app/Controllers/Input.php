@@ -137,12 +137,4 @@ class Input extends BaseController
         ]);
         return redirect()->to('Search');
     }
-    public function getKelurahan()
-    {
-        $this->RegionSelectModel = new RegionSelectModel();
-        $postData =$this->request->getPost('ID_Kecamatan');
-        $data = $this->RegionSelectModel->getSubDistric($postData);
-        echo json_encode($data);
-    }
-
 }
