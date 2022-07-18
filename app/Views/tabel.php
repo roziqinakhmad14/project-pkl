@@ -74,5 +74,5 @@
                 "autoWidth": false,
                 "buttons": ["excel"]
             }).buttons().container().appendTo('#tabel_data_perizinan_wrapper .col-md-6:eq(0)');
-    })
+        })
 </script>
