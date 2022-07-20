@@ -1,7 +1,7 @@
 <div class="card">
     <!-- /.card-header -->
     <div class="card-body">
-        <table id="tabel_data_perizinan" class="table table-bordered table-striped table-hover">
+        <table id="tabel_data_perizinan" class="table table-bordered table-striped table-hover table-responsive">
             <thead class="thead-dark">
                 <tr>
                     <th class="text-center">No. Register</th>
@@ -73,7 +73,14 @@
             "responsive": true,
             "lengthChange": false,
             "autoWidth": false,
-            "buttons": ["excel"]
-        }).buttons().container().appendTo('#tabel_data_perizinan_wrapper .col-md-6:eq(0)');
+            "buttons": [
+                {
+                    extend: 'excel',
+                    text: 'excel',
+                    exportOptions: {
+                        columns: ':visible'
+                        }
+                },"colvis"]
+            }).buttons().container().appendTo('#tabel_data_perizinan_wrapper .col-md-6:eq(0)');
         })
 </script>
