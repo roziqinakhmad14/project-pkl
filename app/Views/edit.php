@@ -126,8 +126,12 @@
                             <label for="kecamatan">Kecamatan</label>
                             <select class="custom-select rounded-0<?= ($validasi->hasError('kecamatan')) ?' is-invalid':'';?>" id="kecamatan" name="kecamatan">
                                 <option value="" class="disabled"><i>None</i></option>
-                            <?php foreach($distric as $kecamatan) :?>
-                                <option value="<?= $kecamatan['id']?>"><?= $kecamatan['Kecamatan']?></option>
+                                <?php foreach ($distric as $kecamatan) :?>
+                                    <?php if ($kecamatan['id'] == $dataperizinan['KECAMATAN']): ?>
+                                        <option value="<?= $kecamatan['id']?>" selected><?= $kecamatan['Kecamatan']?></option>
+                                    <?php else: ?>
+                                        <option value="<?= $kecamatan['id']?>"><?= $kecamatan['Kecamatan']?></option>
+                                    <?php endif; ?>
                             <?php endforeach;?>
                             </select>
                             <div class="invalid-feedback">
@@ -205,8 +209,8 @@
             });     
             // Load kelurahan berdasarkan kecamatan
             $("#kecamatan").change(function (){
-                var url = "<?= site_url('RegionSelect/getKelurahan');?>/"+$(this).val();
-                $('#kelurahan').load(url);
+                let kelurahan = "<?= site_url('RegionSelect/getKelurahan');?>/"+$(this).val();
+                $('#kelurahan').load(kelurahan);
                 return false;
             })
         })

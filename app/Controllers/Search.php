@@ -50,7 +50,7 @@ class Search extends BaseController
     }
     public function update($id)
     {
-        if(!$this->validate([
+        if (!$this->validate([
             'dateRegis' => [
                 'rules' => 'required',
                 'errors' => [
@@ -107,13 +107,15 @@ class Search extends BaseController
             ],
         ])) {
             $validation = \Config\Services::validation();
-            return redirect()->to('/Search/edit')->withInput()->with('validasi',$validation);
+            return redirect()->to('/Search/edit/'.$id)->withInput()->with('validasi',$validation);
         }
+
         function convert($str)
         {
             $date = explode("/",$str);
             return $date[0].'-'.$date[1].'-'.$date[2];
         }
+
         $this->Tabel_perizinanModel->update(base64_decode($id), [
             'TANGGAL' => convert($this->request->getVar('dateRegis')),
             'NAMA' => $this->request->getVar('fullname'),
@@ -126,6 +128,8 @@ class Search extends BaseController
             'TANGGAL_TERBIT' => convert($this->request->getVar('publishdate')),
             'JENIS_PERIZINAN' => $this->request->getVar('namaIzin')
         ]);
+
+        session()->setFlashdata('message','Data berhasil ditambahkan.');
         return redirect()->to('/Search');
     }
     public function explodeDate($daterange) {

@@ -76,7 +76,7 @@
             "buttons": [
                 {
                     extend: 'excel',
-                    text: 'excel',
+                    text: 'Excel',
                     exportOptions: {
                         columns: ':visible'
                         }
