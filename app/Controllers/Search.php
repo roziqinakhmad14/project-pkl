@@ -40,10 +40,13 @@ class Search extends BaseController
         $izin = $this->Jenis_perizinanModel->findAll();
         $dataperizinan = $this->Tabel_perizinanModel->find($ids);
         $kecamatan = $this->RegionSelectModel->getDistric();
+        $query = $this->RegionSelectModel->getSubDistric($dataperizinan['KECAMATAN']);
+        $kelurahan  = json_decode(json_encode($query),true);
         $data = [
             'izin' => $izin,
             'dataperizinan' => $dataperizinan,
-            'distric' => $kecamatan,
+            'kecamatan' => $kecamatan,
+            'kelurahan' => $kelurahan,
             'validasi'=> \Config\Services::validation()
         ];
         echo view('/edit', $data);

@@ -126,13 +126,13 @@
                             <label for="kecamatan">Kecamatan</label>
                             <select class="custom-select rounded-0<?= ($validasi->hasError('kecamatan')) ?' is-invalid':'';?>" id="kecamatan" name="kecamatan">
                                 <option value="" class="disabled"><i>None</i></option>
-                                <?php foreach ($distric as $kecamatan) :?>
-                                    <?php if ($kecamatan['id'] == $dataperizinan['KECAMATAN']): ?>
-                                        <option value="<?= $kecamatan['id']?>" selected><?= $kecamatan['Kecamatan']?></option>
+                                <?php foreach ($kecamatan as $kec) :?>
+                                    <?php if ($kec['id'] == $dataperizinan['KECAMATAN']): ?>
+                                        <option value="<?= $kec['id']?>" selected><?= $kec['Kecamatan']?></option>
                                     <?php else: ?>
-                                        <option value="<?= $kecamatan['id']?>"><?= $kecamatan['Kecamatan']?></option>
+                                        <option value="<?= $kec['id']?>"><?= $kec['Kecamatan']?></option>
                                     <?php endif; ?>
-                            <?php endforeach;?>
+                                <?php endforeach;?>
                             </select>
                             <div class="invalid-feedback">
                                 <?= $validasi->getError('kecamatan')?>
@@ -142,9 +142,13 @@
                             <label for="kelurahan">Kelurahan</label>
                             <select class="custom-select rounded-0<?= ($validasi->hasError('kelurahan')) ?' is-invalid':'';?>" id="kelurahan" name="kelurahan">
                                 <option value="" class="disabled"><i>None</i></option>
-                                <?php foreach ($query as $value) {
-                                    $data .= "<option value='".$value->id."'>".$value->Kelurahan."</option>";
-                                }?>
+                                <?php foreach ($kelurahan as $kel) :?>
+                                    <?php if ($kel['id'] == $dataperizinan['KELURAHAN']): ?>
+                                        <option value="<?= $kel['id']?>" selected><?= $kel['Kelurahan']?></option>
+                                    <?php else: ?>
+                                        <option value="<?= $kel['id']?>"><?= $kel['Kelurahan']?></option>
+                                    <?php endif; ?>
+                                <?php endforeach;?>
                             </select>
                             <div class="invalid-feedback">
                                 <?= $validasi->getError('kelurahan')?>
@@ -207,8 +211,6 @@
 
     <script>
         $(function () {
-            let kelurahan = "<?= site_url('RegionSelect/getKelurahan');?>/"+$('#kecamatan').val();
-            $('#kelurahan').load(kelurahan);
             // Date picker
             $('#tanggal_register').datetimepicker({
                 format: 'YYYY/MM/DD'

@@ -17,7 +17,7 @@ class RegionSelect extends BaseController {
     {
         $this->RegionSelectModel = new RegionSelectModel();
         $query  = $this->RegionSelectModel->getSubDistric($id);
-        $data = "<option value=''>- Select Kelurahan -</option>";
+        $data = "<option value=''>None</option>";
         foreach ($query as $value) {
         	$data .= "<option value='".$value->id."'>".$value->Kelurahan."</option>";
     	}
