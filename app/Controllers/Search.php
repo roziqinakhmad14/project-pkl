@@ -5,7 +5,6 @@ namespace App\Controllers;
 use App\Models\RegionSelectModel;
 use App\Models\Jenis_perizinanModel;
 use App\Models\Tabel_perizinanModel;
-use LDAP\Result;
 
 class Search extends BaseController
 {
@@ -21,16 +20,13 @@ class Search extends BaseController
     public function index()
     {
         $izin = $this->Jenis_perizinanModel->findAll();
-        $dataperizinan = $this->Tabel_perizinanModel
-            ->join('jenis_perizinan', 'jenis_perizinan.id_jenis_perizinan = tabel_perizinan.JENIS_PERIZINAN', 'LEFT')
-            ->join('kecamatan', 'kecamatan.id = tabel_perizinan.KECAMATAN', 'LEFT')
-            ->join('kelurahan', 'kelurahan.id = tabel_perizinan.KELURAHAN ', 'LEFT')
-            ->findAll();
+        $dataperizinan = $this->getDatabase()->findAll();
         $data = [
             'izin' => $izin,
             'dataperizinan' => $dataperizinan
         ];
         echo view('search', $data);
+        // dd($dataperizinan);
     }
     public function delete($id)
     {
@@ -40,27 +36,21 @@ class Search extends BaseController
     }
     public function edit($id)
     {
+        $ids = base64_decode($id);
         $izin = $this->Jenis_perizinanModel->findAll();
-        $dataperizinan = $this->Tabel_perizinanModel->find(base64_decode($id));
+        $dataperizinan = $this->Tabel_perizinanModel->find($ids);
         $kecamatan = $this->RegionSelectModel->getDistric();
         $data = [
             'izin' => $izin,
             'dataperizinan' => $dataperizinan,
-            'distric' => $kecamatan
+            'distric' => $kecamatan,
+            'validasi'=> \Config\Services::validation()
         ];
         echo view('/edit', $data);
     }
     public function update($id)
     {
-        // Validasi!!
-        if (!$this->validate([
-            'dateRegis' => [
-                'rules' => 'required|is_unique[tabel_perizinan.NO_REGISTER]',
-                'errors' => [
-                    'required' => 'NO Registrasi harus di isi',
-                    'is_unique' => 'No Registrasi sudah ada'
-                ]
-            ],
+        if(!$this->validate([
             'dateRegis' => [
                 'rules' => 'required',
                 'errors' => [
@@ -103,13 +93,6 @@ class Search extends BaseController
                     'required' => 'Alamat Perusahaan harus di isi'
                 ]
             ],
-            'noIzin' => [
-                'rules' => 'required|is_unique[tabel_perizinan.NO_IZIN]',
-                'errors' => [
-                    'required' => 'Nomer Izin harus di isi',
-                    'is_unique' => 'Nomer Izin sudah ada'
-                ]
-            ],
             'publishdate' => [
                 'rules' => 'required',
                 'errors' => [
@@ -124,12 +107,12 @@ class Search extends BaseController
             ],
         ])) {
             $validation = \Config\Services::validation();
-            return redirect()->to('edit')->withInput()->with('validasi', $validation);
+            return redirect()->to('edit')->withInput()->with('validasi',$validation);
         }
         function convert($str)
         {
-            $date = explode("/", $str);
-            return $date[2] . '-' . $date[0] . '-' . $date[1];
+            $date = explode("/",$str);
+            return $date[0].'-'.$date[1].'-'.$date[2];
         }
         $this->Tabel_perizinanModel->update(base64_decode($id), [
             'NO_REGISTER' => $this->request->getVar('NoRegis'),
@@ -147,34 +130,58 @@ class Search extends BaseController
         ]);
         return redirect()->to('/Search/index');
     }
-    public function getKelurahan()
-    {
-        $this->RegionSelectModel = new RegionSelectModel();
-        $postData = $this->request->getPost('ID_Kecamatan');
-        $data = $this->RegionSelectModel->getSubDistric($postData);
-        echo json_encode($data);
-    }
-    public function searchByJenisPerizinan($keyword)
-    {
-        $result = $this->Tabel_perizinanModel
-            ->join('jenis_perizinan', 'jenis_perizinan.id_jenis_perizinan = tabel_perizinan.JENIS_PERIZINAN', 'LEFT')
-            ->join('kecamatan', 'kecamatan.id = tabel_perizinan.KECAMATAN', 'LEFT')
-            ->join('kelurahan', 'kelurahan.id = tabel_perizinan.KELURAHAN ', 'LEFT')
-            ->where('JENIS_PERIZINAN', $keyword)
-            ->findAll();
+    public function explodeDate($daterange) {
+        function convertDate($daterange) {
+            $date = explode("/",$daterange);
+            return $date[0].'-'.$date[1].'-'.$date[2];
+        }
+        function result($daterange) {
+            $date = explode(" - ",$daterange);
+            $fdate= convertDate($date[0]);
+            $ldate= convertDate($date[1]);
+            return [$fdate,$ldate];
+        }
 
-        return $result;
+        $date = result($daterange);
+        return $date;
     }
-    public function search()
+    public function getData($id1 ='',$id2 = '')
     {
-        $jenisperizinan = $this->request->getVar('jenisperizinan');
-        // $jenisperizinan = 'AMDAL';
-        $dataperizinan = $this->searchByJenisPerizinan($jenisperizinan);
-        $izin = $this->Jenis_perizinanModel->findAll();
+        $jenisperizinan = $id1;
+        $daterange = base64_decode($id2);
+        // $jenisperizinan = 'IL';
+
+        if ($jenisperizinan!='none' && $daterange!='') {
+            $date = $this->explodeDate($daterange);
+            $dataperizinan = $this->getDatabase()
+            ->where([
+                'TANGGAL >=' => $date[0],
+                'TANGGAL <=' => $date[1],
+                'JENIS_PERIZINAN' => $jenisperizinan
+                ])
+            ->findAll();
+        } elseif ($jenisperizinan=='none' && $daterange!='') {
+            $date = $this->explodeDate($daterange);
+            $dataperizinan = $this->getDatabase()
+            ->where([
+                'TANGGAL >=' => $date[0],
+                'TANGGAL <=' => $date[1]
+                ])
+            ->findAll();
+        } elseif ($jenisperizinan!='none' && $daterange=='') {
+            $dataperizinan = $this->getDatabase()
+            ->where([
+                'JENIS_PERIZINAN' => $jenisperizinan
+                ])
+            ->findAll();
+        } else {
+            $dataperizinan = $this->getDatabase()->findAll();
+        }
+
         $data = [
-            'izin' => $izin,
             'dataperizinan' => $dataperizinan
         ];
-        echo view('search', $data);
+
+        echo view('tabel', $data);
     }
 }

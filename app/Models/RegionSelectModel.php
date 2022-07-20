@@ -15,10 +15,9 @@ class RegionSelectModel extends Model
      public function getSubDistric($postData) {
 
          $builder = $this->db->table('kelurahan');
-         // $query = $builder->get();
          $query = $builder->getWhere(['ID_Kecamatan'=> $postData]);
          $query = $query->getResult();
-         return json_decode(json_encode($query),true);
+         return $query;
      }
     
 }

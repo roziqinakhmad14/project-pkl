@@ -1,4 +1,10 @@
 <?= $this->extend('layout/page_layout') ?>
+
+<?= $this->section('css'); ?>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="<?=base_url('assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')?>">
+<?= $this->endSection(); ?>
+
 <?= $this->section('sidebar_menu')?>
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -13,25 +19,21 @@
             <li class="nav-item">
                 <a href="<?=site_url('Input')?>" class="nav-link active">
                     <i class="nav-icon fas fa-edit"></i>
-                    <p>
-                        Input
-                    </p>
+                    <p>Input</p>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="<?=site_url('Search')?>" class="nav-link">
                     <i class="nav-icon fas fa-search"></i>
-                    <p>
-                        Pencarian
-                    </p>
+                    <p>Pencarian</p>
                 </a>
             </li>
         </ul>
     </nav>
 <?= $this->endSection() ?>
+
 <?= $this->section('content') ?>
     <!-- Content Wrapper. Contains page content -->
-    <?//= $validasi->listErrors();?>
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
@@ -43,7 +45,7 @@
                     <!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                            <li class="breadcrumb-item">Home</li>
                             <li class="breadcrumb-item active">Input</li>
                         </ol>
                     </div>
@@ -72,12 +74,12 @@
                         <div class="form-group col-md-6">
                             <label>Tanggal Register :</label>
                             <div class="input-group date" id="tanggal_register" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input<?= ($validasi->hasError('dateRegis')) ?' is-invalid':'';?>" data-target="#tanggal_register"  name="dateRegis" value="<?=old('dateRegis');?>">
-                                <div class="invalid-feedback">
-                                    <?= $validasi->getError('dateRegis')?>
-                                </div>
+                                <input type="text" class="form-control datetimepicker-input<?= ($validasi->hasError('dateRegis')) ?' is-invalid':'';?>" data-target="#tanggal_register" name="dateRegis" value="<?=old('dateRegis');?>" placeholder="yyyy/mm/dd">
                                 <div class="input-group-append" data-target="#tanggal_register" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                                <div class="invalid-feedback">
+                                    <?= $validasi->getError('dateRegis')?>
                                 </div>
                             </div>
                         </div>
@@ -144,12 +146,12 @@
                         <div class="form-group col-md-4">
                             <label>Tanggal Terbit :</label>
                             <div class="input-group date" id="tanggal_terbit" data-target-input="nearest">
-                                <input type="text" class="form-control datetimepicker-input<?= ($validasi->hasError('publishdate')) ?' is-invalid':'';?>" data-target="#tanggal_terbit"  name="publishdate" value="<?=old('publishdate');?>">
-                                <div class="invalid-feedback">
-                                    <?= $validasi->getError('publishdate')?>
-                                </div>
+                                <input type="text" class="form-control datetimepicker-input<?= ($validasi->hasError('publishdate')) ?' is-invalid':'';?>" data-target="#tanggal_terbit"  name="publishdate" value="<?=old('publishdate');?>" placeholder="yyyy/mm/dd">
                                 <div class="input-group-append" data-target="#tanggal_terbit" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                                <div class="invalid-feedback">
+                                    <?= $validasi->getError('publishdate')?>
                                 </div>
                             </div>
                         </div>
@@ -178,87 +180,28 @@
     </div>
     <!-- /.content-wrapper -->
 <?= $this->endSection() ?>
+
 <?= $this->section('script') ?>
+    <!-- MomentJS -->
+    <script src="<?= base_url('assets/plugins/moment/moment.min.js')?>"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="<?= base_url('assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')?>"></script>
+
     <script>
         $(function () {      
-          //Datemask dd/mm/yyyy
-          $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
-          //Datemask2 mm/dd/yyyy
-          $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
-          //Money Euro
-          $('[data-mask]').inputmask()
-      
-          //Date picker
-          $('#tanggal_register').datetimepicker({
-              format: 'L'
-          });
-          $('#tanggal_terbit').datetimepicker({
-              format: 'L'
-          });
-      
-          //Date and time picker
-          $('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' } });
-      
-          //Date range picker
-          $('#reservation').daterangepicker()
-          //Date range picker with time picker
-          $('#reservationtime').daterangepicker({
-            timePicker: true,
-            timePickerIncrement: 30,
-            locale: {
-              format: 'MM/DD/YYYY hh:mm A'
-            }
-          })
-          //Date range as a button
-          $('#daterange-btn').daterangepicker(
-            {
-              ranges   : {
-                'Today'       : [moment(), moment()],
-                'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
-                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                'This Month'  : [moment().startOf('month'), moment().endOf('month')],
-                'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-              },
-              startDate: moment().subtract(29, 'days'),
-              endDate  : moment()
-            },
-            function (start, end) {
-              $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-            }
-          )
-      
-          //Timepicker
-          $('#timepicker').datetimepicker({
-            format: 'LT'
-          })      
-        })
-        // BS-Stepper Init
-        document.addEventListener('DOMContentLoaded', function () {
-          window.stepper = new Stepper(document.querySelector('.bs-stepper'))
-        })
-    </script>
-    <script type='text/javascript'>
-        $(document).ready(function(){
-            $("#kecamatan").change(function(){
-                let ID_Kecamatan = $(this).val();
-
-                // Menggunakan ajax untuk mengirim dan dan menerima data dari server
-                $.ajax({
-                    url : "<?= base_url();?>/index.php/Input/getKelurahan",
-                    method : "post",
-                    data : {ID_Kecamatan: ID_Kecamatan},
-                    dataType : 'json',
-                    success: function(response) {
-                        // Remove options 
-                        $('#kelurahan').find('option').not(':first').remove();
-                        // Add options
-                        $.each(response,function(index,data){
-                            $('#kelurahan').append('<option value="'+data['id']+'">'+data['Kelurahan']+'</option>');
-                        })
-                    }
-                });
+            //Date picker
+            $('#tanggal_register').datetimepicker({
+                format: 'YYYY/MM/DD'
             });
-        });
+            $('#tanggal_terbit').datetimepicker({
+                format: 'YYYY/MM/DD'
+            });
+            // Load kelurahan berdasarkan kecamatan
+            $("#kecamatan").change(function (){
+                var url = "<?= site_url('RegionSelect/getKelurahan');?>/"+$(this).val();
+                $('#kelurahan').load(url);
+                return false;
+            })
+        })
     </script>
 <?= $this->endSection() ?>
