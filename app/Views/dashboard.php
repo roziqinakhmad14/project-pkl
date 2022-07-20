@@ -112,8 +112,7 @@
     <script>
         $(function () {
             $("#tabel_data_perizinan").DataTable({
-                "responsive": true, "lengthChange": false, "autoWidth": false,
-                "buttons": ["excel"]
+                "responsive": true, "lengthChange": false, "autoWidth": false
             }).buttons().container().appendTo('#tabel_data_perizinan_wrapper .col-md-6:eq(0)');
         })
     </script>

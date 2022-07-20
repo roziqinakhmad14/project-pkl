@@ -69,7 +69,7 @@
             <div class="container-fluid">
                 <!-- Main row -->
                 <div class="card card-body has-validation">
-                    <form action="<?=site_url('Search')?>/update/<?=base64_encode($dataperizinan['NO_REGISTER']);?>" class="row needs-validation" id="form" method="POST">
+                    <form action="<?=site_url()?>/Search/update/<?=base64_encode($dataperizinan['NO_REGISTER']);?>" class="row needs-validation" id="form" method="POST">
                         <?= csrf_field()?>
                         <div class="form-group col-md-6">
                             <label for="no_register">No. Register :</label>
@@ -98,8 +98,8 @@
                             </div>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="phone">No. Handphone</label>
-                            <input type="phone" id="phone" class="form-control" placeholder="No. Handphone" name="phonenumber" value="<?=(!session())? old('phonenumber'):$dataperizinan['NO_HP'];?>">
+                            <label for="number">No. Handphone</label>
+                            <input type="number" id="number" class="form-control" placeholder="No. Handphone" name="phonenumber" value="<?=(!session())? old('phonenumber'):$dataperizinan['NO_HP'];?>">
                         </div>
                         <div class="form-group col-12">
                             <label for="address">Alamat</label>
