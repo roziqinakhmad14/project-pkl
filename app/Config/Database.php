@@ -32,10 +32,10 @@ class Database extends Config
      */
     public $default = [
         'DSN'      => '',
-        'hostname' => 'bsrdwufvabd51lqnhhxv-mysql.services.clever-cloud.com',
-        'username' => 'bsrdwufvabd51lqnhhxv',
-        'password' => 'sbw1bKymI4ji3gg7r0tb',
-        'database' => 'uyjluhj90zz2ml2o',
+        'hostname' => 'localhost',
+        'username' => 'root',
+        'password' => '',
+        'database' => 'data_dpmptsp_malangkota',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,
