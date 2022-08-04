@@ -97,7 +97,7 @@
                         </div>
                         <!-- /.input group -->
                         <div class="col">
-                            <button id="search-button" class="btn btn-primary">Proses <span class="spinner-border spinner-border-sm text-light ml-1 d-none" id="spinner"></span></button>
+                            <button id="search-button" class="btn btn-primary">Proses <span class="load spinner-border spinner-border-sm text-light ml-1" style="display: none;" id="spinner"></span></button>
                         </div>
                     </div>
                     <!-- /.form group -->
@@ -156,12 +156,12 @@
             });
             // load DataTable
             $("#search-button").click(function (){
-                $('#spinner').removeClass('d-none');
+                $('#spinner').show();
                 jenis = $('#jenis_perizinan').val();
                 tanggal = $('#daterange').val();
                 let tabel = "<?= site_url('Search/getData');?>/"+jenis+'/'+btoa(tanggal);
                 $('#tabelout').load(tabel, function() {
-                    $('#spinner').addClass('d-none');
+                    $('#spinner').hide();
                 });
             });
         })
