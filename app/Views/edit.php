@@ -69,7 +69,7 @@
             <div class="container-fluid">
                 <!-- Main row -->
                 <div class="card card-body has-validation">
-                    <form action="<?=site_url('Search')?>/update/<?=base64_encode($dataperizinan['NO_REGISTER']);?>" class="row needs-validation" id="form" method="POST">
+                    <form action="<?=site_url()?>/Search/update/<?=base64_encode($dataperizinan['NO_REGISTER']);?>" class="row needs-validation" id="form" method="POST">
                         <?= csrf_field()?>
                         <div class="form-group col-md-6">
                             <label for="no_register">No. Register :</label>
@@ -98,8 +98,8 @@
                             </div>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="phone">No. Handphone</label>
-                            <input type="phone" id="phone" class="form-control" placeholder="No. Handphone" name="phonenumber" value="<?=(!session())? old('phonenumber'):$dataperizinan['NO_HP'];?>">
+                            <label for="number">No. Handphone</label>
+                            <input type="number" id="number" class="form-control" placeholder="No. Handphone" name="phonenumber" value="<?=(!session())? old('phonenumber'):$dataperizinan['NO_HP'];?>">
                         </div>
                         <div class="form-group col-12">
                             <label for="address">Alamat</label>
@@ -126,9 +126,13 @@
                             <label for="kecamatan">Kecamatan</label>
                             <select class="custom-select rounded-0<?= ($validasi->hasError('kecamatan')) ?' is-invalid':'';?>" id="kecamatan" name="kecamatan">
                                 <option value="" class="disabled"><i>None</i></option>
-                            <?php foreach($distric as $kecamatan) :?>
-                                <option value="<?= $kecamatan['id']?>"><?= $kecamatan['Kecamatan']?></option>
-                            <?php endforeach;?>
+                                <?php foreach ($kecamatan as $kec) :?>
+                                    <?php if ($kec['id'] == $dataperizinan['KECAMATAN']): ?>
+                                        <option value="<?= $kec['id']?>" selected><?= $kec['Kecamatan']?></option>
+                                    <?php else: ?>
+                                        <option value="<?= $kec['id']?>"><?= $kec['Kecamatan']?></option>
+                                    <?php endif; ?>
+                                <?php endforeach;?>
                             </select>
                             <div class="invalid-feedback">
                                 <?= $validasi->getError('kecamatan')?>
@@ -138,6 +142,13 @@
                             <label for="kelurahan">Kelurahan</label>
                             <select class="custom-select rounded-0<?= ($validasi->hasError('kelurahan')) ?' is-invalid':'';?>" id="kelurahan" name="kelurahan">
                                 <option value="" class="disabled"><i>None</i></option>
+                                <?php foreach ($kelurahan as $kel) :?>
+                                    <?php if ($kel['id'] == $dataperizinan['KELURAHAN']): ?>
+                                        <option value="<?= $kel['id']?>" selected><?= $kel['Kelurahan']?></option>
+                                    <?php else: ?>
+                                        <option value="<?= $kel['id']?>"><?= $kel['Kelurahan']?></option>
+                                    <?php endif; ?>
+                                <?php endforeach;?>
                             </select>
                             <div class="invalid-feedback">
                                 <?= $validasi->getError('kelurahan')?>
@@ -167,7 +178,11 @@
                             <select class="custom-select rounded-0<?= ($validasi->hasError('namaIzin')) ?' is-invalid':'';?>" id="jenis_perizinan"  name="namaIzin">
                             <option value="" class="disabled"><i>None</i></option>
                             <?php foreach($izin as $keyizin) :?>
-                                <option value="<?= $keyizin['id_jenis_perizinan']?>"><?= $keyizin['nama_perizinan']?></option>
+                                <?php if ($keyizin['id_jenis_perizinan']==$dataperizinan['JENIS_PERIZINAN']): ?>
+                                    <option value="<?= $keyizin['id_jenis_perizinan']?>" selected><?= $keyizin['nama_perizinan']?></option>
+                                <?php else: ?>
+                                    <option value="<?= $keyizin['id_jenis_perizinan']?>"><?= $keyizin['nama_perizinan']?></option>
+                                <?php endif; ?>
                             <?php endforeach;?>
                             </select>
                             <div class="invalid-feedback">
@@ -195,7 +210,7 @@
     <script src="<?= base_url('assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')?>"></script>
 
     <script>
-        $(function () {      
+        $(function () {
             // Date picker
             $('#tanggal_register').datetimepicker({
                 format: 'YYYY/MM/DD'
@@ -205,8 +220,8 @@
             });     
             // Load kelurahan berdasarkan kecamatan
             $("#kecamatan").change(function (){
-                var url = "<?= site_url('RegionSelect/getKelurahan');?>/"+$(this).val();
-                $('#kelurahan').load(url);
+                let data = "<?= site_url('RegionSelect/getKelurahan');?>/"+$(this).val();
+                $('#kelurahan').load(data);
                 return false;
             })
         })

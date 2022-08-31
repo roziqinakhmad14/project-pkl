@@ -91,8 +91,8 @@
                             </div>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="phone">No. Handphone</label>
-                            <input type="phone" id="phone" class="form-control" placeholder="No. Handphone" name="phonenumber" value="<?=old('phonenumber');?>">
+                            <label for="number">No. Handphone</label>
+                            <input type="number" id="number" class="form-control" placeholder="No. Handphone" name="phonenumber" value="<?=old('phonenumber');?>">
                         </div>
                         <div class="form-group col-12">
                             <label for="address">Alamat</label>
@@ -188,7 +188,10 @@
     <script src="<?= base_url('assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')?>"></script>
 
     <script>
-        $(function () {      
+        $(function () {
+            <?php if (session()->getFlashData('message')): ?>
+                alert('Data berhasil ditambahkan!');
+            <?php endif; ?>
             //Date picker
             $('#tanggal_register').datetimepicker({
                 format: 'YYYY/MM/DD'

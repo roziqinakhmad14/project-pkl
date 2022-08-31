@@ -1,3 +1,14 @@
+<!-- 
+
+Produced by : 
+KELOMPOK PKL UIN MAULANA MALIK IBRAHIM MALANG 2022
+- Sania Kamelia Hamdani (19610071)
+- Azis Yulianas (19610075)
+- Akhmad Roziqin (19610087)
+- Muhammad Ilham Suwahyu (19610104)
+
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -70,7 +81,7 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="<?= base_url('assets/dist/img/user2-160x160.jpg')?>" class="img-circle elevation-2" alt="User Image">
+                        <img src="<?= base_url('assets/dist/img/profile.png')?>" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
                         <a href="#" class="d-block">User</a>

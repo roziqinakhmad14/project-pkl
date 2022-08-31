@@ -40,17 +40,20 @@ class Search extends BaseController
         $izin = $this->Jenis_perizinanModel->findAll();
         $dataperizinan = $this->Tabel_perizinanModel->find($ids);
         $kecamatan = $this->RegionSelectModel->getDistric();
+        $query = $this->RegionSelectModel->getSubDistric($dataperizinan['KECAMATAN']);
+        $kelurahan  = json_decode(json_encode($query),true);
         $data = [
             'izin' => $izin,
             'dataperizinan' => $dataperizinan,
-            'distric' => $kecamatan,
+            'kecamatan' => $kecamatan,
+            'kelurahan' => $kelurahan,
             'validasi'=> \Config\Services::validation()
         ];
         echo view('/edit', $data);
     }
     public function update($id)
     {
-        if(!$this->validate([
+        if (!$this->validate([
             'dateRegis' => [
                 'rules' => 'required',
                 'errors' => [
@@ -107,15 +110,16 @@ class Search extends BaseController
             ],
         ])) {
             $validation = \Config\Services::validation();
-            return redirect()->to('edit')->withInput()->with('validasi',$validation);
+            return redirect()->to('/Search/edit/'.$id)->withInput()->with('validasi',$validation);
         }
+
         function convert($str)
         {
             $date = explode("/",$str);
             return $date[0].'-'.$date[1].'-'.$date[2];
         }
+
         $this->Tabel_perizinanModel->update(base64_decode($id), [
-            'NO_REGISTER' => $this->request->getVar('NoRegis'),
             'TANGGAL' => convert($this->request->getVar('dateRegis')),
             'NAMA' => $this->request->getVar('fullname'),
             'ALAMAT' => $this->request->getVar('address'),
@@ -125,10 +129,11 @@ class Search extends BaseController
             'KELURAHAN' => $this->request->getVar('kelurahan'),
             'KECAMATAN' => $this->request->getVar('kecamatan'),
             'TANGGAL_TERBIT' => convert($this->request->getVar('publishdate')),
-            'NO_IZIN' => $this->request->getVar('noIzin'),
             'JENIS_PERIZINAN' => $this->request->getVar('namaIzin')
         ]);
-        return redirect()->to('/Search/index');
+
+        session()->setFlashdata('message','Data berhasil ditambahkan.');
+        return redirect()->to('/Search');
     }
     public function explodeDate($daterange) {
         function convertDate($daterange) {

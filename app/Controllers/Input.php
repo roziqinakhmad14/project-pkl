@@ -37,7 +37,7 @@ class Input extends BaseController
     }
     public function save()
     {
-        if(!$this->validate([
+        if (!$this->validate([
             'NoRegis'=>[
                 'rules' => 'required|is_unique[tabel_perizinan.NO_REGISTER]',
                 'errors' =>[
@@ -106,15 +106,16 @@ class Input extends BaseController
                     'required'=>'Jenis izin harus di isi'
                 ]
             ],
-        ])){
+        ])) {
             $validation = \Config\Services::validation();
             return redirect()->to('input')->withInput()->with('validasi',$validation);
         }
-        function convert($str)
-        {
+
+        function convert($str) {
             $date = explode("/",$str);
-            return $date[2].'-'.$date[0].'-'.$date[1];
+            return $date[0].'-'.$date[1].'-'.$date[2];
         }
+
         $this->Tabel_perizinanModel->insert([
             'NO_REGISTER'=> $this->request->getVar('NoRegis'),
             'TANGGAL'=> convert($this->request->getVar('dateRegis')),
@@ -129,6 +130,8 @@ class Input extends BaseController
             'NO_IZIN'=> $this->request->getVar('noIzin'),
             'JENIS_PERIZINAN'=> $this->request->getVar('namaIzin')
         ]);
-        return redirect()->to('Search');
+        
+        session()->setFlashdata('message','Data berhasil ditambahkan.');
+        return redirect()->to('input');
     }
 }
